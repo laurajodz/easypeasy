@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "mocha"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
@@ -13,5 +14,23 @@
     "jade": "~1.11.0",
     "morgan": "~1.9.0",
     "serve-favicon": "~2.4.5"
-  }
+  },
+  "main": "server.js",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "mocha": "^4.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laurajodz/easypeasy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/laurajodz/easypeasy/issues"
+  },
+  "homepage": "https://github.com/laurajodz/easypeasy#readme",
+  "description": ""
 }
