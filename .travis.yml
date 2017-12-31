@@ -1,2 +1,9 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: B3BpvNLM97xTrd/gMOUEKAanSgcbJbBMUGb5aVjCbGKsGrXh2t+zVexSvyqDr3PCeMJ+2rn1OZVs3Rx0+2oKF3ZgNWqabbTqQf7zuiKgbjAROGTE2CbZWRCQem2kpm4VU7OwsJJO1q9TuLH+OsUBYR/572Lh7BN3/NU+vnKxc3tL5iCZZf99+YzNPEfttNp0H6X1pcv8/jTYrvwtTzDQ7OZduPF+2rC4vp2ZkjYBtanelbWANqAriRZEFoS3jTEJokgQFHcmvm0DC1aT88J3WrN6Ho6qrRq/mDbox5Ix/OBtuciOxx3Zl8tr+u0/xyxWcHxL+qtH+Y1b+87g6WScLYeVw4Hj5DY8RUVenL+kvxH+NS/YJNiZ/34Q7khEQRN7M0GdYqU2Tzh0uPfaDfIx/wqiEMKZ0lwXM0mwUQXyP/l/3xihaqKHjtAKwnIDp8zQG0s4q/dk7GxlRpYCmGiqy0NqruHEvrzzxtOvfwaAykYd//sOXrNuTTPk3KIG+9CMwiUS8iatqdlma8z9ZdS1+08QLgBWIx/ajtJcQyncfu9dTDp/g31phheTDAQ4RHRKMb/OixO4jiV31kEcqwuGn+WkhjT6Feh021qP47xWixiT9N8zMj361jDzto/xwLtyutAdC66CWccJzUXG4JMt4XpYacpyarygyCvl+HOSzIs=
+  app: secure-bayou-31170
+  on:
+    repo: laurajodz/easypeasy
