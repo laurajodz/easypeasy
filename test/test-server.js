@@ -7,7 +7,7 @@ const should = chai.should();
 
 chai.use(chaiHttp);
 
-describe('Shopping List', function() {
+describe('server response', function() {
 
   before(function() {
     return runServer();
@@ -17,9 +17,9 @@ describe('Shopping List', function() {
     return closeServer();
   });
 
-  it('should reach endpoint successfully', function() {
+  it('should reach localhost successfully', function() {
     return chai.request(app)
-      .get('/shopping-list')
+      .get('/')
       .then(function(res) {
         res.should.have.status(200);
       });
