@@ -8,15 +8,20 @@
       src="https://code.jquery.com/jquery-3.2.1.min.js"
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous"></script>
-      <link href="main.css" rel="stylesheet" type="text/css" />
+      <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
       <link href="https://fonts.googleapis.com/css?family=Lato:300|Pacifico" rel="stylesheet">
   </head>
   <body>
     <header role="banner" class="header">EasyPeasy</header>
     <h1>Shopping List</h1>
-      <ul class="shopping-list">
-        
-      </ul>
+    <form id="shopping-list-add">
+      <label for="shopping-list-add">Add an item</label>
+      <input type="text" name="shopping-list-entry" class="shoppingList-entry" placeholder="begin typing">
+      <button type="submit">Add item</button>
+    </form>
+    <div class="shopping-list">
+
+    </div>
+    <script src="javascripts/client.js"></script>
   </body>
-  <script src="index.js"></script>
 </html>
