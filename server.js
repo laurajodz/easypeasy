@@ -12,6 +12,10 @@ const morgan = require('morgan');
 
 const app = express();
 
+const shoppingListRouter = require('./shoppingListRouter');
+const recipesRouter = require('./recipesRouter');
+const mealPlanRouter = require('./mealPlanRouter');
+
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'jade');
@@ -34,6 +38,10 @@ app.use(express.static('public'));
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
+
+app.use('/shoppingList', shoppingListRouter);
+app.use('/recipes', recipesRouter);
+app.use('/mealPlan', mealPlanRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,4 +1,4 @@
-const shoppingList = [
+const mockShoppingList = [
   {name: "pasta", unit: "pounds", amount: 1},
   {name: "Parmesean cheese", unit: "cups", amount: 1},
   {name: "mozzarella cheese", unit: "cups", amount: 1},
@@ -13,13 +13,17 @@ const shoppingList = [
   {name: "eggs", unit: "whole", amount: 1}
 ];
 
-const recipes = [
+const mockRecipes = [
   {name: "Baked ziti",
-  ingredients: ["1 pound pasta", "1 cup Parmesean cheese", "1 cup mozzarella cheese", "2 cups pasta sauce"]},
+  ingredients: ["1 pound pasta", "1 cup Parmesean cheese", "1 cup mozzarella cheese", "2 cups pasta sauce"],
+  recipeId: 00001},
   {name: "Quesadillas",
-  ingredients: ["3 quesadilla shells", "5 oz cheddar cheese"]},
+  ingredients: ["3 quesadilla shells", "5 oz cheddar cheese"],
+  recipeId: 00002},
   {name: "Sausage and cabbage",
-  ingredients: ["14 oz sausage", "1 cup onion", "6 cups cabbage"]},
+  ingredients: ["14 oz sausage", "1 cup onion", "6 cups cabbage"],
+  recipeId: 00003},
   {name: "Turkey chili",
-  ingredients: ["2 pounds ground turkey", "1 cup onion", "2 tsp ground cumin"]},
+  ingredients: ["2 pounds ground turkey", "1 cup onion", "2 tsp ground cumin"],
+  recipeId: 00004},
 ];
