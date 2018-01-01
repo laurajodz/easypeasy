@@ -55,7 +55,7 @@ function getRecipes(callbackFn) {
 function displayRecipes(data) {
   for (index in data.recipes) {
     $('.recipes').append(
-      '<input id="recipe-checkbox" type="checkbox">' +
+      '<input class="recipe-checkbox" type="checkbox">' +
       '<p>' + data.recipes[index].name + '</p>' +
       '<img src="' + data.recipes[index].photo + '">');
   }
@@ -78,13 +78,17 @@ function displayShoppingList(data) {
 
 function addToShoppingList(itemName) {
   mockShoppingList.shoppingList.push({name: itemName});
+  $('.shopping-list').append(
+    '<input id="shopping-item-checkbox" type="checkbox">' +
+    '<p>' + itemName + '</p>'
+  );
 }
 
 function handleAddToShoppingList() {
   $('#shopping-list-add').submit(function(event) {
     event.preventDefault();
-    const newItemName = $('.shopping-list-entry').val();
-    $('.shopping-list-entry').val('');
+    const newItemName = $('.shoppingList-entry').val();
+    $('.shoppingList-entry').val('');
     addToShoppingList(newItemName);
     console.log(newItemName);
   });
@@ -113,13 +117,19 @@ $(function() {
 
   getMealPlan(displayMealPlan);
 
-  $('#recipe-checkbox').onchange = function() {
+  $('.recipes').on('change', '.recipe-checkbox', function(e){
     console.log("hello");
     var totalRecipesSelected = $('input[type=checkbox]:checked').length;
     console.log(totalRecipesSelected);
     $('.recipe-counter').html(
       `<h2>Recipes selected: ${totalRecipesSelected}</h2>`
     )
-  };
+  });
+
+  $('#recipe-to-mealPlan').on('click', function() {
+    window.location = 'mealPlan.html'; 
+  });
+
+
 
 });
