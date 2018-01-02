@@ -12,22 +12,25 @@
       <link href="https://fonts.googleapis.com/css?family=Lato:300|Pacifico" rel="stylesheet">
   </head>
   <body>
-    <nav>
+    <div class="nav">
       <ul>
+        <li><a href="index.html">Home</a></li>
         <li><a href="recipes.html">Recipes</a></li>
         <li><a href="mealPlan.html">Meal Plan</a></li>
         <li><a href="shoppingList.html">Shopping List</a></li>
       </ul>
-    </nav>
-    <header role="banner" class="header">EasyPeasy</header>
+    </div>
+    <header role="banner"></header>
     <h1>Shopping List</h1>
     <form id="shopping-list-add">
       <label for="shopping-list-add">Add an item</label>
       <input type="text" name="shopping-list-entry" class="shoppingList-entry" placeholder="begin typing">
-      <button type="submit">Add item</button>
+      <button id="additembtn">Add item</button>
     </form>
     <div class="shopping-list">
+      <ul class="shopping-list-items">
 
+      </ul>
     </div>
     <script src="javascripts/client.js"></script>
   </body>

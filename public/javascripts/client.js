@@ -1,7 +1,7 @@
 const mockShoppingList = {
   "shoppingList": [
     {name: "pasta", unit: "pound(s)", amount: 1, section: "ethnic", recipe: "Baked ziti"},
-    {name: "Parmesean cheese", unit: "cup(s)", amount: 1, section: "deli & cheese", recipe: "Baked ziti"},
+    {name: "Parmesan cheese", unit: "cup(s)", amount: 1, section: "deli & cheese", recipe: "Baked ziti"},
     {name: "mozzarella cheese", unit: "cup(s)", amount: 1, section: "deli & cheese", recipe: "Baked ziti"},
     {name: "pasta sauce", unit: "cup(s)", amount: 2, section: "ethnic", recipe: "Baked ziti"},
     {name: "quesadillas", unit: "shell(s)", amount: 3, section: "bakery & bread", recipe: "Quesadillas"},
@@ -20,7 +20,7 @@ const mockRecipes = {
   "recipes": [
     {name: "Baked ziti",
     photo: "http://georgesmarket.com/wp-content/uploads/2015/02/Baked-Ziti.jpg",
-    ingredients: ["1 pound pasta", "1 cup Parmesean cheese", "1 cup mozzarella cheese", "2 cups pasta sauce"],
+    ingredients: ["1 pound pasta", "1 cup Parmesan cheese", "1 cup mozzarella cheese", "2 cups pasta sauce"],
     instructions: "Lorem ipsum",
     recipeId: 000001},
     {name: "Quesadillas",
@@ -47,6 +47,16 @@ const mockMealPlan = {
   ]
 };
 
+const edamam_recipes_url = 'https://api.edamam.com/search?app_id=c5e83e4d&app_key=63b608e29d4873fd592f2304be5930d1&q=salad&to=100';
+
+
+// function getRecipeDataFromApi(searchTerm, callback) {
+//   const query = {
+//
+//   }
+//   $.getJSON(edamam_recipes_url, query, callback);
+// }
+
 
 function getRecipes(callbackFn) {
   setTimeout(function(){ callbackFn(mockRecipes)}, 1);
@@ -69,30 +79,21 @@ function getShoppingList(callbackFn) {
 function displayShoppingList(data) {
   for (index in data.shoppingList) {
     $('.shopping-list').append(
-      '<input id="shopping-item-checkbox" type="checkbox">' +
-      '<p>' + data.shoppingList[index].name + '</p>' +
-      '<p>' + data.shoppingList[index].amount + ' ' + data.shoppingList[index].unit + '</p>' +
-      '<button class="edit-shopping-list">edit</button>');
+      '<li>' + data.shoppingList[index].name + ', ' + data.shoppingList[index].amount + ' ' + data.shoppingList[index].unit + '<div class="closebtn">&times;</div>' + '  ' + '<div class="editbtn">edit</div>' + '</li>');
   }
 };
+//       '<input id="shopping-item-checkbox" type="checkbox">' +
+//       '<p>' + data.shoppingList[index].name + '</p>' +
+//       '<p>' + data.shoppingList[index].amount + ' ' + data.shoppingList[index].unit + '</p>' +
+//       '<button class="edit-shopping-list-item">edit</button>' + '<button class="delete-shopping-list-item">delete</button>');
 
 function addToShoppingList(itemName) {
   mockShoppingList.shoppingList.push({name: itemName});
   $('.shopping-list').append(
-    '<input id="shopping-item-checkbox" type="checkbox">' +
-    '<p>' + itemName + '</p>'
-  );
-}
-
-function handleAddToShoppingList() {
-  $('#shopping-list-add').submit(function(event) {
-    event.preventDefault();
-    const newItemName = $('.shoppingList-entry').val();
-    $('.shoppingList-entry').val('');
-    addToShoppingList(newItemName);
-    console.log(newItemName);
-  });
-}
+    '<li>' + itemName + '</li>');
+    // '<input id="shopping-item-checkbox" type="checkbox">' +
+    // '<p>' + itemName + '</p>'
+};
 
 
 function getMealPlan(callbackFn) {
@@ -110,24 +111,46 @@ function displayMealPlan(data) {
 
 $(function() {
   getRecipes(displayRecipes);
-
   getShoppingList(displayShoppingList);
-
-  handleAddToShoppingList();
-
   getMealPlan(displayMealPlan);
 
+  //event listener for button click to add an item to shopping list
+  $('#shopping-list-add').submit(function(event) {
+    event.preventDefault();
+    const newItemName = $('.shoppingList-entry').val();
+    $('.shoppingList-entry').val('');
+    addToShoppingList(newItemName);
+  });
+
+  //event listener for click to cross off shopping list item
+//   var list = document.querySelector(".shopping-list-items");
+//   list.addEventListener('click', function(ev) {
+//   if (ev.target.tagName === 'LI') {
+//     ev.target.classList.toggle('checked');
+//   }
+// }, false);
+//
+//   // event listener to delete item from shopping list
+//     $('.closebtn').on('click', function() {
+//       var div = this.parentElement;
+//       div.style.display = "none";
+//     });
+  // $('.closebtn').on('click', funcion() {
+  //   const itemDelete = getItemIndexFromElement(event.currentTarget);
+  //   mockShoppingList.shoppingList.splice(itemIndex, 1);
+  // });
+
+  //event handler for counter of recipes selected for meal plan
   $('.recipes').on('change', '.recipe-checkbox', function(e){
-    console.log("hello");
     var totalRecipesSelected = $('input[type=checkbox]:checked').length;
-    console.log(totalRecipesSelected);
     $('.recipe-counter').html(
       `<h2>Recipes selected: ${totalRecipesSelected}</h2>`
     )
   });
 
+  //event listener for button click from recipe selection page to meal plan summary page
   $('#recipe-to-mealPlan').on('click', function() {
-    window.location = 'mealPlan.html'; 
+    window.location = 'mealPlan.html';
   });
 
 

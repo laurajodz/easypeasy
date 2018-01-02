@@ -1,8 +1,142 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Lato', sans-serif;
+}
+
+.header {
+  margin: 20px auto 40px auto;
+  text-align: center;
+  position: relative;
+}
+
+img {
+  max-width: 100%;
+  /* height: auto; */
+}
+
+.logo {
+	width: 100%;
+	background-color: black;
+	color: white;
+	opacity: 0.6;
+  position: absolute;
+  font-size: 75px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+p.welcome {
+  line-height: 36px;
+  font-size: 24px;
+  /* font-weight: 600; */
 }
 
 a {
   color: #00B7FF;
+}
+
+.nav {
+    background-color: #444;
+  }
+
+.nav ul {
+  list-style: none;
+  background-color: #444;
+  text-align: center;
+  overflow: auto;
+  width: 600px;
+  margin: 0 auto;
+  padding: 0;
+  margin: 0;
+}
+
+.nav li {
+  /* font-size: 1.2em; */
+  line-height: 40px;
+  float: left;
+  height: 40px;
+  border-bottom: 1px solid #888;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  transition: .3s background-color;
+}
+
+.nav a:hover {
+  background-color: #03ad14;
+}
+
+.nav a.active {
+  background-color: #fff;
+  color: #444;
+  cursor: default;
+}
+
+@media screen and (min-width: 600px) {
+  .nav li {
+    width: 150px;
+    border-bottom: none;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1.4em;
+  }
+
+.shopping-list li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  background: #eee;
+  font-size: 18px;
+  transition: 0.2s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.shopping-list li:hover {
+    background: #ddd;
+}
+
+.shopping-list li.checked {
+    background: #888;
+    color: #fff;
+    text-decoration: line-through;
+}
+
+.shopping-list li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+
+.recipe-header {
+  display: inline;
+}
+
+#beginbtn, #addrecipebtn, #additembtn {
+  font-size: 16px;
+  padding: 16px;
+  margin: 30px 10px 10px 10px;
+  text-align: center;
+  cursor: pointer;
+  background: #aaaaaa;
+}
+
+#beginbtn:hover, #beginbtn:focus, #addrecipebtn:hover, #addrecipebtn:focus, #additembtn:hover, #additembtn:focus {
+  background-color: #03ad14;
 }
