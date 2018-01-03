@@ -1,40 +1,3 @@
-const mockRecipes = {
-  "recipes": [
-    {name: "Baked ziti",
-    photo: "http://georgesmarket.com/wp-content/uploads/2015/02/Baked-Ziti.jpg",
-    ingredients: ["1 pound pasta", "1 cup Parmesan cheese", "1 cup mozzarella cheese", "2 cups pasta sauce"],
-    instructions: "Lorem ipsum",
-    recipeId: 000001},
-    {name: "Quesadillas",
-    photo: "http://assets.kraftfoods.com/recipe_images/opendeploy/55039_640x428.jpg",
-    ingredients: ["3 quesadilla shells", "5 oz cheddar cheese"],
-    instructions: "Lorem ipsum",
-    recipeId: 000002},
-    {name: "Sausage and cabbage",
-    photo: "http://myketorecipes.com/wp-content/uploads/2016/11/fried-cabbage-with-sausage.jpg",
-    ingredients: ["14 oz sausage", "6 cups cabbage", "1 cup onion"],
-    instructions: "Lorem ipsum",
-    recipeId: 000003},
-    {name: "Turkey chili",
-    photo: "https://assets.epicurious.com/photos/54b26f03a801766f773f5134/master/pass/388569_turkey-chili_1x1.jpg",
-    ingredients: ["2 pounds ground turkey", "1 cup onion", "2 tsp ground cumin"],
-    instructions: "Lorem ipsum",
-    recipeId: 000004}
-  ]
-};
-
-const mockMealPlan = {
-  "mealPlan": [
-    {name: "Week of Jan 1 2018",
-    recipeIds: [000001, 000003, 000004],
-    recipeNames: ["Baked ziti", "Sausage & cabbage", "Turkey chili"],
-    mealPlanID: 010118}
-  ]
-};
-
-
-
-
 function getRecipeDataFromApi(searchTerm, callback) {
   const query = {
     q: `${searchTerm}`,
@@ -117,7 +80,7 @@ function displayRecipes(data) {
 function getShoppingList() {
    return new Promise((resolve, reject) => {
      $.ajax({
-       url: 'mocks/shoppinglist.json',
+       url: '../mocks/shoppinglist.json',
        dataType:'json',
      }).done(data => {
         resolve(data);
