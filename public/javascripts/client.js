@@ -1,21 +1,3 @@
-const mockShoppingList = {
-  "shoppingList": [
-    {name: "pasta", unit: "pound(s)", amount: 1, section: "ethnic", recipe: "Baked ziti"},
-    {name: "Parmesan cheese", unit: "cup(s)", amount: 1, section: "deli & cheese", recipe: "Baked ziti"},
-    {name: "mozzarella cheese", unit: "cup(s)", amount: 1, section: "deli & cheese", recipe: "Baked ziti"},
-    {name: "pasta sauce", unit: "cup(s)", amount: 2, section: "ethnic", recipe: "Baked ziti"},
-    {name: "quesadillas", unit: "shell(s)", amount: 3, section: "bakery & bread", recipe: "Quesadillas"},
-    {name: "cheddar cheese", unit: "ounce(s)", amount: 5, section: "deli & cheese", recipe: "Quesadillas"},
-    {name: "sausage", unit: "ounce(s)", amount: 14, section: "meat", recipe: "Sausage & cabbage"},
-    {name: "cabbage", unit: "cup(s)", amount: 6, section: "produce", recipe: "Sausage & cabbage"},
-    {name: "onion", unit: "cup(s)", amount: 1, section: "produce", recipe: "Sausage & cabbage"},
-    {name: "onion", unit: "cup(s)", amount: 1, section: "produce", recipe: "Turkey chili"},
-    {name: "ground turkey", unit: "pound(s)", amount: 2, section: "meat", recipe: "Turkey chili"},
-    {name: "ground cumin", unit: "teaspoon(s)", amount: 2, section: "spices", recipe: "Turkey chili"},
-    {name: "eggs", unit: "whole", amount: 1, section: "dairy & eggs", recipe: "none"}
-  ]
-};
-
 const mockRecipes = {
   "recipes": [
     {name: "Baked ziti",
@@ -107,9 +89,18 @@ function getFoodDataFromApi(searchterm, callback) {
 
 
 
-function getRecipes(callbackFn) {
-  setTimeout(function(){ callbackFn(mockRecipes)}, 1);
-};
+function getRecipes() {
+     return new Promise((resolve, reject) => {
+       $.ajax({
+         url: 'mocks/recipes.json',
+         dataType:'json',
+       }).done(data => {
+          resolve(data);
+       }).fail(err => {
+         console.log(err);
+       });
+     });
+  };
 
 function displayRecipes(data) {
   for (index in data.recipes) {
@@ -123,22 +114,37 @@ function displayRecipes(data) {
 
 
 
-function getShoppingList(callbackFn) {
-  setTimeout(function(){ callbackFn(mockShoppingList)}, 1);
+function getShoppingList() {
+   return new Promise((resolve, reject) => {
+     $.ajax({
+       url: 'mocks/shoppinglist.json',
+       dataType:'json',
+     }).done(data => {
+        resolve(data);
+     }).fail(err => {
+       console.log(err);
+     });
+   });
 };
 
 function displayShoppingList(data) {
-  for (index in data.shoppingList) {
-    $('.shopping-list').append(
-      '<li>' + data.shoppingList[index].name + ', ' + data.shoppingList[index].amount + ' ' + data.shoppingList[index].unit + '<div class="closebtn">&times;</div>' + '  ' + '<div class="editbtn">edit</div>' + '</li>');
-  }
+  $('.shopping-list-items')
+      .append(data.map(item => `<li>
+            <span class="non_edit">${item.name}, ${item.amount} ${item.unit} </span>
+            <span class="edit">
+                <input type="text" value="${item.name}"/>
+                <button>Submit</button>
+            </span>
+            <div class="closebtn">&times;</div>
+            <div class="editbtn">edit</div>
+            </li>`));
 };
 
 
+
 function addToShoppingList(itemName) {
-  mockShoppingList.shoppingList.push({name: itemName});
-  $('.shopping-list').append(
-    '<li>' + itemName + '</li>');
+  $('.added-items')
+    .append('<li>' + itemName + '</li>');
     // '<input id="shopping-item-checkbox" type="checkbox">' +
     // '<p>' + itemName + '</p>'
 };
@@ -146,8 +152,17 @@ function addToShoppingList(itemName) {
 
 
 
-function getMealPlan(callbackFn) {
-  setTimeout(function(){ callbackFn(mockMealPlan)}, 1);
+function getMealPlan() {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: 'mocks/mealplan.json',
+      dataType:'json',
+    }).done(data => {
+       resolve(data);
+    }).fail(err => {
+      console.log(err);
+    });
+  });
 };
 
 function displayMealPlan(data) {
@@ -162,9 +177,20 @@ function displayMealPlan(data) {
 
 
 $(function() {
-  getRecipes(displayRecipes);
-  getShoppingList(displayShoppingList);
-  getMealPlan(displayMealPlan);
+  // getRecipes()
+  //   .then(data => {
+  //     displayRecipes(data);
+  //   });
+
+  getShoppingList()
+      .then(data => {
+        displayShoppingList(data);
+      });
+
+  // getMealPlan()
+  //   .then(data => {
+  //     displayMealPlan(data);
+  //   });
 
   //event listener for button click from home page to recipes page
   $('#beginbtn').on('click', function() {
@@ -190,13 +216,13 @@ $(function() {
 
   //event listener to select recipes for meal plan
   $('.recipePhoto').on('click', function() {
-    console.log("hello");
+      //need something here to capture checked recipes and display their names
+      console.log('hold');
   });
 
   //event listener for button click from recipe selection page to meal plan summary page
   $('#addrecipebtn').on('click', function() {
-    //need something here to capture checked recipes
-    //need something here to bring ingredients to shopping list
+    //need something here to bring recipes to meal plan page and ingredients to shopping list page
     window.location = 'mealPlan.html';
   });
 
@@ -239,11 +265,10 @@ $(function() {
       }
     });
 
-
   //event listener to edit shopping list item
-  $('.editbtn').on('click', function() {
-    console.log("hi");
+  $('.shopping-list-items').on('click', '.editbtn', function(e) {
+    $('.editable').removeClass('editable');
+    $(e.target).parent().addClass('editable');
   })
-
 
 });

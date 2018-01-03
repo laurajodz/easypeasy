@@ -88,10 +88,21 @@ a {
     font-size: 1.4em;
   }
 
-/* .container {
-  display: block;
-  clear: both;
-} */
+.editable {
+  border:solid 1px blue;
+}
+
+.editable .non_edit {
+  display: none;
+}
+
+.edit {
+  display: none;
+}
+
+.editable .edit {
+  display: inline;
+}
 
 .shopping-list li {
   cursor: pointer;
