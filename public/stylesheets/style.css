@@ -29,10 +29,17 @@ img {
   transform: translate(-50%, -50%);
 }
 
-p.welcome {
+.tagline {
+  font-size: 35px;
+  line-height: 35px;
+  display: inline-block;
+  font-weight: 400;
+}
+
+.welcome {
   line-height: 36px;
   font-size: 24px;
-  /* font-weight: 600; */
+  text-align: center;
 }
 
 a {
@@ -48,7 +55,6 @@ a {
   background-color: #444;
   text-align: center;
   overflow: auto;
-  width: 600px;
   margin: 0 auto;
   padding: 0;
   margin: 0;
@@ -87,6 +93,20 @@ a {
     line-height: 50px;
     font-size: 1.4em;
   }
+
+.selection {
+  padding: 10px;
+  margin: 20px;
+  border: solid 1px #03ad14;
+}
+
+.recipesReturned li {
+  list-style: none;
+}
+
+.resultsimg {
+  cursor: pointer;
+}
 
 .editable {
   border:solid 1px blue;
@@ -183,28 +203,15 @@ label, input {
   font-size: 24px;
 }
 
-#beginbtn, #searchrecipesbtn, #seelistbtn, #additembtn {
+button {
   font-size: 16px;
   padding: 16px;
-  margin: 30px 10px 10px 10px;
+  /* margin: 30px 10px 10px 10px; */
   text-align: center;
   cursor: pointer;
   background: #aaaaaa;
 }
 
-#addrecipebtn {
-  font-size: 16px;
-  padding: 16px;
-  margin: 30px 10px 10px 10px;
-  text-align: center;
-  cursor: pointer;
-  background: #aaaaaa;
-  position: absolute;
-  right: 0px;
-}
-
-#beginbtn:hover, #beginbtn:focus, #searchrecipesbtn:hover, #searchrecipesbtn:focus,
-#addrecipebtn:hover, #addrecipebtn:focus, #seelistbtn:hover,
-#seelistbtn:focus, #additembtn:hover, #additembtn:focus {
+button:hover, button:focus {
   background-color: #03ad14;
 }

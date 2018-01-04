@@ -21,22 +21,30 @@
       </ul>
     </div>
     <header role="banner"></header>
-    <button id="addrecipebtn">Submit to Meal Plan</button>
-    <h1>Search recipes or select from below, when you are done selecting, click here:</h1>
+    <div class="selection">
+      <h1>Recipes selected:</h1>
+      <ul class="recipesSelected">
+
+      </ul>
+      <div class=counter>
+        <h2 class="recipe-counter">Recipes selected: 0</h2>
+      </div>
+      <button id="submitrecipesbtn">Submit to Meal Plan</button>
+    </div>
+    <h3>Search recipes or select from below, when you are done selecting, click here:</h3>
     <form class="recipe-search">
       <label for="search-term">Search recipes</label>
       <input type="text" name="recipe-search-entry" class="recipeSearch-entry" id="search-term" placeholder="begin typing">
       <button id="searchrecipesbtn">Search</button>
     </form>
     <p class="noresults" hidden>Sorry, no results. Try again.</p>
-      <div class=counter>
-        <h2 class="recipe-counter">Recipes selected: 0</h2>
-      </div>
     <div class="recipes">
+      <ul class="recipesSamples">
 
-    </div>
-    <div class="recipesReturned">
+      </ul>
+      <ul class="recipesReturned">
 
+      </ul>
     </div>
     <script src="javascripts/client.js"></script>
   </body>
