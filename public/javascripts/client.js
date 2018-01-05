@@ -1,3 +1,23 @@
+
+var mockShoppingList = {
+  "mock": [
+    {"name": "pasta", "unit": "pound(s)", "amount": 1, "section": "ethnic", "recipe": "Baked ziti"},
+    {"name": "Parmesan cheese", "unit": "cup(s)", "amount": 1, "section": "deli", "recipe": "Baked ziti"},
+    {"name": "mozzarella cheese", "unit": "cup(s)", "amount": 1, "section": "deli", "recipe": "Baked ziti"},
+    {"name": "pasta sauce", "unit": "cup(s)", "amount": 2, "section": "ethnic", "recipe": "Baked ziti"},
+    {"name": "quesadillas", "unit": "shell(s)", "amount": 3, "section": "bakery & bread", "recipe": "Quesadillas"},
+    {"name": "cheddar cheese", "unit": "ounce(s)", "amount": 5, "section": "deli", "recipe": "Quesadillas"},
+    {"name": "sausage", "unit": "ounce(s)", "amount": 14, "section": "meat", "recipe": "Sausage & cabbage"},
+    {"name": "cabbage", "unit": "cup(s)", "amount": 6, "section": "produce", "recipe": "Sausage & cabbage"},
+    {"name": "onion", "unit": "cup(s)", "amount": 1, "section": "produce", "recipe": "Sausage & cabbage"},
+    {"name": "onion", "unit": "cup(s)", "amount": 1, "section": "produce", "recipe": "Turkey chili"},
+    {"name": "ground turkey", "unit": "pound(s)", "amount": 2, "section": "meat", "recipe": "Turkey chili"},
+    {"name": "ground cumin", "unit": "teaspoon(s)", "amount": 2, "section": "spices", "recipe": "Turkey chili"},
+    {"name": "eggs", "unit": "whole", "amount": 1, "section": "dairy & eggs", "recipe": "none"}
+  ]
+};
+
+
 function getRecipes(searchTerm) {
   const query = {
     q: `${searchTerm}`,
@@ -17,9 +37,9 @@ function displayRecipes(data) {
     $('.recipesReturned')
       .append(data.map(item => `<li>
           <a href="${item.recipe.url}" target="_blank"><img class="resultsimg" src="${item.recipe.image}" alt="${item.recipe.label}"></a></br>
-          <label class="recipeName">${item.recipe.label}<input class="recipe-checkbox" name="check" type="checkbox"></label></li>`))
+          <label class="recipeName">${item.recipe.label}<input class="recipe-checkbox" type="checkbox"></label><p class="added" hidden>Added!</p><p class="ingredients" hidden>${item.recipe.ingredientLines}</p></li>`))
     if ($.isEmptyObject(data)) {
-      $('.noresults').prop('hidden', false);
+      $('.noresults').prop('hidden', false); //not working perfectly
       $('.recipes').prop('hidden', true);
     }
 };
@@ -27,105 +47,32 @@ function displayRecipes(data) {
 
 
 
-function getMealPlan() {
-  return new Promise((resolve, reject) => {
-    $.ajax({
-      url: 'mocks/mealplan.json',
-      dataType:'json',
-    }).done(data => {
-       resolve(data);
-    }).fail(err => {
-      console.log(err);
-    });
-  });
-};
+function getShoppingList(callbackFn) {
+    setTimeout(function(){ callbackFn(mockShoppingList)}, 1);
+  };
 
-function displayMealPlan(data) {
-  for (index in data.mealPlan) {
-    $('.meal-plan').append(
-      '<h2>' + data.mealPlan[index].name + '</h2>' +
-      '<h3>' + data.mealPlan[index].recipeNames + '</h3>');
+
+function displayShoppingList(data) {
+  for (index in data.mock) {
+    //KEEP - will eventually display items from recipes added to meal plan
+    $('.shopping-list-items')
+        .append(data.mock.map(item => `<li>
+              <span class="non_edit">
+                <input type="checkbox" class="check"><label class="new">${item.name}, ${item.amount} ${item.unit} </label><input type="text" hidden></span>
+              <span class="edit">
+              <input type="text" class="textedit" value="${item.name}, ${item.amount} ${item.unit}"/>
+              <button class="editsubmitbtn">Submit</button>
+              </span>
+              <div class="editbtn">edit</div>
+              </li>`));
   }
 };
 
 
 
 
-// function getFoodDataFromApi(searchterm) {
-//   const queryFood = {
-//     ingr: `${searchterm}`
-//   }
-//   $.ajax({
-//     url:'https://api.edamam.com/api/food-database/parser?app_id=10d53124&app_key=25887721367184b9b11f25937af1f6d',
-//     method:'GET',
-//     data: queryFood,
-//     dataType:"jsonp"
-//   }).done(res => {
-//     populateDropdown(res);
-//   })
-// };
-
-// function populateDropdown() {
-//   let dropdown = $('#food-dropdown');
-//
-//   dropdown.empty();
-//   dropdown.append('<option selected="true" disabled>Add an item</option>');
-//   dropdown.prop('selectedIndex', 0);
-//
-//   const url = 'https://api.edamam.com/api/food-database/parser?app_id=10d53124&app_key=25887721367184b9b11f25937af1f6d';
-//
-//   // Populate dropdown with list of provinces
-//   $.getJSON(url, function (data) {
-//     $.each(data, function (key, entry) {
-//       dropdown.append($('<option></option>').text(entry.text));
-//     })
-//   });
-// };
-
-// function getShoppingList() {
-//    return new Promise((resolve, reject) => {
-//      $.ajax({
-//        url: '../mocks/shoppinglist.json',
-//        dataType:'json',
-//      }).done(data => {
-//         resolve(data);
-//      }).fail(err => {
-//        console.log(err);
-//      });
-//    });
-// };
-
-function displayShoppingList(data) {
-  $('.shopping-list-items')
-      .append(data.map(item => `<li>
-            <span class="non_edit">${item.name}, ${item.amount} ${item.unit} </span>
-            <span class="edit">
-                <input type="text" value="${item.name}"/>
-                <button>Submit</button>
-            </span>
-            <div class="closebtn">&times;</div>
-            <div class="editbtn">edit</div>
-            </li>`));
-};
-
-function addToShoppingList(itemName) {
-  $('.added-items')
-    .append('<li>' + itemName + '</li>');
-    // '<input id="shopping-item-checkbox" type="checkbox">' +
-    // '<p>' + itemName + '</p>'
-};
-
-
-
 
 $(function() {
-  // getRecipes()
-  //   .then(data => {
-  //     displayRecipes(data);
-  //   });
-
-  // getSampleRecipes()
-  //load the recipes page with 5 sample recipes
 
   // getMealPlan()
   //   .then(data => {
@@ -133,12 +80,15 @@ $(function() {
   //   });
 
   // getShoppingList()
-  //     .then(data => {
-  //       displayShoppingList(data);
-  //     });
-// populateDropdown();
+  //   .then(data => {
+  //     displayShoppingList(data);
+  //   });
+
+  getShoppingList(displayShoppingList);
 
 
+
+  //Recipes page
 
   //event listener for button click from home page to recipes page
   $('#beginbtn').on('click', function() {
@@ -160,22 +110,33 @@ $(function() {
   $('.recipes').on('change', '.recipe-checkbox', function(e){
     var totalRecipesSelected = $('input[type=checkbox]:checked').length;
     $('.counter').html(
-      `<h2>Recipes selected: ${totalRecipesSelected}</h2>`
+      `<h2>Number of recipes selected: ${totalRecipesSelected}</h2>`
     )
-    var recipeName = $('.recipeName').val();
-    $('recipesSelected').append(
-      `<li>recipeName</li>`
-    )
+    $('.added').show(); //how to hide on new search, and only show for one
+    $('.resultsimg').addClass('border'); //not working
+
+    var mealPlanArray = [];
+    mealPlanArray.push($('.recipeName').text()); //pulling all
+    $('.recipesSelected').html(mealPlanArray); //cant delete once appended
+    displayMealPlan(mealPlanArray);
   });
 
-  //event listener for button click from recipe selection page to meal plan summary page
-  $('#submitrecipesbtn').on('click', function() {
-    //need something here to bring recipes to meal plan page and ingredients to shopping list page
-    window.location = 'mealPlan.html';
-  });
+  function displayMealPlan(data){
+    //event listener for button click from recipe selection page to meal plan summary page
+    $('#submitrecipesbtn').on('click', function() {
+      //need something here to bring recipes to meal plan page and ingredients to shopping list page
+      window.location = 'mealPlan.html';
+      $('.meal-plan')
+        .append(data.map(item => `<li>
+          ${item}</li>`)
+        );
+    });
+  }
 
 
 
+
+  //Meal Plan page
 
   //event listener for button click to go from meal plan page to shopping list page
   $('#seelistbtn').on('click', function() {
@@ -183,48 +144,58 @@ $(function() {
   });
 
   //event listener to go back to recipes page from meal plan page to add more
-
-  //event listener to create new meal plan
-
-  //event listener to delete recipes from meal plan (and its items on shopping list)
-
+  $('#morerecipesbtn').on('click', function() {
+    window.location = 'recipes.html';
+  });
 
 
+
+
+  //Shopping List page
 
   //event listener for button click to add an item to shopping list
-  $('.additembtn').on('click', function() {
-    console.log('hello');
+  $('#additembtn').on('click', function() {
     event.preventDefault();
-    const newItemName = $('.shoppingList-entry').val(); //change shoppinglist-entry
+    const newItemName = $('.shoppingList-entry').val();
     console.log(newItemName);
-    $('.shoppingList-entry').val(''); //change shoppinglist-entry
-    addToShoppingList(newItemName);
+    $('.shoppingList-entry').val('');
+    $('.my-added-items')
+      .append(`<li><span class="non_edit"><input type="checkbox" class="check">
+      <label class="new">${newItemName}</label><input type="text" hidden></span>
+        <span class="edit">
+          <input type="text" class="textedit" value="${newItemName}"/>
+          <button class="editsubmitbtn">Submit</button>
+        </span>
+        <div class="editbtn">edit</div>
+          </li>`);
   });
 
   //event listener for click to cross off shopping list item
-  var list = document.querySelector('ul');
-  list.addEventListener('click', function(ev) {
-  if (ev.target.tagName === 'LI') {
-    ev.target.classList.toggle('checked');
-  }
-}, false);
+  $('.shopping-list-items').on('click', '.check', function(e) {
+    $(e.target).parent().addClass('checked'); //need to change target to li and also removeClass when unchecked
+  });
 
-  // event listener to hide item (delete) from shopping list
-    $('.closebtn').on('click', function() {
-      var close = document.getElementsByClassName("closebtn");
-      var i;
-      for (i = 0; i < close.length; i++) {
-        close[i].onclick = function() {
-          var div = this.parentElement;
-          div.style.display = "none";
-        }
-      }
+  $('.my-added-items').on('click', '.check', function(e) {
+    $(e.target).parent().addClass('checked'); //need to change target to li and also removeClass when unchecked
+  });
+
+  //event listener to edit recipe shopping list item
+  $('.my-added-items').on('click', '.editbtn', function(e) {
+    $('.editable').removeClass('editable'); //if an item is already green/editable when edit is clicked, this changes it to noneditable
+    $(e.target).parent().addClass('editable'); //this makes item editable
+    $('.editsubmitbtn').on('click', function(e) { //this click submit is to make the changes
+      // var editItem = $('.textedit').val(); //need to capture updated text
+      $('.editable').removeClass('editable');
     });
+  });
 
-  //event listener to edit shopping list item
   $('.shopping-list-items').on('click', '.editbtn', function(e) {
-    $('.editable').removeClass('editable');
-    $(e.target).parent().addClass('editable');
-  })
+    $('.editable').removeClass('editable'); //if an item is already green/editable when edit is clicked, this changes it to noneditable
+    $(e.target).parent().addClass('editable'); //this makes item editable
+    $('.editsubmitbtn').on('click', function(e) { //this click submit is to make the changes
+      // var editItem = $('.textedit').val(); //need to capture updated text
+      $('.editable').removeClass('editable');
+    });
+  });
 
 });

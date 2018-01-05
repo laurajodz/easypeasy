@@ -12,6 +12,7 @@ body {
   position: relative;
 }
 
+/* peas photo */
 img {
   max-width: 100%;
   /* height: auto; */
@@ -94,10 +95,17 @@ a {
     font-size: 1.4em;
   }
 
+
+/* Recipes page */
+
 .selection {
   padding: 10px;
   margin: 20px;
   border: solid 1px #03ad14;
+}
+
+.recipe-checkbox, .recipeName {
+  display: inline-block;
 }
 
 .recipesReturned li {
@@ -108,8 +116,14 @@ a {
   cursor: pointer;
 }
 
+.border {
+  .shadow {-webkit-filter: drop-shadow(8px 8px 10px green);filter: drop-shadow(8px 8px 10px green);};
+}
+
+/* Shopping List page */
+
 .editable {
-  border:solid 1px blue;
+  border:solid 1px #03ad14;
 }
 
 .editable .non_edit {
@@ -124,41 +138,31 @@ a {
   display: inline;
 }
 
-.shopping-list li {
+.check  {
   cursor: pointer;
+}
+
+.shopping-list {
+  margin: 10px 120px 10px 100px;
+}
+
+.shopping-list-items li, .my-added-items li {
   list-style: none;
   position: relative;
-  padding: 12px 8px 12px 40px;
-  background: #eee;
+  padding: 8px;
+  background: #eee; //very light gray
   font-size: 18px;
   transition: 0.2s;
-  /* -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none; */
 }
 
 .shopping-list li:hover {
-    background: #ddd;
+    background: #ddd; //light gray
 }
 
-.shopping-list li.checked {
-    background: #888;
-    color: #fff;
-    text-decoration: line-through;
-}
-
-.shopping-list li.checked::before {
-  content: '';
-  position: absolute;
-  border-color: #fff;
-  border-style: solid;
-  border-width: 0 2px 2px 0;
-  top: 10px;
-  left: 16px;
-  transform: rotate(45deg);
-  height: 15px;
-  width: 7px;
+.checked {
+  background: #888; //dark gray
+  color: #fff;
+  text-decoration: line-through;
 }
 
 .closebtn {
@@ -166,41 +170,19 @@ a {
   right: 0;
   top: 0;
   padding: 12px 16px 12px 16px;
-}
-
-.closebtn:hover {
-  background-color: #f44336;
-  color: white;
+  cursor: pointer;
 }
 
 .editbtn {
   position: absolute;
   right: 40px;
-  top: 0;
+  top: 7px;
+  cursor: pointer;
 }
 
 .editbtn:hover {
-  background-color: blue;
+  background-color: #03ad14;
   color: white;
-}
-
-.recipe-header {
-  display: inline;
-}
-
-.recipe-checkbox, .recipeName {
-  display: inline-block;
-  font-size: 24px;
-}
-
-.recipeImage {
-  display: block;
-  width: 300px;
-  max-height: 300px;
-}
-
-label, input {
-  font-size: 24px;
 }
 
 button {
