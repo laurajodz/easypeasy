@@ -15,7 +15,6 @@ body {
 /* peas photo */
 img {
   max-width: 100%;
-  /* height: auto; */
 }
 
 .logo {
@@ -24,22 +23,20 @@ img {
 	color: white;
 	opacity: 0.6;
   position: absolute;
-  font-size: 75px;
+  font-size: 35px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 .tagline {
-  font-size: 35px;
-  line-height: 35px;
+  font-size: 15px;
   display: inline-block;
   font-weight: 400;
 }
 
 .welcome {
-  line-height: 36px;
-  font-size: 24px;
+  font-size: 15px;
   text-align: center;
 }
 
@@ -56,21 +53,23 @@ a {
   background-color: #444;
   text-align: center;
   overflow: auto;
-  margin: 0 auto;
   padding: 0;
   margin: 0;
 }
 
 .nav li {
-  /* font-size: 1.2em; */
   line-height: 40px;
+  font-size: 12px;
   float: left;
-  height: 40px;
+  height: 48px;
+  width: 25%;
   border-bottom: 1px solid #888;
 }
 
 .nav a {
   text-decoration: none;
+  min-width: 48px;
+  min-height: 48px;
   color: #fff;
   display: block;
   transition: .3s background-color;
@@ -86,19 +85,11 @@ a {
   cursor: default;
 }
 
-@media screen and (min-width: 600px) {
-  .nav li {
-    width: 150px;
-    border-bottom: none;
-    height: 50px;
-    line-height: 50px;
-    font-size: 1.4em;
-  }
-
 button {
-  font-size: 14px;
+  font-size: 18px;
+  min-width: 48px;
+  min-height: 48px;
   padding: 8px;
-  /* margin: 30px 10px 10px 10px; */
   text-align: center;
   cursor: pointer;
   background-color: #03ad14;
@@ -109,7 +100,9 @@ button:hover, button:focus {
 }
 
 input[type=text] {
-  font-size: 22px;
+  font-size: 18px;
+  min-width: 48px;
+  min-height: 48px;
 }
 
 
@@ -129,6 +122,12 @@ input[type=text] {
   list-style: none;
 }
 
+.recipesReturned {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+}
+
 .resultsimg {
   cursor: pointer;
 }
@@ -142,7 +141,7 @@ input[type=text] {
 /* Shopping List page */
 
 .editable {
-  border:solid 1px #03ad14;
+  border: solid 1px #03ad14;
 }
 
 .editable .non_edit {
@@ -161,21 +160,24 @@ input[type=text] {
   cursor: pointer;
 }
 
-.shopping-list {
-  margin: 10px 120px 10px 100px;
+.shopping-list-items, .my-added-items {
+  margin: 10px 0;
+  padding: 0;
 }
 
 .shopping-list-items li, .my-added-items li {
   list-style: none;
   position: relative;
   padding: 8px;
-  background: #eee; //very light gray
-  font-size: 18px;
+  background: #eee;
+  font-size: 14px;
   transition: 0.2s;
+  min-width: 48px;
+  min-height: 48px;
 }
 
 .shopping-list li:hover {
-    background: #ddd; //light gray
+    background: #ddd;
 }
 
 .checked {
@@ -192,7 +194,7 @@ input[type=text] {
 
 .editbtn {
   position: absolute;
-  right: 60px;
+  right: 40px;
   top: 7px;
   cursor: pointer;
 }
@@ -204,11 +206,32 @@ input[type=text] {
 
 .fa {
   position: absolute;
-  right: 30px;
+  right: 10px;
   top: 9px;
   cursor: pointer;
 }
 
 .fa:hover {
   font-size: 120%;
+}
+
+@media screen and (min-width: 600px) {
+  .shopping-list-items li, .my-added-items li {
+    font-size: 18px;
+  }
+  .nav li {
+    font-size: 22px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .logo {
+    font-size: 50px;
+  }
+  .tagline {
+    font-size: 30px;
+  }
+  .welcome {
+    font-size: 30px;
+  }
 }

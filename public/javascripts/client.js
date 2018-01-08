@@ -118,7 +118,7 @@ $(function() {
   $('.recipes').on('change', '.recipe-checkbox', function(e){
     var totalRecipesSelected = $('input[type=checkbox]:checked').length;
     $('.counter').html(
-      `<h2>Number of recipes selected: ${totalRecipesSelected}</h2>`
+      `<p>Number of recipes selected: ${totalRecipesSelected}</p>`
     )
 
   //to add to/delete from Selected, show/hide Added!, highlight photo

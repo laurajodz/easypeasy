@@ -21,15 +21,17 @@
       </ul>
     </div>
     <header role="banner"></header>
-    <div class="selection">
-      <h1 class="recipesSelected">Recipes selected:</h1>
+      <h1>Recipes</h1>
+      <div class="selection">
+        <div class=counter>
+          <p class="recipe-counter">Number of recipes selected: 0</p>
+        </div>
+        <p class="recipesSelected">
 
-      <div class=counter>
-        <h2 class="recipe-counter">Number of recipes selected: 0</h2>
+        </p>
+        <button id="submitrecipesbtn">Submit to Meal Plan</button>
       </div>
-      <button id="submitrecipesbtn">Submit to Meal Plan</button>
-    </div>
-    <h3>Search recipes or select from below</h3>
+    <p>Search recipes or select from below</p>
     <form class="recipe-search">
       <label for="search-term">Search recipes</label>
       <input type="text" name="recipe-search-entry" class="recipeSearch-entry" id="search-term" placeholder="begin typing">
