@@ -1,3 +1,6 @@
+var mealPlanArray = [];
+
+var recipesArray = [];
 
 var mockShoppingList = {
   "mock": [
@@ -29,19 +32,23 @@ function getRecipes(searchTerm) {
     data: query,
     dataType:"jsonp"
   }).done(res => {
+    recipesArray = res.hits;
     displayRecipes(res.hits);
   })
 };
 
 function displayRecipes(data) {
     $('.recipesReturned')
-      .append(data.map(item => `<li>
-          <a href="${item.recipe.url}" target="_blank"><img class="resultsimg" src="${item.recipe.image}" alt="${item.recipe.label}"></a></br>
-          <label class="recipeName">${item.recipe.label}<input class="recipe-checkbox" type="checkbox"></label><p class="added" hidden>Added!</p><p class="ingredients" hidden>${item.recipe.ingredientLines}</p></li>`))
-    if ($.isEmptyObject(data)) {
-      $('.noresults').prop('hidden', false); //not working perfectly
-      $('.recipes').prop('hidden', true);
-    }
+      .append(data.map((item, index) => `<li>
+          <a href="${item.recipe.url}" target="_blank" class="link">
+            <img class="resultsimg" src="${item.recipe.image}" alt="${item.recipe.label}"></a></br>
+          <label class="recipeName">${item.recipe.label}
+            <input class="recipe-checkbox" type="checkbox" data-key="${index}"></label>
+          <p class="added" hidden>Added!</p></li>`))
+    // if ($.isEmptyObject(data)) {
+    //   $('.noresults').prop('hidden', false); //not working perfectly
+    //   $('.recipes').prop('hidden', true);
+    // }
 };
 
 
@@ -64,6 +71,7 @@ function displayShoppingList(data) {
               <button class="editsubmitbtn">Submit</button>
               </span>
               <div class="editbtn">edit</div>
+              <i class="fa fa-trash"></i>
               </li>`));
   }
 };
@@ -106,20 +114,40 @@ $(function() {
     getRecipes(queryText);
   });
 
-  //event listener to select recipes for meal plan and handle counter
+  //event listener for meal plan selector and to handle counter
   $('.recipes').on('change', '.recipe-checkbox', function(e){
     var totalRecipesSelected = $('input[type=checkbox]:checked').length;
     $('.counter').html(
       `<h2>Number of recipes selected: ${totalRecipesSelected}</h2>`
     )
-    $('.added').show(); //how to hide on new search, and only show for one
-    $('.resultsimg').addClass('border'); //not working
 
-    var mealPlanArray = [];
-    mealPlanArray.push($('.recipeName').text()); //pulling all
-    $('.recipesSelected').html(mealPlanArray); //cant delete once appended
+  //to add to/delete from Selected, show/hide Added!, highlight photo
+    if ($(e.target).is(':checked')) {
+      var index = $(e.target).data('key');
+      recipesArray[index].key = index;
+      mealPlanArray.push(recipesArray[index]);
+      $('.recipesSelected').html(mealPlanArray.map(recipe => recipe.recipe.label).join(', '));
+
+      $(e.target).parent().siblings('.added').show();
+      $(e.target).parent().siblings('.link').find('.resultsimg').addClass('border');
+    } else {
+      var index = $(e.target).data('key');
+      recipesArray[index].key = index;
+      console.log(index);
+      console.log(recipesArray);
+      console.log(mealPlanArray);
+      var x = mealPlanArray[index];
+      console.log(x);
+      mealPlanArray.splice(x, 1);  //DELETE NOT WORKING
+      console.log(mealPlanArray);
+      $('.recipesSelected').html(mealPlanArray.map(recipe => recipe.recipe.label).join(', '));
+
+      $(e.target).parent().siblings('.added').hide();
+      $(e.target).parent().siblings('.link').find('.resultsimg').removeClass('border');
+    };
+
     displayMealPlan(mealPlanArray);
-  });
+});
 
   function displayMealPlan(data){
     //event listener for button click from recipe selection page to meal plan summary page
@@ -157,7 +185,6 @@ $(function() {
   $('#additembtn').on('click', function() {
     event.preventDefault();
     const newItemName = $('.shoppingList-entry').val();
-    console.log(newItemName);
     $('.shoppingList-entry').val('');
     $('.my-added-items')
       .append(`<li><span class="non_edit"><input type="checkbox" class="check">
@@ -167,20 +194,21 @@ $(function() {
           <button class="editsubmitbtn">Submit</button>
         </span>
         <div class="editbtn">edit</div>
+        <i class="fa fa-trash"></i>
           </li>`);
   });
 
   //event listener for click to cross off shopping list item
-  $('.shopping-list-items').on('click', '.check', function(e) {
-    $(e.target).parent().addClass('checked'); //need to change target to li and also removeClass when unchecked
+  $('.shopping-list').on('change', '.check', function(e) {
+    if ($(e.target).is(':checked')) {
+      $(e.target).parent().addClass('checked');
+    } else {
+      $(e.target).parent().removeClass('checked');
+    }
   });
 
-  $('.my-added-items').on('click', '.check', function(e) {
-    $(e.target).parent().addClass('checked'); //need to change target to li and also removeClass when unchecked
-  });
-
-  //event listener to edit recipe shopping list item
-  $('.my-added-items').on('click', '.editbtn', function(e) {
+  // event listener to edit recipe shopping list item
+  $('.shopping-list').on('click', '.editbtn', function(e) {
     $('.editable').removeClass('editable'); //if an item is already green/editable when edit is clicked, this changes it to noneditable
     $(e.target).parent().addClass('editable'); //this makes item editable
     $('.editsubmitbtn').on('click', function(e) { //this click submit is to make the changes
@@ -189,13 +217,10 @@ $(function() {
     });
   });
 
-  $('.shopping-list-items').on('click', '.editbtn', function(e) {
-    $('.editable').removeClass('editable'); //if an item is already green/editable when edit is clicked, this changes it to noneditable
-    $(e.target).parent().addClass('editable'); //this makes item editable
-    $('.editsubmitbtn').on('click', function(e) { //this click submit is to make the changes
-      // var editItem = $('.textedit').val(); //need to capture updated text
-      $('.editable').removeClass('editable');
-    });
+  //event listener to delete recipe shopping list item
+  $('.shopping-list').on('click', '.fa', function(e) {
+      $(e.target).parent().remove();
   });
+
 
 });

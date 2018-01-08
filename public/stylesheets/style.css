@@ -95,6 +95,23 @@ a {
     font-size: 1.4em;
   }
 
+button {
+  font-size: 14px;
+  padding: 8px;
+  /* margin: 30px 10px 10px 10px; */
+  text-align: center;
+  cursor: pointer;
+  background-color: #03ad14;
+}
+
+button:hover, button:focus {
+  background-color: #aaaaaa;
+}
+
+input[type=text] {
+  font-size: 22px;
+}
+
 
 /* Recipes page */
 
@@ -117,7 +134,9 @@ a {
 }
 
 .border {
-  .shadow {-webkit-filter: drop-shadow(8px 8px 10px green);filter: drop-shadow(8px 8px 10px green);};
+  border-width: 10px;
+  border-style: solid;
+  border-color: #03ad14;
 }
 
 /* Shopping List page */
@@ -160,8 +179,6 @@ a {
 }
 
 .checked {
-  background: #888; //dark gray
-  color: #fff;
   text-decoration: line-through;
 }
 
@@ -175,25 +192,23 @@ a {
 
 .editbtn {
   position: absolute;
-  right: 40px;
+  right: 60px;
   top: 7px;
   cursor: pointer;
 }
 
 .editbtn:hover {
-  background-color: #03ad14;
-  color: white;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
-button {
-  font-size: 16px;
-  padding: 16px;
-  /* margin: 30px 10px 10px 10px; */
-  text-align: center;
+.fa {
+  position: absolute;
+  right: 30px;
+  top: 9px;
   cursor: pointer;
-  background: #aaaaaa;
 }
 
-button:hover, button:focus {
-  background-color: #03ad14;
+.fa:hover {
+  font-size: 120%;
 }
