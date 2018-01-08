@@ -8,13 +8,25 @@
       src="https://code.jquery.com/jquery-3.2.1.min.js"
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous"></script>
-      <link href="main.css" rel="stylesheet" type="text/css" />
+      <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
       <link href="https://fonts.googleapis.com/css?family=Lato:300|Pacifico" rel="stylesheet">
   </head>
   <body>
-    <header role="banner" class="header">EasyPeasy</header>
+    <div class="nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="recipes.html">Recipes</a></li>
+        <li><a href="mealPlan.html">Meal Plan</a></li>
+        <li><a href="shoppingList.html">Shopping List</a></li>
+      </ul>
+    </div>
+        <header role="banner"></header>
     <h1>Meal Plan</h1>
-    
+    <ol class="meal-plan">
+
+    </ol>
+    <button id="seelistbtn">Go to shopping list</button>
+    <button id="morerecipesbtn">Add more recipes</button>
+    <script src="javascripts/client.js"></script>
   </body>
-  <script src="index.js"></script>
 </html>

@@ -1,8 +1,237 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Lato', sans-serif;
+}
+
+.header {
+  margin: 20px auto 40px auto;
+  text-align: center;
+  position: relative;
+}
+
+/* peas photo */
+img {
+  max-width: 100%;
+}
+
+.logo {
+	width: 100%;
+	background-color: black;
+	color: white;
+	opacity: 0.6;
+  position: absolute;
+  font-size: 35px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.tagline {
+  font-size: 15px;
+  display: inline-block;
+  font-weight: 400;
+}
+
+.welcome {
+  font-size: 15px;
+  text-align: center;
 }
 
 a {
   color: #00B7FF;
+}
+
+.nav {
+    background-color: #444;
+  }
+
+.nav ul {
+  list-style: none;
+  background-color: #444;
+  text-align: center;
+  overflow: auto;
+  padding: 0;
+  margin: 0;
+}
+
+.nav li {
+  line-height: 40px;
+  font-size: 12px;
+  float: left;
+  height: 48px;
+  width: 25%;
+  border-bottom: 1px solid #888;
+}
+
+.nav a {
+  text-decoration: none;
+  min-width: 48px;
+  min-height: 48px;
+  color: #fff;
+  display: block;
+  transition: .3s background-color;
+}
+
+.nav a:hover {
+  background-color: #03ad14;
+}
+
+.nav a.active {
+  background-color: #fff;
+  color: #444;
+  cursor: default;
+}
+
+button {
+  font-size: 18px;
+  min-width: 48px;
+  min-height: 48px;
+  padding: 8px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #03ad14;
+}
+
+button:hover, button:focus {
+  background-color: #aaaaaa;
+}
+
+input[type=text] {
+  font-size: 18px;
+  min-width: 48px;
+  min-height: 48px;
+}
+
+
+/* Recipes page */
+
+.selection {
+  padding: 10px;
+  margin: 20px;
+  border: solid 1px #03ad14;
+}
+
+.recipe-checkbox, .recipeName {
+  display: inline-block;
+}
+
+.recipesReturned li {
+  list-style: none;
+}
+
+.recipesReturned {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+}
+
+.resultsimg {
+  cursor: pointer;
+}
+
+.border {
+  border-width: 10px;
+  border-style: solid;
+  border-color: #03ad14;
+}
+
+/* Shopping List page */
+
+.editable {
+  border: solid 1px #03ad14;
+}
+
+.editable .non_edit {
+  display: none;
+}
+
+.edit {
+  display: none;
+}
+
+.editable .edit {
+  display: inline;
+}
+
+.check  {
+  cursor: pointer;
+}
+
+.shopping-list-items, .my-added-items {
+  margin: 10px 0;
+  padding: 0;
+}
+
+.shopping-list-items li, .my-added-items li {
+  list-style: none;
+  position: relative;
+  padding: 8px;
+  background: #eee;
+  font-size: 14px;
+  transition: 0.2s;
+  min-width: 48px;
+  min-height: 48px;
+}
+
+.shopping-list li:hover {
+    background: #ddd;
+}
+
+.checked {
+  text-decoration: line-through;
+}
+
+.closebtn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 16px 12px 16px;
+  cursor: pointer;
+}
+
+.editbtn {
+  position: absolute;
+  right: 40px;
+  top: 7px;
+  cursor: pointer;
+}
+
+.editbtn:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.fa {
+  position: absolute;
+  right: 10px;
+  top: 9px;
+  cursor: pointer;
+}
+
+.fa:hover {
+  font-size: 120%;
+}
+
+@media screen and (min-width: 600px) {
+  .shopping-list-items li, .my-added-items li {
+    font-size: 18px;
+  }
+  .nav li {
+    font-size: 22px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .logo {
+    font-size: 50px;
+  }
+  .tagline {
+    font-size: 30px;
+  }
+  .welcome {
+    font-size: 30px;
+  }
 }

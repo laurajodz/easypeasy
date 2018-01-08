@@ -8,15 +8,44 @@
       src="https://code.jquery.com/jquery-3.2.1.min.js"
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous"></script>
-      <link href="main.css" rel="stylesheet" type="text/css" />
+      <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
       <link href="https://fonts.googleapis.com/css?family=Lato:300|Pacifico" rel="stylesheet">
   </head>
   <body>
-    <header role="banner" class="header">EasyPeasy</header>
-    <h1>Recipes</h1>
-      <ul class="recipes">
+    <div class="nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="recipes.html">Recipes</a></li>
+        <li><a href="mealPlan.html">Meal Plan</a></li>
+        <li><a href="shoppingList.html">Shopping List</a></li>
+      </ul>
+    </div>
+    <header role="banner"></header>
+      <h1>Recipes</h1>
+      <div class="selection">
+        <div class=counter>
+          <p class="recipe-counter">Number of recipes selected: 0</p>
+        </div>
+        <p class="recipesSelected">
+
+        </p>
+        <button id="submitrecipesbtn">Submit to Meal Plan</button>
+      </div>
+    <p>Search recipes or select from below</p>
+    <form class="recipe-search">
+      <label for="search-term">Search recipes</label>
+      <input type="text" name="recipe-search-entry" class="recipeSearch-entry" id="search-term" placeholder="begin typing">
+      <button id="searchrecipesbtn">Search</button>
+    </form>
+    <p class="noresults" hidden>Sorry, no results. Try again.</p>
+    <div class="recipes">
+      <ul class="recipesSamples">
 
       </ul>
+      <ul class="recipesReturned">
+
+      </ul>
+    </div>
+    <script src="javascripts/client.js"></script>
   </body>
-  <script src="index.js"></script>
 </html>
