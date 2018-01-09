@@ -63,7 +63,6 @@ a {
   float: left;
   height: 48px;
   width: 25%;
-  border-bottom: 1px solid #888;
 }
 
 .nav a {
@@ -114,16 +113,22 @@ input[type=text] {
   border: solid 1px #03ad14;
 }
 
-.recipe-checkbox, .recipeName {
+.recipe-name, .add-recipe {
   display: inline-block;
+  font-size: 18px;
 }
 
 .recipesReturned li {
   list-style: none;
+  border: 1px solid #03ad14;
+  margin-bottom: 5px;
 }
 
 .recipesReturned {
   list-style: none;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
   margin: 0;
   padding: 10px 0;
 }
@@ -132,10 +137,19 @@ input[type=text] {
   cursor: pointer;
 }
 
-.border {
-  border-width: 10px;
-  border-style: solid;
-  border-color: #03ad14;
+.mealitem {
+  font-size: 18px;
+}
+
+.remove-meal-item {
+  background-color: transparent;
+  border: none;
+}
+
+.remove-meal-item:hover, .remove-meal-item:focus {
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
 }
 
 /* Shopping List page */
@@ -177,7 +191,7 @@ input[type=text] {
 }
 
 .shopping-list li:hover {
-    background: #ddd;
+  background: #ddd;
 }
 
 .checked {
@@ -219,6 +233,9 @@ input[type=text] {
   .shopping-list-items li, .my-added-items li {
     font-size: 18px;
   }
+  .shopping-list {
+    margin: 10px 30px;
+  }
   .nav li {
     font-size: 22px;
   }
@@ -233,5 +250,14 @@ input[type=text] {
   }
   .welcome {
     font-size: 30px;
+  }
+  .shopping-list {
+    margin: 10px 60px;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .shopping-list {
+    margin: 10px 120px;
   }
 }

@@ -24,7 +24,7 @@ var mockShoppingList = {
 function getRecipes(searchTerm) {
   const query = {
     q: `${searchTerm}`,
-    to: 10
+    to: 12
   }
   $.ajax({
     url:'https://api.edamam.com/search?app_id=c5e83e4d&app_key=63b608e29d4873fd592f2304be5930d1',
@@ -37,19 +37,37 @@ function getRecipes(searchTerm) {
   })
 };
 
-function displayRecipes(data) {
-    $('.recipesReturned')
-      .append(data.map((item, index) => `<li>
+function constructItem(item, index){
+  const button = !item.added ? `<button class="add-recipe" data-key="${index}" >Add</button>` : '<i>Added!</i>';
+  return `<li>
           <a href="${item.recipe.url}" target="_blank" class="link">
             <img class="resultsimg" src="${item.recipe.image}" alt="${item.recipe.label}"></a></br>
-          <label class="recipeName">${item.recipe.label}
-            <input class="recipe-checkbox" type="checkbox" data-key="${index}"></label>
-          <p class="added" hidden>Added!</p></li>`))
+          <div class="recipe-name">${item.recipe.label}</div>
+          ${button}
+          </li>`;
+}
+
+function displayRecipes(data) {
+    $('.recipesReturned')
+      .html(data.map(constructItem));
+};
+
+function constructMealItem(item, index){
+  return `<div class="mealitem">
+        ${item.recipe.label} <button class="remove-meal-item" data-key="${index}">x</button>
+    </div>`;
+}
+
+function displayMealPlan(mealPlanArray){
+  $('.recipesSelected').html(mealPlanArray.map(constructMealItem));
+  var totalRecipesSelected = mealPlanArray.length;
+  $('.counter').html(
+      `<p>Number of recipes selected: ${totalRecipesSelected}</p>`
+  )
+}
     // if ($.isEmptyObject(data)) {
     //   $('.noresults').prop('hidden', false); //not working perfectly
-    //   $('.recipes').prop('hidden', true);
     // }
-};
 
 
 
@@ -57,7 +75,6 @@ function displayRecipes(data) {
 function getShoppingList(callbackFn) {
     setTimeout(function(){ callbackFn(mockShoppingList)}, 1);
   };
-
 
 function displayShoppingList(data) {
   for (index in data.mock) {
@@ -79,7 +96,6 @@ function displayShoppingList(data) {
 
 
 
-
 $(function() {
 
   // getMealPlan()
@@ -96,6 +112,7 @@ $(function() {
 
 
 
+
   //Recipes page
 
   //event listener for button click from home page to recipes page
@@ -103,63 +120,39 @@ $(function() {
     window.location = 'recipes.html';
   });
 
-  //load sample recipes on recipe page
-
   //event listener for button click for recipe search
   $('.recipe-search').submit(event => {
-    $('.recipesSamples').hide();
     event.preventDefault();
     const queryText = $('.recipeSearch-entry').val();
     $('.recipeSearch-entry').val('');
     getRecipes(queryText);
   });
 
-  //event listener for meal plan selector and to handle counter
-  $('.recipes').on('change', '.recipe-checkbox', function(e){
-    var totalRecipesSelected = $('input[type=checkbox]:checked').length;
-    $('.counter').html(
-      `<p>Number of recipes selected: ${totalRecipesSelected}</p>`
-    )
-
-  //to add to/delete from Selected, show/hide Added!, highlight photo
-    if ($(e.target).is(':checked')) {
+  //event listener for meal plan add recipe
+  $('.recipes').on('click', '.add-recipe', function(e){
       var index = $(e.target).data('key');
-      recipesArray[index].key = index;
+      recipesArray[index].added = true;
       mealPlanArray.push(recipesArray[index]);
-      $('.recipesSelected').html(mealPlanArray.map(recipe => recipe.recipe.label).join(', '));
+      displayMealPlan(mealPlanArray);
+      displayRecipes(recipesArray);
+  });
 
-      $(e.target).parent().siblings('.added').show();
-      $(e.target).parent().siblings('.link').find('.resultsimg').addClass('border');
-    } else {
-      var index = $(e.target).data('key');
-      recipesArray[index].key = index;
-      console.log(index);
-      console.log(recipesArray);
-      console.log(mealPlanArray);
-      var x = mealPlanArray[index];
-      console.log(x);
-      mealPlanArray.splice(x, 1);  //DELETE NOT WORKING
-      console.log(mealPlanArray);
-      $('.recipesSelected').html(mealPlanArray.map(recipe => recipe.recipe.label).join(', '));
-
-      $(e.target).parent().siblings('.added').hide();
-      $(e.target).parent().siblings('.link').find('.resultsimg').removeClass('border');
-    };
-
-    displayMealPlan(mealPlanArray);
-});
-
-  function displayMealPlan(data){
-    //event listener for button click from recipe selection page to meal plan summary page
-    $('#submitrecipesbtn').on('click', function() {
-      //need something here to bring recipes to meal plan page and ingredients to shopping list page
-      window.location = 'mealPlan.html';
-      $('.meal-plan')
-        .append(data.map(item => `<li>
-          ${item}</li>`)
-        );
+  //event listener for meal plan delete recipe
+  $('.recipesSelected').on('click', '.remove-meal-item', function(e){
+      const index = $(e.target).data('key');
+      mealPlanArray[index].added = false;
+      mealPlanArray.splice(index, 1);
+      displayMealPlan(mealPlanArray);
+      displayRecipes(recipesArray);
     });
-  }
+
+  //event listener for button click from recipe selection page to meal plan summary page
+  $('#submitrecipesbtn').on('click', function() {
+    //need something here to bring recipes to meal plan page and ingredients to shopping list page
+    window.location = 'mealPlan.html';
+    $('.meal-plan')
+      .append(mealPlanArray); //Not working
+  });
 
 
 
@@ -169,11 +162,6 @@ $(function() {
   //event listener for button click to go from meal plan page to shopping list page
   $('#seelistbtn').on('click', function() {
     window.location = 'shoppingList.html';
-  });
-
-  //event listener to go back to recipes page from meal plan page to add more
-  $('#morerecipesbtn').on('click', function() {
-    window.location = 'recipes.html';
   });
 
 
