@@ -4,19 +4,19 @@ var recipesArray = [];
 
 var mockShoppingList = {
   "mock": [
-    {"name": "pasta", "unit": "pound(s)", "amount": 1, "section": "ethnic", "recipe": "Baked ziti"},
-    {"name": "Parmesan cheese", "unit": "cup(s)", "amount": 1, "section": "deli", "recipe": "Baked ziti"},
-    {"name": "mozzarella cheese", "unit": "cup(s)", "amount": 1, "section": "deli", "recipe": "Baked ziti"},
-    {"name": "pasta sauce", "unit": "cup(s)", "amount": 2, "section": "ethnic", "recipe": "Baked ziti"},
-    {"name": "quesadillas", "unit": "shell(s)", "amount": 3, "section": "bakery & bread", "recipe": "Quesadillas"},
-    {"name": "cheddar cheese", "unit": "ounce(s)", "amount": 5, "section": "deli", "recipe": "Quesadillas"},
-    {"name": "sausage", "unit": "ounce(s)", "amount": 14, "section": "meat", "recipe": "Sausage & cabbage"},
-    {"name": "cabbage", "unit": "cup(s)", "amount": 6, "section": "produce", "recipe": "Sausage & cabbage"},
-    {"name": "onion", "unit": "cup(s)", "amount": 1, "section": "produce", "recipe": "Sausage & cabbage"},
-    {"name": "onion", "unit": "cup(s)", "amount": 1, "section": "produce", "recipe": "Turkey chili"},
-    {"name": "ground turkey", "unit": "pound(s)", "amount": 2, "section": "meat", "recipe": "Turkey chili"},
-    {"name": "ground cumin", "unit": "teaspoon(s)", "amount": 2, "section": "spices", "recipe": "Turkey chili"},
-    {"name": "eggs", "unit": "whole", "amount": 1, "section": "dairy & eggs", "recipe": "none"}
+    {"name": "pasta", "unit": "pound(s)", "amount": 1, "recipe": "Baked ziti"},
+    {"name": "Parmesan cheese", "unit": "cup(s)", "amount": 1, "recipe": "Baked ziti"},
+    {"name": "mozzarella cheese", "unit": "cup(s)", "amount": 1, "recipe": "Baked ziti"},
+    {"name": "pasta sauce", "unit": "cup(s)", "amount": 2, "recipe": "Baked ziti"},
+    {"name": "quesadillas", "unit": "shell(s)", "amount": 3, "recipe": "Quesadillas"},
+    {"name": "cheddar cheese", "unit": "ounce(s)", "amount": 5, "recipe": "Quesadillas"},
+    {"name": "sausage", "unit": "ounce(s)", "amount": 14, "recipe": "Sausage & cabbage"},
+    {"name": "cabbage", "unit": "cup(s)", "amount": 6, "recipe": "Sausage & cabbage"},
+    {"name": "onion", "unit": "cup(s)", "amount": 1, "recipe": "Sausage & cabbage"},
+    {"name": "onion", "unit": "cup(s)", "amount": 1, "recipe": "Turkey chili"},
+    {"name": "ground turkey", "unit": "pound(s)", "amount": 2, "recipe": "Turkey chili"},
+    {"name": "ground cumin", "unit": "teaspoon(s)", "amount": 2, "recipe": "Turkey chili"},
+    {"name": "eggs", "unit": "whole", "amount": 1, "recipe": "none"}
   ]
 };
 
@@ -40,9 +40,10 @@ function getRecipes(searchTerm) {
 function constructItem(item, index){
   const button = !item.added ? `<button class="add-recipe" data-key="${index}" >Add</button>` : '<i>Added!</i>';
   return `<li>
-          <a href="${item.recipe.url}" target="_blank" class="link">
+          <a href="${item.recipe.url}" target="_blank">
             <img class="resultsimg" src="${item.recipe.image}" alt="${item.recipe.label}"></a></br>
           <div class="recipe-name">${item.recipe.label}</div>
+          <div class="source">Source: ${item.recipe.source}</div>
           ${button}
           </li>`;
 }
