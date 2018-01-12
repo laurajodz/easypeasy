@@ -4,7 +4,7 @@ const recipesSchema = mongoose.Schema({
   name: {type: String},
   image: {type: String},
   ingredients: [      // an array of ingredient items
-    {item: String}
+    {type: String}
   ],
   url: {type: String},
   source: {type: String}
@@ -12,4 +12,4 @@ const recipesSchema = mongoose.Schema({
 
 const Recipes = mongoose.model('Recipes', recipesSchema);
 
-module.exports = {Recipes};
+module.exports = {Recipes, recipesSchema};

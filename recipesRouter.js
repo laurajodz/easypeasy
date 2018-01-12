@@ -3,7 +3,7 @@ const router = express.Router();
 
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
-const {recipes} = required('./models/recipes');
+const {recipes} = require('./models/recipes');
 
 
 router.get('/recipes', jsonParser, (req, res) => {
@@ -46,7 +46,7 @@ router.post('/recipes', jsonParser, (req, res) => {
 });
 
 
-router.put('/recipes/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
     const message = (
       `Request path id (${req.params.id}) and request body id ` +
