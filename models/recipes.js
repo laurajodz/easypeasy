@@ -3,7 +3,9 @@ const mongoose = require('mongoose');
 const recipesSchema = mongoose.Schema({
   name: {type: String},
   image: {type: String},
-  ingredients: [String], // an array of ingredients
+  ingredients: [      // an array of ingredient items
+    {item: String}
+  ],
   url: {type: String},
   source: {type: String}
 });
