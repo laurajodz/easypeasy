@@ -1,20 +1,17 @@
-{"name": "recipe.label",
-"photo": "recipe.image",
-"ingredientsList": "ingredientLines[]",
-"recipe": "recipe.url",
-"recipeId": "index"},
-{"name": "recipe.label",
-"photo": "recipe.image",
-"ingredientsList": "ingredientLines[]",
-"recipe": "recipe.url",
-"recipeId": "index"},
-{"name": "recipe.label",
-"photo": "recipe.image",
-"ingredientsList": "ingredientLines[]",
-"recipe": "recipe.url",
-"recipeId": "index"},
-{"name": "recipe.label",
-"photo": "recipe.image",
-"ingredientsList": "ingredientLines[]",
-"recipe": "recipe.url",
-"recipeId": "index"}
+{"name": "Pot Roast",
+"photo": "www.google.com",
+"ingredientsList": "[1, 2, 3]",
+"recipe": "www.google.com",
+"source": "Martha Stewart"}
+
+{"name": "Chicken Salad",
+"photo": "rwww.google.com",
+"ingredientsList": "[1, 2, 3]",
+"recipe": "www.google.com",
+"source": "Food Network"}
+
+{"name": "Vegetarian Chilli",
+"photo": "www.google.com",
+"ingredientsList": "[1, 2, 3]",
+"recipe": "www.google.com",
+"source": "Recipes Galore"}
