@@ -22,7 +22,7 @@ router.get('/recipes', jsonParser, (req, res) => {
 
 
 router.post('/recipes', jsonParser, (req, res) => {
-  const requiredFields = ['name', 'url', 'photo', 'ingredients', 'source'];
+  const requiredFields = ['name', 'url', 'image', 'ingredients', 'source'];
   for (let i=0; i<requiredFields.length; i++) {
     const field = requiredFields[i];
     if (!(field in req.body)) {
@@ -35,7 +35,7 @@ router.post('/recipes', jsonParser, (req, res) => {
     .create({
       name: req.body.name,
       url: req.body.url,
-      photo: req.body.photo,
+      image: req.body.image,
       ingredients: req.body.ingredients,
       source: req.body.source})
     .then(res.status(201).json(recipes))
