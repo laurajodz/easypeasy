@@ -3,7 +3,7 @@ const router = express.Router();
 
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
-const {recipes} = required('/models/recipes');
+const {recipes} = required('./models/recipes');
 
 
 router.get('/recipes', jsonParser, (req, res) => {

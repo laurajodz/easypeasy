@@ -13,7 +13,7 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
 const {PORT, DATABASE_URL} = require('./config');
-const {recipes} = require('./models.recipes');
+const {recipes} = require('./models/recipes');
 const {shoppingList} = require('./models/shoppingList');
 const {mealPlan} = require('./models/mealPlan');
 
