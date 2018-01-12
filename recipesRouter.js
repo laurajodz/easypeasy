@@ -6,7 +6,7 @@ const jsonParser = bodyParser.json();
 const {recipes} = require('./models/recipes');
 
 
-router.get('/recipes', jsonParser, (req, res) => {
+router.get('/', jsonParser, (req, res) => {
   Recipes
     .find()
     .limit(12)
@@ -21,7 +21,7 @@ router.get('/recipes', jsonParser, (req, res) => {
 });
 
 
-router.post('/recipes', jsonParser, (req, res) => {
+router.post('/', jsonParser, (req, res) => {
   const requiredFields = ['name', 'url', 'image', 'ingredients', 'source'];
   for (let i=0; i<requiredFields.length; i++) {
     const field = requiredFields[i];
@@ -38,7 +38,7 @@ router.post('/recipes', jsonParser, (req, res) => {
       image: req.body.image,
       ingredients: req.body.ingredients,
       source: req.body.source})
-    .then(res.status(201).json(recipes))
+    .then(recipes => res.status(201).json(recipes))
     .catch(err => {
       console.error(err);
       res.status(500).json({message: 'Internal server error'});
@@ -69,7 +69,7 @@ router.put('/:id', (req, res) => {
 });
 
 
-router.delete('/recipes/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
   Recipes
     .findByIdAndRemove(req.params.id)
     .then(() => res.status(204).end())

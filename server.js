@@ -14,12 +14,12 @@ const jsonParser = bodyParser.json();
 
 const {PORT, DATABASE_URL} = require('./config');
 const {recipes} = require('./models/recipes');
-const {shoppingList} = require('./models/shoppingList');
+// const {shoppingList} = require('./models/shoppingList');
 const {mealPlan} = require('./models/mealPlan');
 
 const app = express();
 
-const shoppingListRouter = require('./shoppingListRouter');
+// const shoppingListRouter = require('./shoppingListRouter');
 const recipesRouter = require('./recipesRouter');
 const mealPlanRouter = require('./mealPlanRouter');
 
@@ -28,7 +28,7 @@ const mealPlanRouter = require('./mealPlanRouter');
 app.set('views', './views');
 app.set('view engine', 'jade');
 
-app.use('/shoppingList', shoppingListRouter);
+// app.use('/shoppingList', shoppingListRouter);
 app.use('/recipes', recipesRouter);
 app.use('/mealPlan', mealPlanRouter);
 
@@ -44,18 +44,6 @@ app.use(express.static('public'));
 // app.use('/users', users);
 
 app.use(morgan('common'));
-
-
-//temp mock data
-// ShoppingList.create('eggs', 'whole', 1);
-// ShoppingList.create('milk', 'quart(s)', 2);
-// ShoppingList.create('bread', 'slices', 4);
-//
-// Recipes.create(
-//   'Fried Chicken', 'http://recipesgalore.friedchicken.com', '/friedchicken.jpg', ['1 pound chicken', '1 cup flour', '4 tbsp butter']);
-// Recipes.create(
-//   'Salad', 'http://recipesgalore.salad', '/salad.jpg', ['2 whole carrots', '2 cups lettuce', '1 whole cucumber']);
-
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
@@ -121,3 +109,4 @@ if (require.main === module) {
 };
 
 module.exports = {app, runServer, closeServer};
+module.exports = router;
