@@ -109,4 +109,3 @@ if (require.main === module) {
 };
 
 module.exports = {app, runServer, closeServer};
-module.exports = router;
