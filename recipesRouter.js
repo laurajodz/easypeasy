@@ -7,12 +7,10 @@ const {recipes} = require('./models/recipes');
 
 
 router.get('/', jsonParser, (req, res) => {
-  Recipes
+  recipes
     .find()
     .limit(12)
-    .then(recipes => {
-      res.json(recipes)
-    })
+    .then(recipes => res.status(201).json(recipes))
     .catch(
       err => {
         console.error(err);
@@ -21,6 +19,7 @@ router.get('/', jsonParser, (req, res) => {
 });
 
 
+// not sure if i have this function
 router.post('/', jsonParser, (req, res) => {
   const requiredFields = ['name', 'url', 'image', 'ingredients', 'source'];
   for (let i=0; i<requiredFields.length; i++) {
@@ -31,7 +30,7 @@ router.post('/', jsonParser, (req, res) => {
       return res.status(400).send(message);
     }
   }
-  Recipes
+  recipes
     .create({
       name: req.body.name,
       url: req.body.url,
@@ -46,6 +45,7 @@ router.post('/', jsonParser, (req, res) => {
 });
 
 
+// not sure if i have this function
 router.put('/:id', (req, res) => {
   if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
     const message = (
@@ -62,15 +62,16 @@ router.put('/:id', (req, res) => {
       toUpdate[field] = req.body[field];
     }
   });
-  Recipes
+  recipes
     .findByIdAndUpdate(req.params.id, {$set: toUpdate})
     .then(recipes => res.status(204).end())
     .catch(err => res.status(500).json({message: 'Internal server error'}));
 });
 
 
+// not sure if i have this function
 router.delete('/:id', (req, res) => {
-  Recipes
+  recipes
     .findByIdAndRemove(req.params.id)
     .then(() => res.status(204).end())
     .catch(err => res.status(500).json({message: 'Internal server error'}));

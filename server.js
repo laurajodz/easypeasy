@@ -13,13 +13,12 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
 const {PORT, DATABASE_URL} = require('./config');
+
 const {recipes} = require('./models/recipes');
-// const {shoppingList} = require('./models/shoppingList');
 const {mealPlan} = require('./models/mealPlan');
 
 const app = express();
 
-// const shoppingListRouter = require('./shoppingListRouter');
 const recipesRouter = require('./recipesRouter');
 const mealPlanRouter = require('./mealPlanRouter');
 
@@ -28,7 +27,6 @@ const mealPlanRouter = require('./mealPlanRouter');
 app.set('views', './views');
 app.set('view engine', 'jade');
 
-// app.use('/shoppingList', shoppingListRouter);
 app.use('/recipes', recipesRouter);
 app.use('/mealPlan', mealPlanRouter);
 
