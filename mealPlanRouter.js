@@ -67,7 +67,7 @@ router.put('/:id', (req, res) => {
     if (field in req.body) {
       toUpdate[field] = req.body[field];
     }
-  });
+  })
   mealPlan
     .findByIdAndUpdate(req.params.id, {$set: toUpdate})
     .then(mealPlan => res.status(204).end())
