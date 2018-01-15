@@ -18,6 +18,18 @@ router.get('/', jsonParser, (req, res) => {
 });
 
 
+router.get('/:id/shoppingList', jsonParser, (req, res) => {
+  mealPlan
+    .findById(req.params.id)
+    .then(mealPlan => res.status(201).json(mealPlan.additionalItemNames))
+    .catch(
+      err => {
+        console.error(err);
+        res.status(500).json({message: 'Internal server error'});
+    });
+});
+
+
 router.get('/:id', jsonParser, (req, res) => {
   mealPlan
     .findById(req.params.id)
@@ -52,7 +64,9 @@ router.post('/', jsonParser, (req, res) => {
 });
 
 
-router.put('/:id', (req, res) => {
+router.put('/:id', jsonParser ,(req, res) => {
+  console.log(req.params);
+  console.log(req.body);
   if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
     const message = (
       `Request path id (${req.params.id}) and request body id ` +

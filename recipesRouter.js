@@ -3,11 +3,11 @@ const router = express.Router();
 
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
-const {recipes} = require('./models/recipes');
+const {Recipes} = require('./models/recipes');
 
 
 router.get('/', jsonParser, (req, res) => {
-  recipes
+  Recipes
     .find()
     .limit(12)
     .then(recipes => res.status(201).json(recipes))

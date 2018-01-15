@@ -10,6 +10,6 @@ const recipesSchema = mongoose.Schema({
   source: {type: String}
 });
 
-const Recipes = mongoose.model('Recipes', recipesSchema);
+const Recipes = mongoose.model('recipes', recipesSchema);
 
 module.exports = {Recipes, recipesSchema};
