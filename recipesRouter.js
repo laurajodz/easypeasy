@@ -7,10 +7,10 @@ const {recipes} = require('./models/recipes');
 
 
 router.get('/', jsonParser, (req, res) => {
-  recipes
+  recipe
     .find()
     .limit(12)
-    .then(recipes => res.status(201).json(recipes))
+    .then(recipe => res.status(201).json(recipe))
     .catch(
       err => {
         console.error(err);
