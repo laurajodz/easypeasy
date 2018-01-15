@@ -3,25 +3,13 @@ const router = express.Router();
 
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
-const {mealPlan} = require('./models/mealPlan');
+const {MealPlan} = require('./models/mealPlan');
 
 
 router.get('/', jsonParser, (req, res) => {
-  mealPlan
+  MealPlan
     .find()
-    .then(mealPlan => res.status(201).json(mealPlan))
-    .catch(
-      err => {
-        console.error(err);
-        res.status(500).json({message: 'Internal server error'});
-    });
-});
-
-
-router.get('/:id/shoppingList', jsonParser, (req, res) => {
-  mealPlan
-    .findById(req.params.id)
-    .then(mealPlan => res.status(201).json(mealPlan.additionalItemNames))
+    .then(mealPlan => res.status(200).json(mealPlan))
     .catch(
       err => {
         console.error(err);
@@ -31,9 +19,21 @@ router.get('/:id/shoppingList', jsonParser, (req, res) => {
 
 
 router.get('/:id', jsonParser, (req, res) => {
-  mealPlan
+  MealPlan
     .findById(req.params.id)
-    .then(mealPlan => res.status(201).json(mealPlan))
+    .then(mealPlan => res.status(200).json(mealPlan))
+    .catch(
+      err => {
+        console.error(err);
+        res.status(500).json({message: 'Internal server error'});
+    });
+});
+
+
+router.get('/:id/shoppinglist', jsonParser, (req, res) => {
+  MealPlan
+    .findById(req.params.id)
+    .then(mealPlan => res.status(200).json(mealPlan.additionalItemNames))
     .catch(
       err => {
         console.error(err);
@@ -52,7 +52,7 @@ router.post('/', jsonParser, (req, res) => {
       return res.status(400).send(message);
     }
   }
-  mealPlan
+  MealPlan
     .create({
       name: req.body.name,
       recipeNames: req.body.recipeNames})
@@ -65,8 +65,6 @@ router.post('/', jsonParser, (req, res) => {
 
 
 router.put('/:id', jsonParser ,(req, res) => {
-  console.log(req.params);
-  console.log(req.body);
   if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
     const message = (
       `Request path id (${req.params.id}) and request body id ` +
@@ -82,7 +80,7 @@ router.put('/:id', jsonParser ,(req, res) => {
       toUpdate[field] = req.body[field];
     }
   })
-  mealPlan
+  MealPlan
     .findByIdAndUpdate(req.params.id, {$set: toUpdate})
     .then(mealPlan => res.status(204).end())
     .catch(err => res.status(500).json({message: 'Internal server error'}));
@@ -90,7 +88,7 @@ router.put('/:id', jsonParser ,(req, res) => {
 
 
 router.delete('/:id', (req, res) => {
-  mealPlan
+  MealPlan
     .findByIdAndRemove(req.params.id)
     .then(() => res.status(204).end())
     .catch(err => res.status(500).json({message: 'Internal server error'}));

@@ -7,6 +7,6 @@ const mealPlanSchema = mongoose.Schema({
   additionalItemNames: [{type: String}]
 });
 
-const mealPlan = mongoose.model('mealPlan', mealPlanSchema);
+const MealPlan = mongoose.model('mealPlan', mealPlanSchema);
 
-module.exports = {mealPlan};
+module.exports = {MealPlan};

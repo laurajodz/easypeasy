@@ -7,8 +7,8 @@ const should = chai.should();
 
 chai.use(chaiHttp);
 
-const {recipes} = require('../models/recipes');
-const {mealPlan} = require('../models/mealPlan');
+const {Recipes} = require('../models/recipes');
+const {MealPlan} = require('../models/mealPlan');
 const {app, runServer, closeServer} = require('../server');
 const {TEST_DATABASE_URL} = require('../config');
 
@@ -17,22 +17,16 @@ function seedRecipesData() {
   console.info('seeding recipes data');
   const seedData = [];
   for (let i=1; i<=10; i++) {
-    seedData.push(generateRecipeData());
+    seedData.push(generateRecipesData());
   }
   return Recipes.insertMany(seedData);
-}
-
-function generateAdditionalItemNames() {
-  const items = [
-    'chocolate bar', 'walnuts', 'flour', 'sugar', 'baking powder', 'salt', 'apples', 'bananas'];
-  return items[Math.floor(Math.random() * items.length)];
 }
 
 function generateRecipeNames() {
   const recipeNames = [
     'Pot Roast', 'Dumplings', 'Chicken Salad', 'Pizza', 'Spaghetti & Meatballs',
     'Lasagna', 'Vegetarian Chilli', 'Kens Noodles'];
-  return items[Math.floor(Math.random() * recipeNames.length)];
+  return recipeNames[Math.floor(Math.random() * recipeNames.length)];
 }
 
 function generateRecipesData() {
@@ -43,6 +37,15 @@ function generateRecipesData() {
     url: faker.internet.domainName(),
     source: faker.company.companyName()
   }
+}
+
+function seedMealPlanData() {
+  console.info('seeding meal plan data');
+  const seedData = [];
+  for (let i=1; i<=10; i++) {
+    seedData.push(generateMealPlanData());
+  }
+  return MealPlan.insertMany(seedData);
 }
 
 function generateMealPlanData() {
@@ -59,6 +62,13 @@ function generateMealPlanData() {
   }
 }
 
+function generateAdditionalItemNames() {
+  const items = [
+    'chocolate bar', 'walnuts', 'flour', 'sugar', 'baking powder', 'salt', 'apples', 'bananas'];
+  return items[Math.floor(Math.random() * items.length)];
+}
+
+
 function tearDownDb() {
   console.warn('Deleting database');
   return mongoose.connection.dropDatabase();
@@ -69,14 +79,6 @@ describe('server response', function() {
 
   before(function() {
     return runServer(TEST_DATABASE_URL);
-  });
-
-  beforeEach(function() {
-    return seedRecipesData();
-  });
-
-  afterEach(function() {
-    return tearDownDb();
   });
 
   after(function() {
@@ -97,6 +99,12 @@ describe('Recipes', function() {
   before(function() {
     return runServer();
   });
+  beforeEach(function() {
+    return seedRecipesData();
+  });
+  afterEach(function() {
+    return tearDownDb();
+  });
   after(function() {
     return closeServer();
   });
@@ -111,12 +119,12 @@ describe('Recipes', function() {
       .get('/recipes')
       .then(function(_res) {
         res = _res;
-        res.should.have.status(200);
-        res.body.length.should.be.at.least(1);
+        expect(res).to.have.status(200);
+        expect(res.body.recipes).to.have.length.of.at.least(1);
         return Recipes.count();
       })
       .then(function(count) {
-        res.body.length.should.be.length.of(count);
+        expect(res.body.recipes).to.have.length.of(count);
       })
   });
 
@@ -153,7 +161,7 @@ describe('Recipes', function() {
   // right keys, and that 'id' is there
 
   it('should add a recipe on POST to /recipes', function() {
-    const newRecipe = generateRecipeData();
+    const newRecipe = generateRecipesData();
     return chai.request(app)
       .post('/recipes')
       .send(newRecipe)
@@ -229,9 +237,15 @@ describe('Recipes', function() {
 
 
 
-describe('mealPlan', function() {
+describe('MealPlan', function() {
   before(function() {
     return runServer();
+  });
+  beforeEach(function() {
+    return seedMealPlanData();
+  });
+  afterEach(function() {
+    return tearDownDb();
   });
   after(function() {
     return closeServer();
@@ -241,14 +255,29 @@ describe('mealPlan', function() {
     let res;
     return chai.request(app)
       .get('/mealplan')
-      .then(function(res) {
+      .then(function(_res) {
         res = _res;
-        res.should.have.status(200);
-        res.body.length.should.be.at.least(1);
-        return mealPlan.count();
+        expect(res).to.have.status(200);
+        expect(res.body.mealplan).to.have.length.of.at.least(1);
+        return MealPlan.count();
       })
       .then(function(count) {
-        res.body.length.should.be.length.of(count);
+        expect(res.body.mealplan).to.have.length.of(count);
+      })
+  });
+
+  it('should list all shopping list items on GET to /mealplan/id/shoppinglist', function() {
+    let res;
+    return chai.request(app)
+      .get('/mealplan/:id/shoppinglist')
+      .then(function(res) {
+        res = _res;
+        expect(res).to.have.status(200);
+        expect(res.body.mealplan.additionalItemNames).to.have.length.of.at.least(1);
+        return MealPlan.additionalItemNames.count();
+      })
+      .then(function(count) {
+        expect(res.body.mealplan.additionalItemNames).to.have.length.of(count);
       })
   });
 
@@ -279,6 +308,7 @@ describe('mealPlan', function() {
 
     it('should add a meal plan on POST to /mealplan', function() {
     const newMealPlan = generateMealPlanData();
+    console.log(newMealPlan);
     return chai.request(app)
       .post('/mealplan')
       .send(newMealPlan)

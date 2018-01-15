@@ -33,11 +33,4 @@ describe('server response', function() {
       });
   });
 
-  it('should reach the shopping list page successfully', function() {
-    return chai.request(app)
-      .get('/shoppingList.html')
-      .then(function(res) {
-        res.should.have.status(200);
-      });
-  });
 });

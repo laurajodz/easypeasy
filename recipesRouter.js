@@ -10,7 +10,7 @@ router.get('/', jsonParser, (req, res) => {
   Recipes
     .find()
     .limit(12)
-    .then(recipes => res.status(201).json(recipes))
+    .then(recipes => res.status(200).json(recipes))
     .catch(
       err => {
         console.error(err);
@@ -29,7 +29,7 @@ router.post('/', jsonParser, (req, res) => {
       return res.status(400).send(message);
     }
   }
-  recipes
+  Recipes
     .create({
       name: req.body.name,
       url: req.body.url,
@@ -45,7 +45,7 @@ router.post('/', jsonParser, (req, res) => {
 
 
 // not sure if i have this function
-router.put('/:id', (req, res) => {
+router.put('/:id', jsonParser, (req, res) => {
   if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
     const message = (
       `Request path id (${req.params.id}) and request body id ` +
@@ -61,7 +61,7 @@ router.put('/:id', (req, res) => {
       toUpdate[field] = req.body[field];
     }
   });
-  recipes
+  Recipes
     .findByIdAndUpdate(req.params.id, {$set: toUpdate})
     .then(recipes => res.status(204).end())
     .catch(err => res.status(500).json({message: 'Internal server error'}));
@@ -70,7 +70,7 @@ router.put('/:id', (req, res) => {
 
 // not sure if i have this function
 router.delete('/:id', (req, res) => {
-  recipes
+  Recipes
     .findByIdAndRemove(req.params.id)
     .then(() => res.status(204).end())
     .catch(err => res.status(500).json({message: 'Internal server error'}));
