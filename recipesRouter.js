@@ -19,7 +19,6 @@ router.get('/', jsonParser, (req, res) => {
 });
 
 
-// not sure if i have this function
 router.post('/', jsonParser, (req, res) => {
   const requiredFields = ['name', 'url', 'image', 'ingredients', 'source'];
   for (let i=0; i<requiredFields.length; i++) {
