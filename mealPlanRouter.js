@@ -30,6 +30,7 @@ router.get('/:id', jsonParser, (req, res) => {
 });
 
 
+// NEED TO ADD RECIPE INGREDIENTS 
 router.get('/:id/shoppinglist', jsonParser, (req, res) => {
   MealPlan
     .findById(req.params.id)
@@ -65,6 +66,8 @@ router.post('/', jsonParser, (req, res) => {
 
 
 router.put('/:id', jsonParser ,(req, res) => {
+  console.log(req.params);
+  console.log(req.body);
   if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
     const message = (
       `Request path id (${req.params.id}) and request body id ` +

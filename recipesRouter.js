@@ -20,7 +20,7 @@ router.get('/', jsonParser, (req, res) => {
 
 
 router.post('/', jsonParser, (req, res) => {
-  const requiredFields = ['name', 'url', 'image', 'ingredients', 'source'];
+  const requiredFields = ['name', 'image', 'ingredients', 'url', 'source'];
   for (let i=0; i<requiredFields.length; i++) {
     const field = requiredFields[i];
     if (!(field in req.body)) {
@@ -32,9 +32,9 @@ router.post('/', jsonParser, (req, res) => {
   Recipes
     .create({
       name: req.body.name,
-      url: req.body.url,
       image: req.body.image,
       ingredients: req.body.ingredients,
+      url: req.body.url,
       source: req.body.source})
     .then(recipes => res.status(201).json(recipes))
     .catch(err => {
@@ -44,7 +44,6 @@ router.post('/', jsonParser, (req, res) => {
 });
 
 
-// not sure if i have this function
 router.put('/:id', jsonParser, (req, res) => {
   if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
     const message = (
@@ -68,7 +67,6 @@ router.put('/:id', jsonParser, (req, res) => {
 });
 
 
-// not sure if i have this function
 router.delete('/:id', (req, res) => {
   Recipes
     .findByIdAndRemove(req.params.id)
