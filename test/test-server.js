@@ -133,29 +133,33 @@ describe('Recipes API', function() {
     // TEST:  get back all recipes, and ensure they have expected keys
 
     it('should return recipes with right fields', function() {
-      let resRecipes;
+      let resRecipe;
       return chai.request(app)
         .get('/recipes')
+        // .then(recipes => {
+        //   res.json({
+        //     recipes: recipes.map((recipes) => recipes.serialize())
+        //   })
+        // })
         .then(function(res) {
           expect(res).to.have.status(200);
           expect(res).to.be.json;
           expect(res.body).to.be.a('array');
           expect(res.body).to.have.length.of.at.least(1);
 
-          const expectedKeys = ('id', 'name', 'image', 'url', 'ingredients', 'source');
-          res.body.forEach(function(recipes) {
-            expect(recipes).to.be.a('object');
-            expect(recipes).to.include.keys(expectedKeys);
+          res.body.forEach(function(recipe) {
+            recipe.should.be.a('object');
+            recipe.should.include.keys('id', 'name', 'image', 'url', 'ingredients', 'source');
           });
-          resRecipes = res.body[0];
-          return Recipes.findById(resRecipes.id);
+          resRecipe = res.body[0];
+          return Recipes.findById(resRecipe.id);
         })
-        .then(function(recipes) {
-          expect(resRecipes.name).to.equal(recipes.name);
-          expect(resRecipes.image).to.equal(recipes.image);
-          expect(resRecipes.url).to.equal(recipes.url);
-          expect(resRecipes.ingredients).to.equal(recipes.ingredients);
-          expect(resRecipes.source).to.equal(recipes.source);
+        .then(recipe => {
+          resRecipe.name.should.equal(recipe.name);
+          resRecipe.image.should.equal(recipe.image);
+          resRecipe.url.should.equal(recipe.url);
+          resRecipe.ingredients.should.equal(recipe.ingredients);
+          eresRecipe.source.should.equal(recipe.source);
         });
     });
   });
@@ -167,11 +171,14 @@ describe('Recipes API', function() {
 
     it('should add a recipe', function() {
       const newRecipe = generateRecipesData();
+      let res;
       console.log(newRecipe);
       return chai.request(app)
         .post('/recipes')
         .send(newRecipe)
-        .then(function(res) {
+        .then(function(_res) {
+          res = _res;
+          console.log(res.body);
           res.should.have.status(201);
           res.should.be.json;
           res.body.should.be.a('object');
@@ -182,11 +189,12 @@ describe('Recipes API', function() {
           return Recipes.findById(res.body.id);
         })
         .then(function(recipes) {
-          res.body.name.should.be.equal.to(newRecipe.name);
-          res.body.image.should.be.equal.to(newRecipe.image);
-          res.body.url.should.be.equal.to(newRecipe.url);
-          res.body.ingredients.should.be.equal.to(newRecipe.ingredients);
-          res.body.source.should.be.equal.to(newRecipe.source);
+
+          expect(res.body.name).to.equal(newRecipe.name);
+          expect(res.body.image).to.equal(newRecipe.image);
+          expect(res.body.url).to.equal(newRecipe.url);
+          expect(res.body.ingredients).to.equal(newRecipe.ingredients);
+          expect(res.body.source).to.equal(newRecipe.source);
         })
     });
   });
@@ -295,69 +303,90 @@ describe('MealPlan API', function() {
         })
     });
 
-    // it('should return meal plan with right fields', function() {
-    //   let resMealPlan;
-    //   return chai.request(app)
-    //     .get('/mealplan')
-    //     .then(function(res) {
-    //       res.should.have.status(200);
-    //       res.should.be.json;
-    //       res.body.should.be.a('array');
-    //       res.body.length.should.be.at.least(1);
-    //       const expectedKeys = ['name', 'recipeNames'];
-    //       res.body.forEach(function(item) {
-    //         item.should.be.a('object');
-    //         item.should.include.keys(expectedKeys);
-    //       })
-    //       resMealPlan = res.body.mealplan[0];
-    //       return mealPlan.findById(resMealPlan.id);
-    //     })
-    //     .then(function(mealplan) {
-    //       resMealPlan.name.should.be.equal.to(mealplan.name);
-    //       resMealPlan.recipeNames.should.be.equal.to(mealPlan.recipeNames);
-    //     })
-    // });
+
+    it('should return plans with right fields', function() {
+      let resPlan;
+      return chai.request(app)
+        .get('/mealplan')
+        .then(function (res) {
+          res.should.have.status(200);
+          res.should.be.json;
+          res.body.should.be.a('array');
+          res.body.should.have.length.of.at.least(1);
+
+          res.body.forEach(function(plan) {
+            console.log('------------------- ', plan)
+            plan.should.be.a('object');
+            plan.should.include.keys('id', 'name', 'recipeNames', 'additionalItemNames');
+          });
+          resPlan = res.body[0];
+          return MealPlan.findById(resPlan.id);
+        })
+        .then(plan => {
+          resPlan.id.should.equal(plan.id);
+          resPlan.name.should.equal(plan.name);
+          resPlan.recipeNames.should.equal(plan.recipeNames);
+          resPlan.additionalItemNames.should.equal(plan.additionalItemNames);
+        });
+    });
 
 
-    // NEED TO ADD RECIPE INGREDIENTS
+    //NEED TO ADD RECIPE INGREDIENTS (recipeNames.ingredients)
     it('should list all shopping list items on GET to /mealplan/id/shoppinglist', function() {
       let res;
+      let shoppingList = []
+      return MealPlan
+        .findOne()
+
       return chai.request(app)
         .get('/mealplan/:id/shoppinglist')
-        .then(function(res) {
+        .then(function(_res) {
           res = _res;
+          console.log(res.body.mealplan.additionalItemNames);
+          console.log(res.body.mealplan.recipeNames.ingredients);
           expect(res).to.have.status(200);
-          expect(res.body.mealplan.additionalItemNames).to.have.length.of.at.least(1);
-          return MealPlan.additionalItemNames.count();
+          shoppingList = res.body.mealplan.additionalItemNames.concat(res.body.mealplan.recipeNames.ingredients);
+          expect(shoppingList).to.have.length.of.at.least(1);
+          return shoppingList.count();
+          // expect(res.body.mealplan.additionalItemNames).to.have.length.of.at.least(1);
+          // return MealPlan.additionalItemNames.count();
         })
         .then(function(count) {
-          expect(res.body.mealplan.additionalItemNames).to.have.length.of(count);
+          console.log(shoppingList);
+          // expect(res.body.mealplan.additionalItemNames).to.have.length.of(count);
+          expect(shoppingList).to.have.length.of(count);
         })
     });
   });
 
+
   describe('POST endpoint', function() {
 
-    it('should add a meal plan', function() {
-    const newMealPlan = generateMealPlanData();
-    console.log(newMealPlan);
+    it('should add a new meal plan', function() {
+    const newPlan = generateMealPlanData();
+    console.log(newPlan);
     return chai.request(app)
       .post('/mealplan')
-      .send(newMealPlan)
+      .send(newPlan)
       .then(function(res) {
+        console.log(res.body);
         res.should.have.status(201);
         res.should.be.json;
         res.body.should.be.a('object');
         res.body.should.include.keys('id', 'name', 'recipeNames');
         res.body.id.should.not.be.null;
+        res.body.name.should.equal(newPlan.name);
+        res.body.recipeNames.should.equal(newPlan.recipeNames);
         res.body.should.deep.equal(Object.assign(newMealPlan, {id: res.body.id}));
 
-        return mealPlan.findById(res.body.id);
+        return MealPlan.findById(res.body.id);
       })
-      .then(function(mealPlan) {
-        res.body.name.should.be.equal.to(newMealPlan.name);
-        res.body.recipeNames.should.be.equal.to(newMealPlan.recipeNames);
-      })
+      .then(function(plan) {
+        res.body.id.should.be.equal.to(newMealPlan.id);
+        plan.name.should.equal(newPlan.name);
+        plan.recipeNames.should.equal(newPlan.recipeNames);
+        plan.additionalItemNames.should.equal(newPlan.additionalItemNames);
+      });
     });
   });
 
@@ -369,24 +398,28 @@ describe('MealPlan API', function() {
         additionalItemNames: [generateAdditionalItemNames(), generateAdditionalItemNames(),
         generateAdditionalItemNames()]
       };
+      return MealPlan
+        .findOne()
+        .then(function(mealplan) {
+          updateData.id = mealplan.id;
+
       return chai.request(app)
-        .get('/mealplan/:id')
-        .then(function(res) {
-          updateData.id = res.body[0].id;
-          return chai.request(app)
-            .put(`/mealplan/${updateData.id}`)
-            .send(updateData)
+        .put(`/mealplan/${mealplan.id}`)
+        .send(updateData)
         })
         .then(function(res) {
           res.should.have.status(204);
 
-          return mealPlan.findById(updateData.id);
+          return MealPlan.findById(updateData.id);
         })
         .then(function(mealplan) {
-          mealPlan.name.should.be.equal.to(updateData.name);
+          expect(mealplan.name).to.equal(updateData.name);
+          expect(mealplan.recipeNames).to.equal(updateData.recipeNames);
+          expect(mealplan.additionalItemNames).to.equal(updateData.additionalItemNames);
         })
     });
   });
+
 
   describe('DELETE endpoint', function() {
 

@@ -7,6 +7,16 @@ const mealPlanSchema = mongoose.Schema({
   additionalItemNames: [{type: String}]
 });
 
+mealPlanSchema.methods.serialize = function() {
+
+  return {
+    id: this._id,
+    name: this.name,
+    recipesNames: this.recipeNames,
+    additionalItemNames: this.additionalItemNames
+  };
+}
+
 const MealPlan = mongoose.model('mealPlan', mealPlanSchema);
 
 module.exports = {MealPlan};

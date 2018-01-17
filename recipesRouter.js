@@ -36,7 +36,8 @@ router.post('/', jsonParser, (req, res) => {
       ingredients: req.body.ingredients,
       url: req.body.url,
       source: req.body.source})
-    .then(recipes => res.status(201).json(recipes))
+    .then(
+      recipes => res.status(201).json(recipes.serialize()))
     .catch(err => {
       console.error(err);
       res.status(500).json({message: 'Internal server error'});
@@ -50,7 +51,6 @@ router.put('/:id', jsonParser, (req, res) => {
       `Request path id (${req.params.id}) and request body id ` +
       `(${req.body.id}) must match`);
     console.error(message);
-    // we return here to break out of this function
     return res.status(400).json({message: message});
   }
   const toUpdate = {};
