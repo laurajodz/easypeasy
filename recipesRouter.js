@@ -37,7 +37,7 @@ router.post('/', jsonParser, (req, res) => {
       url: req.body.url,
       source: req.body.source})
     .then(
-      recipes => res.status(201).json(recipes.serialize()))
+      recipes => res.status(201).json(recipes))
     .catch(err => {
       console.error(err);
       res.status(500).json({message: 'Internal server error'});

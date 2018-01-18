@@ -58,7 +58,8 @@ router.post('/', jsonParser, (req, res) => {
   MealPlan
     .create({
       name: req.body.name,
-      recipeNames: req.body.recipeNames})
+      recipeNames: req.body.recipeNames,
+      additionalItemNames: req.body.additionalItemNames})
     .then(mealPlan => res.status(201).json(mealPlan))
     .catch(err => {
       console.error(err);
@@ -68,8 +69,8 @@ router.post('/', jsonParser, (req, res) => {
 
 
 router.put('/:id', jsonParser ,(req, res) => {
-  console.log(req.params);
-  console.log(req.body);
+  console.log('?????????????? ', req.params, ' ?????????????????');
+  console.log('!!!!!!!!!!!!!! ', req.body, ' !!!!!!!!!!!!!!');
   if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
     const message = (
       `Request path id (${req.params.id}) and request body id ` +

@@ -10,17 +10,17 @@ const recipesSchema = mongoose.Schema({
   source: {type: String}
 });
 
-recipesSchema.methods.serialize = function() {
-
-  return {
-    id: this._id,
-    name: this.name,
-    image: this.image,
-    ingredients: this.ingredients,
-    url: this.url,
-    source: this.source
-  };
-}
+// recipesSchema.methods.serialize = function() {
+//
+//   return {
+//     id: this._id,
+//     name: this.name,
+//     image: this.image,
+//     ingredients: this.ingredients,
+//     url: this.url,
+//     source: this.source
+//   };
+// }
 
 const Recipes = mongoose.model('recipes', recipesSchema);
 
