@@ -58,8 +58,7 @@ router.post('/', jsonParser, (req, res) => {
   MealPlan
     .create({
       name: req.body.name,
-      recipeNames: req.body.recipeNames,
-      additionalItemNames: req.body.additionalItemNames})
+      recipeNames: [req.body.recipeNames]})
     .then(mealPlan => res.status(201).json(mealPlan))
     .catch(err => {
       console.error(err);

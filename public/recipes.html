@@ -8,8 +8,9 @@
       src="https://code.jquery.com/jquery-3.2.1.min.js"
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous"></script>
-      <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
-      <link href="https://fonts.googleapis.com/css?family=Lato:300|Pacifico" rel="stylesheet">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300|Pacifico" rel="stylesheet">
   </head>
   <body>
     <div class="nav">
@@ -21,7 +22,8 @@
       </ul>
     </div>
     <header role="banner"></header>
-      <h1>Recipes</h1>
+      <h1>Select recipes for meal plan beginning on:</h1>
+        <input type="text" id="datepicker">
       <div class="selection">
         <div class=counter>
           <p class="recipe-counter">Number of recipes selected: 0</p>

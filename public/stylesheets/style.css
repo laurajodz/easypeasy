@@ -107,6 +107,10 @@ input[type=text] {
 
 /* Recipes page */
 
+#datepicker {
+  min-width: 250px;
+}
+
 .selection {
   padding: 10px;
   margin: 20px;

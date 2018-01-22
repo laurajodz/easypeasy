@@ -55,7 +55,7 @@ function displayRecipes(data) {
 
 function constructMealItem(item, index){
   return `<div class="mealitem">
-        ${item.recipe.label} <button class="remove-meal-item" data-key="${index}">x</button>
+        ${item.recipe.label}, ${item.recipe.source} <button class="remove-meal-item" data-key="${index}">x</button>
     </div>`;
 }
 
@@ -74,6 +74,16 @@ function displayMealPlan(mealPlanArray){
 
 
 function getShoppingList(callbackFn) {
+
+//
+//   $.ajax({
+//     url:`/${mealPlanId}/shoppinglist`,
+//     method:'GET',
+//     dataType:"jsonp"
+//   }).done(res => {
+//     displayShoppingList(res);
+//   })
+// };
     setTimeout(function(){ callbackFn(mockShoppingList)}, 1);
   };
 
@@ -147,12 +157,40 @@ $(function() {
       displayRecipes(recipesArray);
     });
 
-  //event listener for button click from recipe selection page to meal plan summary page
+  //event listener for button click from recipe selection page to meal plan summary page;
+  //adds mealPlanArray to database
+  //displays Meal Plan
   $('#submitrecipesbtn').on('click', function() {
     //need something here to bring recipes to meal plan page and ingredients to shopping list page
     window.location = 'mealPlan.html';
-    $('.meal-plan')
-      .append(mealPlanArray); //Not working
+
+    var mealPlanName = $('#datepicker').val();
+
+    const q = {
+      name: mealPlanName,
+      recipeNames:  [{
+          name: ,
+          image: ,
+          ingredients: [
+
+          ],
+          url: ,
+          source:
+      }]
+    }
+    // $.ajax({
+    //   url:'/mealplan',
+    //   method:'POST',
+    //   data: q,
+    //   dataType:"jsonp"
+    //}).done(res => {
+    //  $('.meal-plan')
+    //    .append(res.data.map(item => `<li>
+    //          <a href="${item.recipe.url}" target="_blank">
+    //            <img class="resultsimg" src="${item.recipe.image}" alt="${item.recipe.label}"></a></br>
+    //          <div class="recipe-name">${item.recipe.label}</div>
+    //          <div class="source">Source: ${item.recipe.source}</div>
+    //          </li>`));
   });
 
 
@@ -163,7 +201,10 @@ $(function() {
   //event listener for button click to go from meal plan page to shopping list page
   $('#seelistbtn').on('click', function() {
     window.location = 'shoppingList.html';
+    getShoppingList();
   });
+
+  //need something to edit or delete meal plan, and see previous meal plans
 
 
 
@@ -172,20 +213,30 @@ $(function() {
 
   //event listener for button click to add an item to shopping list
   $('#additembtn').on('click', function() {
-    event.preventDefault();
+
     const newItemName = $('.shoppingList-entry').val();
     $('.shoppingList-entry').val('');
-    $('.my-added-items')
-      .append(`<li><span class="non_edit"><input type="checkbox" class="check">
-      <label class="new">${newItemName}</label><input type="text" hidden></span>
-        <span class="edit">
-          <input type="text" class="textedit" value="${newItemName}"/>
-          <button class="editsubmitbtn">Submit</button>
-        </span>
-        <div class="editbtn">edit</div>
-        <i class="fa fa-trash"></i>
-          </li>`);
+
+      // $.ajax({
+      //   url:'/mealplan',
+      //   method:'PUT',
+      //   data: newItemName,
+      //   dataType:"jsonp"
+      //}).done(res => {
+
+            $('.my-added-items')
+              .append(`<li><span class="non_edit"><input type="checkbox" class="check">
+              <label class="new">${newItemName}</label><input type="text" hidden></span>
+                <span class="edit">
+                  <input type="text" class="textedit" value="${newItemName}"/>
+                  <button class="editsubmitbtn">Submit</button>
+                </span>
+                <div class="editbtn">edit</div>
+                <i class="fa fa-trash"></i>
+                  </li>`);
   });
+
+
 
   //event listener for click to cross off shopping list item
   $('.shopping-list').on('change', '.check', function(e) {
@@ -210,6 +261,10 @@ $(function() {
   $('.shopping-list').on('click', '.fa', function(e) {
       $(e.target).parent().remove();
   });
+
+  //date picker
+  $('#datepicker').datepicker({ dateFormat: 'DD, MM dd, yy' }).val();
+
 
 
 });

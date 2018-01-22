@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const {recipesSchema} = require('./recipes');
 
 const mealPlanSchema = mongoose.Schema({
-  name: {type: String}, // ex. Week of January 1, 2018
-  recipeNames: [{recipesSchema}], // ex. Chicken Salad, Pot Roast, Vegetarian Chilli
+  name: {type: String},
+  recipeNames: [{recipesSchema}], 
   additionalItemNames: [{type: String}]
 });
 

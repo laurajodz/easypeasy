@@ -51,14 +51,11 @@ function seedMealPlanData() {
 function generateMealPlanData() {
   return {
     name: faker.lorem.words(),
-    recipeNames: {
-      name: generateRecipeNames(),
-      image: faker.image.food(),
-      ingredients: [faker.lorem.words(), faker.lorem.words(), faker.lorem.words()],
-      url: faker.internet.domainName(),
-      source: faker.company.companyName()},
-    additionalItemNames: [
-      generateAdditionalItemNames(), generateAdditionalItemNames(), generateAdditionalItemNames()]
+    recipeNames: [
+      generateRecipesData(),
+      generateRecipesData(),
+      generateRecipesData()
+    ]
   }
 }
 
@@ -367,12 +364,12 @@ describe('MealPlan API', function() {
 
     it('should add a new meal plan', function() {
     const newPlan = generateMealPlanData();
-    console.log(newPlan);
+    console.log('--------newPlan---------- ', newPlan, '----------');
     return chai.request(app)
       .post('/mealplan')
       .send(newPlan)
       .then(function(res) {
-        console.log(res.body);
+        console.log('**********res.body********** ', res.body, '***********');
         res.should.have.status(201);
         res.should.be.json;
         res.body.should.be.a('object');
@@ -388,7 +385,6 @@ describe('MealPlan API', function() {
         // plan._id.should.be.equal.to(newPlan.id);
         plan.name.should.equal(newPlan.name);
         // plan.recipeNames.should.equal(newPlan.recipeNames);
-        plan.additionalItemNames.should.deep.equal(newPlan.additionalItemNames);
       });
     });
   });
