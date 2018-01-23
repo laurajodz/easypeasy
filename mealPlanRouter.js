@@ -4,11 +4,13 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 const {MealPlan} = require('./models/mealPlan');
+const {Recipes} = require('./models/recipes');
 
 
 router.get('/', jsonParser, (req, res) => {
   MealPlan
     .find()
+    .populate('recipeNames')
     .then(mealPlan => res.status(200).json(mealPlan))
     .catch(
       err => {
@@ -21,6 +23,7 @@ router.get('/', jsonParser, (req, res) => {
 router.get('/:id', jsonParser, (req, res) => {
   MealPlan
     .findById(req.params.id)
+    .populate('recipeNames')
     .then(mealPlan => res.status(200).json(mealPlan))
     .catch(
       err => {
@@ -57,9 +60,16 @@ router.post('/', jsonParser, (req, res) => {
   }
   MealPlan
     .create({
-      name: req.body.name,
-      recipeNames: [req.body.recipeNames]})
-    .then(mealPlan => res.status(201).json(mealPlan))
+      name: req.body.name})
+    .then(mealPlan => {
+      Promise
+        .all(req.body.recipeNames.map(recipe => Recipes.create(recipe)))
+        .then(recipes => {
+          mealPlan.recipeNames = recipes;
+          return mealPlan.save();
+        })
+        .then(mealPlan => res.status(201).json(mealPlan))
+    })
     .catch(err => {
       console.error(err);
       res.status(500).json({message: 'Internal server error'});

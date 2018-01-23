@@ -40,12 +40,20 @@ img {
   text-align: center;
 }
 
+.loginform {
+  text-align: center;
+}
+
+.login {
+  display: inline-block;
+}
+
 a {
   color: #00B7FF;
 }
 
 .nav {
-    background-color: #444;
+  background-color: #444;
   }
 
 .nav ul {
@@ -109,6 +117,15 @@ input[type=text] {
 
 #datepicker {
   min-width: 250px;
+}
+
+#submitrecipesbtn:disabled {
+  background-color: #03ad14;
+  cursor: auto;
+}
+
+.mealplan-submit {
+  margin-top: 20px;
 }
 
 .selection {

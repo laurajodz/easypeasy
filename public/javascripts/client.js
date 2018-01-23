@@ -144,6 +144,7 @@ $(function() {
       var index = $(e.target).data('key');
       recipesArray[index].added = true;
       mealPlanArray.push(recipesArray[index]);
+      $('#submitrecipesbtn').removeAttr('disabled');
       displayMealPlan(mealPlanArray);
       displayRecipes(recipesArray);
   });
@@ -153,6 +154,11 @@ $(function() {
       const index = $(e.target).data('key');
       mealPlanArray[index].added = false;
       mealPlanArray.splice(index, 1);
+      if (mealPlanArray.length > 0) {
+        $('#submitrecipesbtn').removeAttr('disabled');
+      } else {
+        $('#submitrecipesbtn').attr('disabled','disabled');
+      }
       displayMealPlan(mealPlanArray);
       displayRecipes(recipesArray);
     });
@@ -162,37 +168,36 @@ $(function() {
   //displays Meal Plan
   $('#submitrecipesbtn').on('click', function() {
     //need something here to bring recipes to meal plan page and ingredients to shopping list page
-    window.location = 'mealPlan.html';
+    // window.location = 'mealPlan.html';
+    event.preventDefault();
 
     var mealPlanName = $('#datepicker').val();
 
+    if ($('#datepicker').val().trim().length == 0) {
+      alert("Please choose a date");
+    }
+
     const q = {
       name: mealPlanName,
-      recipeNames:  [{
-          name: ,
-          image: ,
-          ingredients: [
-
-          ],
-          url: ,
-          source:
-      }]
+      recipeNames: mealPlanArray
     }
+    console.log(q);
+
     // $.ajax({
     //   url:'/mealplan',
     //   method:'POST',
     //   data: q,
     //   dataType:"jsonp"
-    //}).done(res => {
+    // }).done(res => {
     //  $('.meal-plan')
-    //    .append(res.data.map(item => `<li>
+    //    .append(res(item => `<li>
     //          <a href="${item.recipe.url}" target="_blank">
     //            <img class="resultsimg" src="${item.recipe.image}" alt="${item.recipe.label}"></a></br>
     //          <div class="recipe-name">${item.recipe.label}</div>
     //          <div class="source">Source: ${item.recipe.source}</div>
     //          </li>`));
-  });
-
+    // });
+   })
 
 
 
@@ -217,13 +222,12 @@ $(function() {
     const newItemName = $('.shoppingList-entry').val();
     $('.shoppingList-entry').val('');
 
-      // $.ajax({
-      //   url:'/mealplan',
-      //   method:'PUT',
-      //   data: newItemName,
-      //   dataType:"jsonp"
-      //}).done(res => {
-
+      $.ajax({
+        url:'/mealplan',
+        method:'PUT',
+        data: newItemName,
+        dataType:"jsonp"
+      }).done(res => {
             $('.my-added-items')
               .append(`<li><span class="non_edit"><input type="checkbox" class="check">
               <label class="new">${newItemName}</label><input type="text" hidden></span>
@@ -234,8 +238,8 @@ $(function() {
                 <div class="editbtn">edit</div>
                 <i class="fa fa-trash"></i>
                   </li>`);
-  });
-
+      });
+  })
 
 
   //event listener for click to cross off shopping list item

@@ -3,19 +3,9 @@ const {recipesSchema} = require('./recipes');
 
 const mealPlanSchema = mongoose.Schema({
   name: {type: String},
-  recipeNames: [{recipesSchema}], 
+  recipeNames: [{type:mongoose.Schema.Types.ObjectId, ref:'recipes'}],
   additionalItemNames: [{type: String}]
 });
-
-// mealPlanSchema.methods.serialize = function() {
-//
-//   return {
-//     id: this._id,
-//     name: this.name,
-//     recipesNames: this.recipeNames,
-//     additionalItemNames: this.additionalItemNames
-//   };
-// }
 
 const MealPlan = mongoose.model('mealPlan', mealPlanSchema);
 

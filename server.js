@@ -1,9 +1,16 @@
+'use strict';
+require('dotenv').config();
+
 const express = require('express');
 const morgan = require('morgan');
-const router = express.Router();
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 mongoose.Promise = global.Promise;
+
+const router = express.Router();
+const { router: usersRouter } = require('./users');
+const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 
 // var path = require('path');
 // var favicon = require('serve-favicon');
@@ -22,6 +29,9 @@ const app = express();
 const recipesRouter = require('./recipesRouter');
 const mealPlanRouter = require('./mealPlanRouter');
 
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
 app.set('views', './views');
@@ -32,16 +42,22 @@ app.use('/mealPlan', mealPlanRouter);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-// app.use(logger('dev'));
 app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(cookieParser());
 app.use(express.static('public'));
 
-// app.use('/', index);
-// app.use('/users', users);
-
 app.use(morgan('common'));
+
+app.use('./users', usersRouter);
+app.use('./auth', authRouter);
+
+const jwtAuth = passport.authenticate('jwt', { session: false });
+
+// A protected endpoint which needs a valid JWT to access it
+// app.get('/api/protected', jwtAuth, (req, res) => {
+//   return res.json({
+//     data: 'rosebud'
+//   });
+// });
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');

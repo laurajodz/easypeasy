@@ -293,6 +293,7 @@ describe('MealPlan API', function() {
       let res;
       return chai.request(app)
         .get('/mealplan')
+        .populate('recipeNames')
         .then(function(_res) {
           res = _res;
           expect(res).to.have.status(200);
@@ -309,6 +310,7 @@ describe('MealPlan API', function() {
       let resPlan;
       return chai.request(app)
         .get('/mealplan')
+        .populate('recipeNames')
         .then(function (res) {
           res.should.have.status(200);
           res.should.be.json;
@@ -337,7 +339,7 @@ describe('MealPlan API', function() {
       let shoppingList = []
       return MealPlan
         .findOne()
-
+        .populate('recipeNames')
       return chai.request(app)
         .get('/mealplan/:id/shoppinglist')
         .then(function(_res) {

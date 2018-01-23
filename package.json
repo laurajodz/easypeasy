@@ -7,15 +7,21 @@
     "test": "nyc mocha --exit"
   },
   "dependencies": {
-    "body-parser": "~1.18.2",
+    "bcryptjs": "^2.4.0",
+    "body-parser": "^1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "dotenv": "^4.0.0",
     "express": "~4.15.5",
     "faker": "^4.1.0",
     "jade": "~1.11.0",
+    "jsonwebtoken": "^7.4.3",
     "mongoose": "^4.13.9",
     "morgan": "~1.9.0",
     "nodemon": "^1.14.11",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.2.1",
+    "passport-local": "^1.0.0",
     "serve-favicon": "~2.4.5"
   },
   "main": "server.js",

@@ -8,8 +8,10 @@
       src="https://code.jquery.com/jquery-3.2.1.min.js"
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous"></script>
-      <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
-      <link href="https://fonts.googleapis.com/css?family=Lato:300|Pacifico" rel="stylesheet">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+    <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300|Pacifico" rel="stylesheet">
   </head>
   <body>
     <div class="nav">
@@ -26,7 +28,18 @@
     </header>
     <div class="welcome">Welcome to EasyPeasy, the app that makes meal planning easy.
       <p>Let's get to planning. It's easy, fast and fun!</p>
-      <button id="beginbtn">Let's Go</button>
+    </div>
+    <div class="loginform">
+      <form class="login" action="/login" target="/recipes" method="post">
+        <fieldset>
+          <legend>Log in</legend>
+          <label for="username">User name</label><br>
+          <input type="text" id="username" name="user"><br>
+          <label for="password">Password</label><br>
+          <input type="text" id="password" name="pwd"><br>
+          <button id="beginbtn">Let's Go</button>
+        </fieldset>
+      </form>
     </div>
     <script src="javascripts/client.js"></script>
   </body>
