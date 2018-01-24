@@ -24,7 +24,7 @@ router.get('/api', jsonParser, (req, res) => {
 });
 
 
-router.get('api/:id', jsonParser, (req, res) => {
+router.get('/api/:id', jsonParser, (req, res) => {
   MealPlan
     .findById(req.params.id)
     .populate('recipeNames')

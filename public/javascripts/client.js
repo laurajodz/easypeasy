@@ -170,6 +170,8 @@ $(function() {
   //adds mealPlanArray to database
   //displays Meal Plan Page
   $('#submitrecipesbtn').on('click', function() {
+    event.preventDefault();
+
     var mealPlanName = $('#datepicker').val();
 
     if ($('#datepicker').val().trim().length == 0) {
