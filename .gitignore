@@ -1,5 +1,4 @@
 node_modules/
-views/
 .DS_Store
 .nyc_output
 .env

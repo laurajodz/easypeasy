@@ -32,10 +32,8 @@ const mealPlanRouter = require('./mealPlanRouter');
 passport.use(localStrategy);
 passport.use(jwtStrategy);
 
-// view engine setup
-// app.set('views', path.join(__dirname, 'views'));
 app.set('views', './views');
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
 app.use('/recipes', recipesRouter);
 app.use('/mealPlan', mealPlanRouter);

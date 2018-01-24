@@ -6,8 +6,12 @@ const jsonParser = bodyParser.json();
 const {MealPlan} = require('./models/mealPlan');
 const {Recipes} = require('./models/recipes');
 
+router.get('/view', (req, res) => {
+  res.render('mealPlan', {title: 'My Cool Meal Plan', message: 'Hello!'})
+});
 
-router.get('/', jsonParser, (req, res) => {
+
+router.get('/api', jsonParser, (req, res) => {
   MealPlan
     .find()
     .populate('recipeNames')
@@ -20,7 +24,7 @@ router.get('/', jsonParser, (req, res) => {
 });
 
 
-router.get('/:id', jsonParser, (req, res) => {
+router.get('api/:id', jsonParser, (req, res) => {
   MealPlan
     .findById(req.params.id)
     .populate('recipeNames')
@@ -34,7 +38,7 @@ router.get('/:id', jsonParser, (req, res) => {
 
 
 // NEED TO ADD RECIPE INGREDIENTS
-router.get('/:id/shoppinglist', jsonParser, (req, res) => {
+router.get('/api/:id/shoppinglist', jsonParser, (req, res) => {
   let shoppingList = []
 
   MealPlan
@@ -48,7 +52,7 @@ router.get('/:id/shoppinglist', jsonParser, (req, res) => {
 });
 
 
-router.post('/', jsonParser, (req, res) => {
+router.post('/api', jsonParser, (req, res) => {
   const requiredFields = ['name', 'recipeNames'];
   for (let i=0; i<requiredFields.length; i++) {
     const field = requiredFields[i];
@@ -77,7 +81,7 @@ router.post('/', jsonParser, (req, res) => {
 });
 
 
-router.put('/:id', jsonParser ,(req, res) => {
+router.put('/api/:id', jsonParser ,(req, res) => {
   console.log('?????????????? ', req.params, ' ?????????????????');
   console.log('!!!!!!!!!!!!!! ', req.body, ' !!!!!!!!!!!!!!');
   if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
@@ -102,7 +106,7 @@ router.put('/:id', jsonParser ,(req, res) => {
 });
 
 
-router.delete('/:id', (req, res) => {
+router.delete('/api/:id', (req, res) => {
   MealPlan
     .findByIdAndRemove(req.params.id)
     .then(() => res.status(204).end())

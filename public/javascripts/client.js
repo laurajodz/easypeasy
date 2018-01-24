@@ -2,6 +2,9 @@ var mealPlanArray = [];
 
 var recipesArray = [];
 
+//change to live site url
+const base_url = 'http://localhost:8080';
+
 var mockShoppingList = {
   "mock": [
     {"name": "pasta", "unit": "pound(s)", "amount": 1, "recipe": "Baked ziti"},
@@ -165,12 +168,8 @@ $(function() {
 
   //event listener for button click from recipe selection page to meal plan summary page;
   //adds mealPlanArray to database
-  //displays Meal Plan
+  //displays Meal Plan Page
   $('#submitrecipesbtn').on('click', function() {
-    //need something here to bring recipes to meal plan page and ingredients to shopping list page
-    // window.location = 'mealPlan.html';
-    event.preventDefault();
-
     var mealPlanName = $('#datepicker').val();
 
     if ($('#datepicker').val().trim().length == 0) {
@@ -179,31 +178,36 @@ $(function() {
 
     const q = {
       name: mealPlanName,
-      recipeNames: mealPlanArray
+      recipeNames: mealPlanArray.map(r => ({
+        name: r.recipe.label,
+        source: r.recipe.source,
+        image: r.recipe.image,
+        url: r.recipe.url,
+        ingredients: r.recipe.ingredients.map(i => i.text)
+      }))
     }
     console.log(q);
 
-    // $.ajax({
-    //   url:'/mealplan',
-    //   method:'POST',
-    //   data: q,
-    //   dataType:"jsonp"
-    // }).done(res => {
-    //  $('.meal-plan')
-    //    .append(res(item => `<li>
-    //          <a href="${item.recipe.url}" target="_blank">
-    //            <img class="resultsimg" src="${item.recipe.image}" alt="${item.recipe.label}"></a></br>
-    //          <div class="recipe-name">${item.recipe.label}</div>
-    //          <div class="source">Source: ${item.recipe.source}</div>
-    //          </li>`));
-    // });
-   })
+    fetch(base_url + '/mealPlan/api', {
+      method: 'POST',
+      body: JSON.stringify(q),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    })
+    .then(res => res.json())
+    .then(res => {
+      window.location = 'mealPlan/view/' + res._id
+    })
+
+  })
 
 
 
   //Meal Plan page
 
   //event listener for button click to go from meal plan page to shopping list page
+  //need something here to bring ingredients to shopping list page (same as above)
   $('#seelistbtn').on('click', function() {
     window.location = 'shoppingList.html';
     getShoppingList();

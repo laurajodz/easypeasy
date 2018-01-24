@@ -1,0 +1,16 @@
+doctype html
+html
+    head
+        title My Meal Plan #{name}
+        // style
+            // include style.css
+    body
+        // script
+          // include server.js
+        h1= name
+        each recipe in recipeNames
+            div
+                h2= recipe.name
+                p= recipe.image
+                p= recipe.source
+                p= recipe.url
