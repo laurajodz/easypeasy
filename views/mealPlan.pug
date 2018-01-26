@@ -1,12 +1,46 @@
-doctype html
 html
     head
+        meta(charset='utf-8')
+        |
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        |
         title My Meal Plan #{name}
+        |
+        script(src='https://code.jquery.com/jquery-3.2.1.min.js', integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=', crossorigin='anonymous')
+        |
+        script(src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')
+        |
+        link(href='https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css', rel='stylesheet')
+        |
+        link(href='https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css', rel='stylesheet', type='text/css')
+        |
+        link(href='/stylesheets/style.css', rel='stylesheet', type='text/css')
+        |
+        link(href='https://fonts.googleapis.com/css?family=Lato:300|Pacifico', rel='stylesheet')
+    |
     body
+        .nav
+          ul
+            li
+              a(href='index.html') Home
+            |
+            li
+              a(href='recipes.html') Recipes
+            |
+            li
+              a(href='mealPlan/view') Meal Plan
+            |
+            li
+              a(href='shoppingList/view') Shopping List
+        |
         h1= name
         each recipe in recipeNames
             div
                 h2= recipe.name
-                p= recipe.image
                 p= recipe.source
-                p= recipe.url
+                - url = recipe.url;
+                a(href=url) Go to recipe
+        |
+        a#go(href='/shoppingList/view/' + _id) Go to shopping list
+        |
+        script(src='/javascripts/client.js')

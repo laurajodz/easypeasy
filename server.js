@@ -28,6 +28,7 @@ const app = express();
 
 const recipesRouter = require('./recipesRouter');
 const mealPlanRouter = require('./mealPlanRouter');
+const shoppingListRouter = require('./shoppingListRouter');
 
 passport.use(localStrategy);
 passport.use(jwtStrategy);
@@ -37,6 +38,7 @@ app.set('view engine', 'pug');
 
 app.use('/recipes', recipesRouter);
 app.use('/mealPlan', mealPlanRouter);
+app.use('/shoppingList', shoppingListRouter);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

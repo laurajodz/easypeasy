@@ -1,0 +1,67 @@
+doctype html(lang='en')
+head
+    meta(charset='utf-8')
+    |
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    |
+    title EasyPeasy - Meal Planning App
+    |
+    script(src='https://code.jquery.com/jquery-3.2.1.min.js', integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=', crossorigin='anonymous')
+    |
+    script(src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')
+    |
+    link(href='https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css', rel='stylesheet')
+    |
+    link(href='/stylesheets/style.css', rel='stylesheet', type='text/css')
+    |
+    link(href='https://fonts.googleapis.com/css?family=Lato:300|Pacifico', rel='stylesheet')
+    |
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+  |
+  body
+    .nav
+      ul
+        li
+          a(href='index.html') Home
+        |
+        li
+          a(href='recipes.html') Recipes
+        |
+        li
+          a(href='mealPlan.html') Meal Plan
+        |
+        li
+          a(href='shoppingList.html') Shopping List
+    |
+    header(role='banner')
+    |
+    h1 Shopping List
+    |
+    form#shopping-list-add
+      label.additem(for='entry') Add an item
+      |
+      input#entry.shoppingList-entry(type='text', name='shopping-list-entry', placeholder='begin typing')
+      |
+      button#additembtn Add item
+    |
+    .shopping-list
+      ul.my-added-items
+      |
+      ul.shopping-list-items
+        each item in list
+            li
+              span.non_edit
+                input.check(type='checkbox')
+                label.new #{item}
+                input(type='text', hidden='')
+              |
+              span.edit
+                input.textedit(type='text', value #{list})
+                |
+                button.editsubmitbtn Submit
+              |
+              .editbtn edit
+              |
+              i.fa.fa-trash
+    |
+    script(src='/javascripts/client.js')

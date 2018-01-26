@@ -5,23 +5,23 @@ var recipesArray = [];
 //change to live site url
 const base_url = 'http://localhost:8080';
 
-var mockShoppingList = {
-  "mock": [
-    {"name": "pasta", "unit": "pound(s)", "amount": 1, "recipe": "Baked ziti"},
-    {"name": "Parmesan cheese", "unit": "cup(s)", "amount": 1, "recipe": "Baked ziti"},
-    {"name": "mozzarella cheese", "unit": "cup(s)", "amount": 1, "recipe": "Baked ziti"},
-    {"name": "pasta sauce", "unit": "cup(s)", "amount": 2, "recipe": "Baked ziti"},
-    {"name": "quesadillas", "unit": "shell(s)", "amount": 3, "recipe": "Quesadillas"},
-    {"name": "cheddar cheese", "unit": "ounce(s)", "amount": 5, "recipe": "Quesadillas"},
-    {"name": "sausage", "unit": "ounce(s)", "amount": 14, "recipe": "Sausage & cabbage"},
-    {"name": "cabbage", "unit": "cup(s)", "amount": 6, "recipe": "Sausage & cabbage"},
-    {"name": "onion", "unit": "cup(s)", "amount": 1, "recipe": "Sausage & cabbage"},
-    {"name": "onion", "unit": "cup(s)", "amount": 1, "recipe": "Turkey chili"},
-    {"name": "ground turkey", "unit": "pound(s)", "amount": 2, "recipe": "Turkey chili"},
-    {"name": "ground cumin", "unit": "teaspoon(s)", "amount": 2, "recipe": "Turkey chili"},
-    {"name": "eggs", "unit": "whole", "amount": 1, "recipe": "none"}
-  ]
-};
+// var mockShoppingList = {
+//   "mock": [
+//     {"name": "pasta", "unit": "pound(s)", "amount": 1, "recipe": "Baked ziti"},
+//     {"name": "Parmesan cheese", "unit": "cup(s)", "amount": 1, "recipe": "Baked ziti"},
+//     {"name": "mozzarella cheese", "unit": "cup(s)", "amount": 1, "recipe": "Baked ziti"},
+//     {"name": "pasta sauce", "unit": "cup(s)", "amount": 2, "recipe": "Baked ziti"},
+//     {"name": "quesadillas", "unit": "shell(s)", "amount": 3, "recipe": "Quesadillas"},
+//     {"name": "cheddar cheese", "unit": "ounce(s)", "amount": 5, "recipe": "Quesadillas"},
+//     {"name": "sausage", "unit": "ounce(s)", "amount": 14, "recipe": "Sausage & cabbage"},
+//     {"name": "cabbage", "unit": "cup(s)", "amount": 6, "recipe": "Sausage & cabbage"},
+//     {"name": "onion", "unit": "cup(s)", "amount": 1, "recipe": "Sausage & cabbage"},
+//     {"name": "onion", "unit": "cup(s)", "amount": 1, "recipe": "Turkey chili"},
+//     {"name": "ground turkey", "unit": "pound(s)", "amount": 2, "recipe": "Turkey chili"},
+//     {"name": "ground cumin", "unit": "teaspoon(s)", "amount": 2, "recipe": "Turkey chili"},
+//     {"name": "eggs", "unit": "whole", "amount": 1, "recipe": "none"}
+//   ]
+// };
 
 
 function getRecipes(searchTerm) {
@@ -76,36 +76,36 @@ function displayMealPlan(mealPlanArray){
 
 
 
-function getShoppingList(callbackFn) {
-
+// function getShoppingList(callbackFn) {
 //
-//   $.ajax({
-//     url:`/${mealPlanId}/shoppinglist`,
-//     method:'GET',
-//     dataType:"jsonp"
-//   }).done(res => {
-//     displayShoppingList(res);
-//   })
-// };
-    setTimeout(function(){ callbackFn(mockShoppingList)}, 1);
-  };
+// //
+// //   $.ajax({
+// //     url:`/${mealPlanId}/shoppinglist`,
+// //     method:'GET',
+// //     dataType:"jsonp"
+// //   }).done(res => {
+// //     displayShoppingList(res);
+// //   })
+// // };
+//     setTimeout(function(){ callbackFn(mockShoppingList)}, 1);
+//   };
 
-function displayShoppingList(data) {
-  for (index in data.mock) {
-    //KEEP - will eventually display items from recipes added to meal plan
-    $('.shopping-list-items')
-        .append(data.mock.map(item => `<li>
-              <span class="non_edit">
-                <input type="checkbox" class="check"><label class="new">${item.name}, ${item.amount} ${item.unit} </label><input type="text" hidden></span>
-              <span class="edit">
-              <input type="text" class="textedit" value="${item.name}, ${item.amount} ${item.unit}"/>
-              <button class="editsubmitbtn">Submit</button>
-              </span>
-              <div class="editbtn">edit</div>
-              <i class="fa fa-trash"></i>
-              </li>`));
-  }
-};
+// function displayShoppingList(data) {
+//   for (index in data.mock) {
+//     //KEEP - will eventually display items from recipes added to meal plan
+//     $('.shopping-list-items')
+//         .append(data.mock.map(item => `<li>
+//               <span class="non_edit">
+//                 <input type="checkbox" class="check"><label class="new">${item.name}, ${item.amount} ${item.unit} </label><input type="text" hidden></span>
+//               <span class="edit">
+//               <input type="text" class="textedit" value="${item.name}, ${item.amount} ${item.unit}"/>
+//               <button class="editsubmitbtn">Submit</button>
+//               </span>
+//               <div class="editbtn">edit</div>
+//               <i class="fa fa-trash"></i>
+//               </li>`));
+//   }
+// };
 
 
 
@@ -121,8 +121,8 @@ $(function() {
   //   .then(data => {
   //     displayShoppingList(data);
   //   });
-
-  getShoppingList(displayShoppingList);
+  //
+  // getShoppingList(displayShoppingList);
 
 
 
@@ -209,15 +209,31 @@ $(function() {
   //Meal Plan page
 
   //event listener for button click to go from meal plan page to shopping list page
-  //need something here to bring ingredients to shopping list page (same as above)
-  $('#seelistbtn').on('click', function() {
-    window.location = 'shoppingList.html';
-    getShoppingList();
+  //brings ingredients to shopping list page from meal plan page
+
+  $('#go').on('click', function() {
+  // document.getElementById("go").addEventListener("click", function( event ) {
+    console.log('Clicked on go to shopping list');
+
+    event.preventDefault();
+
+    fetch(base_url + '/mealPlan/api', {
+      method: 'GET',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    })
+    .then(res => res.json())
+    .then(res => {
+      console.log('from client js', res);
+      window.location = 'shoppingList/view/' + res._id
+    })
   });
 
   //need something to edit or delete meal plan, and see previous meal plans
 
-
+  // MealPlan
+  //   .findOne().sort({created_at: -1}).exec(function(err, post) { ... });
 
 
   //Shopping List page

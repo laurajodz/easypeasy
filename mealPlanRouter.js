@@ -6,10 +6,24 @@ const jsonParser = bodyParser.json();
 const {MealPlan} = require('./models/mealPlan');
 const {Recipes} = require('./models/recipes');
 
-router.get('/view', (req, res) => {
-  res.render('mealPlan', {title: 'My Cool Meal Plan', message: 'Hello!'})
-});
 
+//mealPlan view end point
+router.get('/view/:id', (req, res) => {
+console.log('The meal plan view');
+  MealPlan
+    .findById(req.params.id)
+    .populate('recipeNames')
+    .then(mealPlan => {
+      console.log('About to render', mealPlan);
+      // res.render('mealPlan', {title: 'My Cool Meal Plan', message: 'Hello!'})
+      res.render('mealPlan', mealPlan);
+    })
+    .catch(
+      err => {
+        console.error(err);
+        res.status(500).json({message: 'Internal serer error'});
+      });
+});
 
 router.get('/api', jsonParser, (req, res) => {
   MealPlan
@@ -29,21 +43,6 @@ router.get('/api/:id', jsonParser, (req, res) => {
     .findById(req.params.id)
     .populate('recipeNames')
     .then(mealPlan => res.status(200).json(mealPlan))
-    .catch(
-      err => {
-        console.error(err);
-        res.status(500).json({message: 'Internal server error'});
-    });
-});
-
-
-// NEED TO ADD RECIPE INGREDIENTS
-router.get('/api/:id/shoppinglist', jsonParser, (req, res) => {
-  let shoppingList = []
-
-  MealPlan
-    .findById(req.params.id)
-    .then(mealPlan => res.status(200).json(mealPlan.additionalItemNames))
     .catch(
       err => {
         console.error(err);
