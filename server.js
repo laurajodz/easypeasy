@@ -65,11 +65,11 @@ app.get('/', (req, res) => {
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
+// app.use(function(req, res, next) {
+//   var err = new Error('Not Found');
+//   err.status = 404;
+//   next(err);
+// });
 
 
 let server;
@@ -113,7 +113,8 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  console.log(err);
+  res.render('error', {err: err});
 });
 
 // if server.js is called directly (aka, with `node server.js`), this block

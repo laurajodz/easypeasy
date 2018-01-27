@@ -21,7 +21,7 @@ console.log('The meal plan view');
     .catch(
       err => {
         console.error(err);
-        res.status(500).json({message: 'Internal serer error'});
+        res.status(500).json({message: 'Internal server error'});
       });
 });
 

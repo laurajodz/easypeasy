@@ -2,4 +2,7 @@ html
     head
         title Error
     body
-        h1 An Error Occurred 
+        h1 An Error Occurred
+        h2 Error Message:  #{err.msg}
+        p Line Number: #{err.line}
+        p File Name: #{err.filename}

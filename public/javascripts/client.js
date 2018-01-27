@@ -211,24 +211,24 @@ $(function() {
   //event listener for button click to go from meal plan page to shopping list page
   //brings ingredients to shopping list page from meal plan page
 
-  $('#go').on('click', function() {
+  // $('#go').on('click', function() {
   // document.getElementById("go").addEventListener("click", function( event ) {
-    console.log('Clicked on go to shopping list');
-
-    event.preventDefault();
-
-    fetch(base_url + '/mealPlan/api', {
-      method: 'GET',
-      headers: new Headers({
-        'Content-Type': 'application/json'
-      })
-    })
-    .then(res => res.json())
-    .then(res => {
-      console.log('from client js', res);
-      window.location = 'shoppingList/view/' + res._id
-    })
-  });
+    // console.log('Clicked on go to shopping list');
+    //
+    // event.preventDefault();
+    //
+    // fetch(base_url + '/mealPlan/api', {
+    //   method: 'GET',
+    //   headers: new Headers({
+    //     'Content-Type': 'application/json'
+    //   })
+    // })
+    // .then(res => res.json())
+    // .then(res => {
+    //   console.log('from client js', res);
+    //   window.location = '/shoppingList/view/' + res._id
+    // })
+  // });
 
   //need something to edit or delete meal plan, and see previous meal plans
 
@@ -244,24 +244,31 @@ $(function() {
     const newItemName = $('.shoppingList-entry').val();
     $('.shoppingList-entry').val('');
 
-      $.ajax({
-        url:'/mealplan',
-        method:'PUT',
-        data: newItemName,
-        dataType:"jsonp"
-      }).done(res => {
-            $('.my-added-items')
-              .append(`<li><span class="non_edit"><input type="checkbox" class="check">
-              <label class="new">${newItemName}</label><input type="text" hidden></span>
-                <span class="edit">
-                  <input type="text" class="textedit" value="${newItemName}"/>
-                  <button class="editsubmitbtn">Submit</button>
-                </span>
-                <div class="editbtn">edit</div>
-                <i class="fa fa-trash"></i>
-                  </li>`);
-      });
-  })
+    fetch(base_url + '/mealPlan/api/:id', {
+      method:'PUT',
+      body: JSON.stringify(newItemName),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    }).then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response => console.log('Success:', response));
+
+      //  .done(res => {
+      //     $('.my-added-items')
+      //       .append(`<li><span class="non_edit"><input type="checkbox" class="check">
+      //       <label class="new">${newItemName}</label><input type="text" hidden></span>
+      //         <span class="edit">
+      //           <input type="text" class="textedit" value="${newItemName}"/>
+      //           <button class="editsubmitbtn">Submit</button>
+      //         </span>
+      //         <div class="editbtn">edit</div>
+      //         <i class="fa fa-trash"></i>
+      //           </li>`);
+      //     })
+    
+  });
+
 
 
   //event listener for click to cross off shopping list item
