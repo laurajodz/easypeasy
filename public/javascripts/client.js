@@ -244,15 +244,15 @@ $(function() {
     const newItemName = $('.shoppingList-entry').val();
     $('.shoppingList-entry').val('');
 
-    fetch(base_url + '/mealPlan/api/:id', {
-      method:'PUT',
-      body: JSON.stringify(newItemName),
-      headers: new Headers({
-        'Content-Type': 'application/json'
-      })
-    }).then(res => res.json())
-    .catch(error => console.error('Error:', error))
-    .then(response => console.log('Success:', response));
+    // fetch(base_url + '/mealPlan/api/:id', {
+    //   method:'PUT',
+    //   body: JSON.stringify(newItemName),
+    //   headers: new Headers({
+    //     'Content-Type': 'application/json'
+    //   })
+    // }).then(res => res.json())
+    // .catch(error => console.error('Error:', error))
+    // .then(response => console.log('Success:', response));
 
       //  .done(res => {
       //     $('.my-added-items')
@@ -266,7 +266,7 @@ $(function() {
       //         <i class="fa fa-trash"></i>
       //           </li>`);
       //     })
-    
+
   });
 
 

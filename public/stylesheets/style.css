@@ -83,7 +83,7 @@ a {
 }
 
 .nav a:hover {
-  background-color: #03ad14;
+  background-color: #63a369;
 }
 
 .nav a.active {
@@ -99,11 +99,11 @@ button {
   padding: 8px;
   text-align: center;
   cursor: pointer;
-  background-color: #03ad14;
+  background-color: #63a369;
 }
 
 button:hover, button:focus {
-  background-color: #aaaaaa;
+  background-color: #03ad14;
 }
 
 input[type=text] {
@@ -120,7 +120,7 @@ input[type=text] {
 }
 
 #submitrecipesbtn:disabled {
-  background-color: #03ad14;
+  background-color: #63a369;
   cursor: auto;
 }
 
@@ -131,7 +131,7 @@ input[type=text] {
 .selection {
   padding: 10px;
   margin: 20px;
-  border: solid 1px #03ad14;
+  border: solid 1px #63a369;
 }
 
 .recipe-name, .add-recipe {
@@ -142,7 +142,7 @@ input[type=text] {
 
 .recipesReturned li {
   list-style: none;
-  border: 1px solid #03ad14;
+  border: 1px solid #63a369;
   margin-bottom: 5px;
 }
 
@@ -174,10 +174,30 @@ input[type=text] {
   text-decoration: underline;
 }
 
+/* Meal Plan page */
+
+#go {
+  margin-top: 100px;
+  padding: 8px;
+  font-size: 18px;
+  text-decoration: none;
+  background: #63a369;
+  color: black;
+  min-width: 48px;
+  min-height: 48px;
+  text-align: center;
+  cursor: pointer;
+}
+
+#go:hover, #go:focus {
+  background-color: #03ad14;
+}
+
+
 /* Shopping List page */
 
 .editable {
-  border: solid 1px #03ad14;
+  border: solid 1px #63a369;
 }
 
 .editable .non_edit {
