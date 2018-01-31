@@ -17,14 +17,15 @@
     <div class="nav">
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="recipes.html">Recipes</a></li>
+        <!-- <li><a href="recipes.html">Recipes</a></li>
         <li><a href="mealPlan.html">Meal Plan</a></li>
-        <li><a href="shoppingList.html">Shopping List</a></li>
+        <li><a href="shoppingList.html">Shopping List</a></li> -->
       </ul>
     </div>
     <header role="banner"></header>
     <form class="mealplan-submit">
       <div class="selection">
+        <h1>Create Meal Plan</h1>
         <div class=counter>
           <p class="recipe-counter">Number of recipes selected: 0</p>
         </div>
@@ -33,11 +34,11 @@
         </p>
         <button id="submitrecipesbtn" disabled>Submit to Meal Plan</button>
       </div>
-    <label for="datepicker">Select recipes for meal plan beginning on:</label>
-    <input type="text" id="datepicker">
+    <label for="datepicker">First, select recipes for meal plan beginning on:</label>
+    <input type="text" id="datepicker" placeholder="select date">
     </form>
     <form class="recipe-search">
-      <label for="search-term">Search recipes</label>
+      <label for="search-term">Then, search recipes!</label>
       <input type="text" name="recipe-search-entry" class="recipeSearch-entry" id="search-term" placeholder="begin typing">
       <button id="searchrecipesbtn">Search</button>
     </form>

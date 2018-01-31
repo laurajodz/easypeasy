@@ -25,7 +25,7 @@ body
           a(href='/index.html') Home
         |
         li
-          a(href='recipes.html') Recipes
+          a(href='/recipes.html') Recipes
         |
         li
           a(href='mealPlan/view') Meal Plan
@@ -38,6 +38,8 @@ body
     h1 Shopping List
     |
     form#shopping-list-add
+      input#mealplanid(type='hidden', value= id)
+      |
       label.additem(for='entry') Add an item
       |
       input#entry.shoppingList-entry(type='text', name='shopping-list-entry', placeholder='begin typing')
@@ -45,11 +47,27 @@ body
       button#additembtn Add item
     |
     .shopping-list
+      input#mealplanid(type='hidden', value= id)
       ul.my-added-items
+        each item in additionalItems
+            li.sli
+              span.non_edit
+                input.check(type='checkbox')
+                label.new #{item}
+                input(type='text', hidden='')
+              |
+              span.edit
+                input.textedit(type='text', value #{item})
+                |
+                button.editsubmitbtn Submit
+              |
+              .editbtn edit
+              |
+              i.fa.fa-trash
       |
       ul.shopping-list-items
         each item in list
-            li
+            li.sli
               span.non_edit
                 input.check(type='checkbox')
                 label.new #{item}

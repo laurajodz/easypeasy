@@ -107,7 +107,7 @@ button:hover, button:focus {
 }
 
 input[type=text] {
-  font-size: 18px;
+  font-size: 16px;
   min-width: 48px;
   min-height: 48px;
 }
@@ -176,25 +176,36 @@ input[type=text] {
 
 /* Meal Plan page */
 
-#go {
-  margin-top: 100px;
+#gobackbtn {
+  margin-right: 10px;
+}
+
+#gotolist {
   padding: 8px;
   font-size: 18px;
   text-decoration: none;
   background: #63a369;
   color: black;
-  min-width: 48px;
-  min-height: 48px;
+  width: 174px;
+  height: 48px;
   text-align: center;
   cursor: pointer;
+  display: inline-block;
 }
 
-#go:hover, #go:focus {
+#fakebtn:hover, #fakebtn:focus {
   background-color: #03ad14;
 }
 
+#newmpbtn {
+  margin-left: 10px;
+}
 
 /* Shopping List page */
+
+.new {
+  margin-right: 20px;
+}
 
 .editable {
   border: solid 1px #63a369;
@@ -253,6 +264,7 @@ input[type=text] {
   right: 40px;
   top: 7px;
   cursor: pointer;
+  margin-left: 10px;
 }
 
 .editbtn:hover {

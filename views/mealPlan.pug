@@ -23,19 +23,27 @@ head
           ul
             li
               a(href='index.html') Home
-            |
-            li
-              a(href='recipes.html') Recipes
-            |
-            li
-              a(href='mealPlan/view') Meal Plan
-            |
-            li
-              a(href='shoppingList/view') Shopping List
+            //|
+            //li
+            //  a(href='../api/recipes.html') Recipes
+            //|
+            //li
+            //  a(href='mealPlan/view') Meal Plan
+            //|
+            //li
+            //  a(href='shoppingList/view') Shopping List
         |
-        h1= name
+        header(role='banner')
         |
-        a#go(href='/shoppingList/view/' + _id) Go to shopping list
+        h1 Meal Plan starting on #{name}
+        |
+        button#gobackbtn Edit Meal Plan
+        |
+        span#fakebtn
+            a#gotolist(href='/shoppingList/view/' + _id) Go to shopping list
+        |
+        button#newmpbtn Start New Meal Plan
+        |
         each recipe in recipeNames
             div
                 h2= recipe.name

@@ -208,6 +208,16 @@ $(function() {
 
   //Meal Plan page
 
+  //event listener to go back to edit meal plan (return to recipes.html)
+
+  $('#gobackbtn').on('click', function() {
+    window.history.back();
+  });
+
+  $('#newmpbtn').on('click', function() {
+    window.location = '/recipes.html';
+  });
+
   //event listener for button click to go from meal plan page to shopping list page
   //brings ingredients to shopping list page from meal plan page
 
@@ -239,34 +249,39 @@ $(function() {
   //Shopping List page
 
   //event listener for button click to add an item to shopping list
-  $('#additembtn').on('click', function() {
+  $('#additembtn').on('click', function(event) {
+
+    event.preventDefault();
 
     const newItemName = $('.shoppingList-entry').val();
     $('.shoppingList-entry').val('');
 
-    // fetch(base_url + '/mealPlan/api/:id', {
-    //   method:'PUT',
-    //   body: JSON.stringify(newItemName),
-    //   headers: new Headers({
-    //     'Content-Type': 'application/json'
-    //   })
-    // }).then(res => res.json())
-    // .catch(error => console.error('Error:', error))
-    // .then(response => console.log('Success:', response));
+    const update = {
+      id: $('#mealplanid').val(),
+      newItemName: newItemName
+    }
 
-      //  .done(res => {
-      //     $('.my-added-items')
-      //       .append(`<li><span class="non_edit"><input type="checkbox" class="check">
-      //       <label class="new">${newItemName}</label><input type="text" hidden></span>
-      //         <span class="edit">
-      //           <input type="text" class="textedit" value="${newItemName}"/>
-      //           <button class="editsubmitbtn">Submit</button>
-      //         </span>
-      //         <div class="editbtn">edit</div>
-      //         <i class="fa fa-trash"></i>
-      //           </li>`);
-      //     })
-
+    fetch(base_url + `/mealPlan/api/${update.id}/additem`, {
+      method:'PUT',
+      body: JSON.stringify(update),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    })
+    .catch(error => console.error('Error:', error))
+    .then(response => console.log('Success:', response))
+    .then(res => {
+        $('.my-added-items')
+          .append(`<li><span class="non_edit"><input type="checkbox" class="check">
+          <label class="new">${newItemName}</label><input type="text" hidden></span>
+            <span class="edit">
+              <input type="text" class="textedit" value="${newItemName}"/>
+              <button class="editsubmitbtn">Submit</button>
+            </span>
+            <div class="editbtn">edit</div>
+            <i class="fa fa-trash"></i>
+              </li>`);
+        })
   });
 
 
@@ -290,9 +305,37 @@ $(function() {
     });
   });
 
-  //event listener to delete recipe shopping list item
-  $('.shopping-list').on('click', '.fa', function(e) {
-      $(e.target).parent().remove();
+  //event listener to delete shopping list item
+  // $('.shopping-list').on('click', '.fa', function(e) {
+  $('.fa').on('click', function(event) {
+    // const itemToDelete = $(e.target).parent();
+
+    // const itemToDelete = $('.sli').val();
+
+    const itemToDelete = $(event.target).parent();
+
+    console.log('Target to Delete: ', itemToDelete);
+
+    const deleteItem = {
+      id: $('#mealplanid').val(),
+      itemToDelete: itemToDelete
+    }
+
+    // fetch(base_url + `/mealPlan/api/${deleteItem.id}/delitem`, {
+    //   method:'PUT',
+    //   body: JSON.stringify(deleteItem),
+    //   headers: new Headers({
+    //     'Content-Type': 'application/json'
+    //   })
+    // })
+    //
+    // .catch(error => console.error('Error:', error))
+    // .then(res => {
+    //     $('.my-added-items')
+    //       .remove(
+    //
+    //       );
+    //     })
   });
 
   //date picker
