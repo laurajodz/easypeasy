@@ -240,10 +240,28 @@ $(function() {
     // })
   // });
 
-  //need something to edit or delete meal plan, and see previous meal plans
+  //need something to edit or delete meal plan
 
   // MealPlan
   //   .findOne().sort({created_at: -1}).exec(function(err, post) { ... });
+
+  //access previous meal plans
+  // $('#previous').on('click', function() {
+  //
+  //   fetch(base_url + '/mealPlan/api', {
+  //     method: 'GET',
+  //     // body: JSON.stringify,
+  //     headers: new Headers({
+  //       'Content-Type': 'application/json'
+  //     })
+  //   })
+  //   .catch(error => console.error('Error:', error))
+  //   // .then(res => {
+  //   //   console.log(res);
+  //   //   // recipesArray = res.hits;
+  //   //   // displayRecipes(res.hits);
+  //   //   )}
+  // )};
 
 
   //Shopping List page
@@ -269,7 +287,6 @@ $(function() {
       })
     })
     .catch(error => console.error('Error:', error))
-    .then(response => console.log('Success:', response))
     .then(res => {
         $('.my-added-items')
           .append(`<li><span class="non_edit"><input type="checkbox" class="check">
@@ -308,11 +325,10 @@ $(function() {
   //event listener to delete shopping list item
   // $('.shopping-list').on('click', '.fa', function(e) {
   $('.fa').on('click', function(event) {
-    // const itemToDelete = $(e.target).parent();
 
     // const itemToDelete = $('.sli').val();
 
-    const itemToDelete = $(event.target).parent();
+    const itemToDelete = $(event.currentTarget).parent();
 
     console.log('Target to Delete: ', itemToDelete);
 
@@ -321,18 +337,18 @@ $(function() {
       itemToDelete: itemToDelete
     }
 
-    // fetch(base_url + `/mealPlan/api/${deleteItem.id}/delitem`, {
-    //   method:'PUT',
-    //   body: JSON.stringify(deleteItem),
-    //   headers: new Headers({
-    //     'Content-Type': 'application/json'
-    //   })
-    // })
-    //
-    // .catch(error => console.error('Error:', error))
+    fetch(base_url + `/mealPlan/api/${deleteItem.id}/delitem`, {
+      method:'PUT',
+      body: JSON.stringify(deleteItem),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    })
+
+    .catch(error => console.error('Error:', error))
     // .then(res => {
     //     $('.my-added-items')
-    //       .remove(
+    //       .remove('li')
     //
     //       );
     //     })

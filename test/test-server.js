@@ -110,22 +110,23 @@ describe('Recipes API', function() {
 
     //TEST: get back all recipes returned by GET request to `/recipes` and
     // prove res has the right status and
-    // prove the number of recipes we got back is equal to number in db.
+    // prove the number of recipes we got back is equal to number in db. I don't
+    // think we need this. the recipes are coming from an external db.
 
-    it('should return all recipes', function() {
-      let res;
-      return chai.request(app)
-        .get('/recipes')
-        .then(function(_res) {
-          res = _res;
-          expect(res).to.have.status(200);
-          expect(res.body).to.have.lengthOf.at.least(1);
-          return Recipes.count();
-        })
-        .then(function(count) {
-          expect(res.body).to.have.lengthOf(count);
-        })
-    });
+    // it('should return all recipes', function() {
+    //   let res;
+    //   return chai.request(app)
+    //     .get('/recipes')
+    //     .then(function(_res) {
+    //       res = _res;
+    //       expect(res).to.have.status(200);
+    //       expect(res.body).to.have.lengthOf.at.least(1);
+    //       return Recipes.count();
+    //     })
+    //     .then(function(count) {
+    //       expect(res.body).to.have.lengthOf(count);
+    //     })
+    // });
 
     // TEST:  get back all recipes, and ensure they have expected keys
 
@@ -292,10 +293,11 @@ describe('MealPlan API', function() {
     it('should return all meal plans', function() {
       let res;
       return chai.request(app)
-        .get('/mealplan')
+        .get('/mealplan/api')
         .populate('recipeNames')
         .then(function(_res) {
           res = _res;
+          console.log("yesssss ", res);
           expect(res).to.have.status(200);
           expect(res.body).to.have.lengthOf.at.least(1);
           return MealPlan.count();
@@ -333,32 +335,32 @@ describe('MealPlan API', function() {
     });
 
 
-    //NEED TO ADD RECIPE INGREDIENTS (recipeNames.ingredients)
-    it('should list all shopping list items on GET to /mealplan/id/shoppinglist', function() {
-      let res;
-      let shoppingList = []
-      return MealPlan
-        .findOne()
-        .populate('recipeNames')
-      return chai.request(app)
-        .get('/mealplan/:id/shoppinglist')
-        .then(function(_res) {
-          res = _res;
-          console.log(res.body.mealplan.additionalItemNames);
-          console.log(res.body.mealplan.recipeNames.ingredients);
-          expect(res).to.have.status(200);
-          shoppingList = res.body.mealplan.additionalItemNames.concat(res.body.mealplan.recipeNames.ingredients);
-          expect(shoppingList).to.have.length.of.at.least(1);
-          return shoppingList.count();
-          // expect(res.body.mealplan.additionalItemNames).to.have.length.of.at.least(1);
-          // return MealPlan.additionalItemNames.count();
-        })
-        .then(function(count) {
-          console.log(shoppingList);
-          // expect(res.body.mealplan.additionalItemNames).to.have.length.of(count);
-          expect(shoppingList).to.have.length.of(count);
-        })
-    });
+  //do not need this as it is part of meal plan get
+  //   it('should list all shopping list items on GET to /mealplan/api/id/shoppinglist', function() {
+  //     let res;
+  //     let shoppingList = []
+  //     return MealPlan
+  //       .findOne()
+  //       .populate('recipeNames')
+  //     return chai.request(app)
+  //       .get('/mealplan/:id/shoppinglist')
+  //       .then(function(_res) {
+  //         res = _res;
+  //         console.log(res.body.mealplan.additionalItemNames);
+  //         console.log(res.body.mealplan.recipeNames.ingredients);
+  //         expect(res).to.have.status(200);
+  //         shoppingList = res.body.mealplan.additionalItemNames.concat(res.body.mealplan.recipeNames.ingredients);
+  //         expect(shoppingList).to.have.length.of.at.least(1);
+  //         return shoppingList.count();
+  //         // expect(res.body.mealplan.additionalItemNames).to.have.length.of.at.least(1);
+  //         // return MealPlan.additionalItemNames.count();
+  //       })
+  //       .then(function(count) {
+  //         console.log(shoppingList);
+  //         // expect(res.body.mealplan.additionalItemNames).to.have.length.of(count);
+  //         expect(shoppingList).to.have.length.of(count);
+  //       })
+  //   });
   });
 
 

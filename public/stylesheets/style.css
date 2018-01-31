@@ -181,7 +181,8 @@ input[type=text] {
 }
 
 #gotolist {
-  padding: 8px;
+  font-family: "Lucida Grande";
+  padding: 13px;
   font-size: 18px;
   text-decoration: none;
   background: #63a369;
@@ -190,15 +191,18 @@ input[type=text] {
   height: 48px;
   text-align: center;
   cursor: pointer;
-  display: inline-block;
 }
 
-#fakebtn:hover, #fakebtn:focus {
+#gotolist:hover, #gotolist:focus {
   background-color: #03ad14;
 }
 
 #newmpbtn {
   margin-left: 10px;
+}
+
+#previous {
+  margin-top: 20px;
 }
 
 /* Shopping List page */

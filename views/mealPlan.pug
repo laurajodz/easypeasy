@@ -39,8 +39,7 @@ head
         |
         button#gobackbtn Edit Meal Plan
         |
-        span#fakebtn
-            a#gotolist(href='/shoppingList/view/' + _id) Go to shopping list
+        a#gotolist(href='/shoppingList/view/' + _id) Go to shopping list
         |
         button#newmpbtn Start New Meal Plan
         |
@@ -50,5 +49,7 @@ head
                 p= recipe.source
                 - url = recipe.url;
                 a(href=url) Go to recipe
+        |
+        button#previous Previous Meal Plans
         |
         script(src='/javascripts/client.js')
