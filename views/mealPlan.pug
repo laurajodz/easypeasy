@@ -22,7 +22,7 @@ head
         .nav
           ul
             li
-              a(href='index.html') Home
+              a(href='/index.html') EasyPeasy
             //|
             //li
             //  a(href='../api/recipes.html') Recipes
@@ -37,12 +37,6 @@ head
         |
         h1 Meal Plan starting on #{name}
         |
-        button#gobackbtn Edit Meal Plan
-        |
-        a#gotolist(href='/shoppingList/view/' + _id) Go to shopping list
-        |
-        button#newmpbtn Start New Meal Plan
-        |
         each recipe in recipeNames
             div
                 h2= recipe.name
@@ -50,6 +44,13 @@ head
                 - url = recipe.url;
                 a(href=url) Go to recipe
         |
-        button#previous Previous Meal Plans
-        |
-        script(src='/javascripts/client.js')
+        .buttongroup
+            a#gotolist(href='/shoppingList/view/' + shoppingList._id) Go to shopping list
+            |
+            button#gobackbtn Edit Meal Plan
+            |
+            button#newmpbtn Start New Meal Plan
+            |
+            button#previous Previous Meal Plans
+            |
+            script(src='/javascripts/client.js')

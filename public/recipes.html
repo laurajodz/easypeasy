@@ -13,10 +13,10 @@
     <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300|Pacifico" rel="stylesheet">
   </head>
-  <body>
+  <body id="recipe-page">
     <div class="nav">
       <ul>
-        <li><a href="index.html">Home</a></li>
+        <li><a href="./index.html">EasyPeasy</a></li>
         <!-- <li><a href="recipes.html">Recipes</a></li>
         <li><a href="mealPlan.html">Meal Plan</a></li>
         <li><a href="shoppingList.html">Shopping List</a></li> -->
@@ -24,8 +24,8 @@
     </div>
     <header role="banner"></header>
     <form class="mealplan-submit">
-      <div class="selection">
-        <h1>Create Meal Plan</h1>
+      <div class="selection" hidden>
+        <div>Meal Plan Builder</div>
         <div class=counter>
           <p class="recipe-counter">Number of recipes selected: 0</p>
         </div>
@@ -39,11 +39,12 @@
     </form>
     <form class="recipe-search">
       <label for="search-term">Then, search recipes!</label>
-      <input type="text" name="recipe-search-entry" class="recipeSearch-entry" id="search-term" placeholder="begin typing">
+      <input type="text" name="recipe-search-entry" class="recipeSearch-entry" id="search-term" placeholder="chicken, tomato, rice, etc.">
       <button id="searchrecipesbtn">Search</button>
     </form>
     <p class="noresults" hidden>Sorry, no results. Try again.</p>
     <div class="recipes">
+      <p class="choose" hidden>Choose recipes for your meal plan</p>
       <ul class="recipesReturned">
 
       </ul>

@@ -126,7 +126,6 @@ $(function() {
 
 
 
-
   //Recipes page
 
   //event listener for button click from home page to recipes page
@@ -139,6 +138,8 @@ $(function() {
     event.preventDefault();
     const queryText = $('.recipeSearch-entry').val();
     $('.recipeSearch-entry').val('');
+    $('.selection').show('slow');
+    $('.choose').show('slow');
     getRecipes(queryText);
   });
 
@@ -176,6 +177,7 @@ $(function() {
 
     if ($('#datepicker').val().trim().length == 0) {
       alert("Please choose a date");
+      return false;
     }
 
     const q = {
@@ -198,8 +200,14 @@ $(function() {
       })
     })
     .then(res => res.json())
+    .then(mealPlan => {
+      return fetch(base_url + '/shoppingList/api/' + mealPlan._id, {
+        method: 'POST',
+      })
+    })
+    .then(res => res.json())
     .then(res => {
-      window.location = 'mealPlan/view/' + res._id
+      window.location = 'mealPlan/view/' + res.mealPlan._id
     })
 
   })
@@ -271,15 +279,20 @@ $(function() {
 
     event.preventDefault();
 
+    if ($('.shoppingList-entry').val().length == 0) {
+      alert("Please enter an item");
+      return false;
+    }
+
     const newItemName = $('.shoppingList-entry').val();
     $('.shoppingList-entry').val('');
 
     const update = {
-      id: $('#mealplanid').val(),
+      id: $('#shoppinglistid').val(),
       newItemName: newItemName
     }
 
-    fetch(base_url + `/mealPlan/api/${update.id}/additem`, {
+    fetch(base_url + `/shoppingList/api/${update.id}/additem`, {
       method:'PUT',
       body: JSON.stringify(update),
       headers: new Headers({
@@ -314,11 +327,12 @@ $(function() {
 
   // event listener to edit recipe shopping list item
   $('.shopping-list').on('click', '.editbtn', function(e) {
-    $('.editable').removeClass('editable'); //if an item is already green/editable when edit is clicked, this changes it to noneditable
+    $('.editable').removeClass('editable'); //if another item is already open/editable when edit is clicked, this changes it to noneditable
     $(e.target).parent().addClass('editable'); //this makes item editable
     $('.editsubmitbtn').on('click', function(e) { //this click submit is to make the changes
-      // var editItem = $('.textedit').val(); //need to capture updated text
-      $('.editable').removeClass('editable');
+      const editItem = $('.textedit').val(); //need to capture updated text
+      $('.editable').removeClass('editable'); //changes item back to noneditable
+      console.log(editItem);
     });
   });
 
@@ -326,32 +340,31 @@ $(function() {
   // $('.shopping-list').on('click', '.fa', function(e) {
   $('.fa').on('click', function(event) {
 
-    // const itemToDelete = $('.sli').val();
+    const itemToDelete = document.getElementById('label').innerHTML;
 
-    const itemToDelete = $(event.currentTarget).parent();
+    // const itemToDelete = $(event.currentTarget).parent();
 
     console.log('Target to Delete: ', itemToDelete);
 
+    // const hello = `${additionalItemNames.item}`;
+    // console.log(hello);
+
     const deleteItem = {
-      id: $('#mealplanid').val(),
-      itemToDelete: itemToDelete
+      id: $('#shoppinglistid').val(),
+      itemToDelete: "oranges"
     }
 
-    fetch(base_url + `/mealPlan/api/${deleteItem.id}/delitem`, {
+    fetch(base_url + `/shoppingList/api/${deleteItem.id}/delitem`, {
       method:'PUT',
       body: JSON.stringify(deleteItem),
       headers: new Headers({
         'Content-Type': 'application/json'
       })
     })
-
     .catch(error => console.error('Error:', error))
     // .then(res => {
-    //     $('.my-added-items')
-    //       .remove('li')
-    //
-    //       );
-    //     })
+    //     location.reload();
+    // })
   });
 
   //date picker

@@ -4,20 +4,96 @@
 
 body {
   font-family: 'Lato', sans-serif;
+  /* margin: 1px; */
 }
 
+body, html {
+  height: 100%;
+}
+
+.parallax1 {
+  background-image: url('/images/peas.jpeg');
+  height: 100%;
+  background-attachment: inherit;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.parallax2 {
+  background-image: url('/images/family.png');
+  height: 100%;
+  background-attachment: inherit;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.parallax3 {
+  background-image: url('/images/peas.jpeg');
+  height: 100%;
+  background-attachment: inherit;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.image1 {
+  background-image: url('/images/cookbook_tn.jpg');
+}
+
+.image2 {
+  background-image: url('/images/check_tn.jpg');
+}
+
+.image3 {
+  background-image: url('/images/grocery-shopping_tn.jpg');
+}
+
+//////////////////////////////////////////////
 .header {
   margin: 20px auto 40px auto;
   text-align: center;
   position: relative;
 }
 
-/* peas photo */
-img {
-  max-width: 100%;
+.row {
+	padding-bottom: 3rem;
+	height: 70vh;
 }
 
-.logo {
+.easy {
+	padding: 1rem;
+	display: inline-block;
+	position: relative;
+	width: 30%;
+	float: left;
+	height: 90%;
+	margin: 0 1%;
+	min-height: 10rem;
+	border-radius: 5px;
+	text-align: center;
+	overflow: hidden;
+}
+
+.easy p {
+	font-size: 16px;
+}
+
+.easy .image {
+	margin: 1rem 0;
+	height: 70%;
+	width: 100%;
+	background-position: center;
+	background-size: cover;
+}
+
+/* peas photo */
+/* img {
+  max-width: 100%;
+} */
+
+/* .logo {
 	width: 100%;
 	background-color: black;
 	color: white;
@@ -27,19 +103,19 @@ img {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
+} */
 
-.tagline {
+/* .tagline {
   font-size: 15px;
   display: inline-block;
   font-weight: 400;
-}
+} */
 
-.welcome {
+/* .welcome {
   font-size: 15px;
   text-align: center;
-}
-
+} */
+//////////////////////////////////////////////
 .loginform {
   text-align: center;
 }
@@ -48,8 +124,61 @@ img {
   display: inline-block;
 }
 
-a {
-  color: #00B7FF;
+fieldset {
+  border: none;
+}
+
+#username, #password, #datepicker, #search-term, #entry {
+  font-size: 16px;
+  width: 250px;
+  min-height: 48px;
+  display: block;
+  border: none;
+  border-bottom: solid 1px #63a369;
+  transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #63a369 4%);
+  background-position: -250px 0;
+  background-size: 250px 100%;
+  background-repeat: no-repeat;
+  color: #63a369;
+}
+
+#username:focus, #username:valid, #password:focus, #password:valid, #datepicker:focus, #datepicker:hover, #search-term:focus, #search-term:hover, #entry:focus, #entry:hover {
+  box-shadow: none;
+  outline: none;
+  background-position: 0 0;
+}
+
+#username::placeholder, #password::placeholder {
+  color: white;
+  opacity: 0.6;
+  visibility: visible !important;
+}
+
+#datepicker::placeholder, #search-term::placeholder, #entry::placeholder {
+  color: #B0C4DE;
+}
+
+input[type=text] {
+  font-size: 18px;
+  min-width: 48px;
+  min-height: 48px;
+}
+
+#beginbtn {
+  border: none;
+  background: #63a369;
+  cursor: pointer;
+  border-radius: 3px;
+  padding: 6px;
+  width: 200px;
+  color: white;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+#beginbtn:hover, #beginbtn:focus {
+  background-color: white;
+  color: #63a369;
 }
 
 .nav {
@@ -58,7 +187,7 @@ a {
 
 .nav ul {
   list-style: none;
-  background-color: #444;
+  background-color: white;
   text-align: center;
   overflow: auto;
   padding: 0;
@@ -70,16 +199,15 @@ a {
   font-size: 12px;
   float: left;
   height: 48px;
-  width: 25%;
 }
 
 .nav a {
   text-decoration: none;
-  min-width: 48px;
   min-height: 48px;
-  color: #fff;
   display: block;
   transition: .3s background-color;
+  color: black;
+  padding: 5px;
 }
 
 .nav a:hover {
@@ -103,20 +231,17 @@ button {
 }
 
 button:hover, button:focus {
-  background-color: #03ad14;
-}
-
-input[type=text] {
-  font-size: 16px;
-  min-width: 48px;
-  min-height: 48px;
+  background-color: white;
+  color: #63a369;
 }
 
 
 /* Recipes page */
 
-#datepicker {
-  min-width: 250px;
+
+.choose {
+  font-size: 20px;
+  text-align: center;
 }
 
 #submitrecipesbtn:disabled {
@@ -124,8 +249,12 @@ input[type=text] {
   cursor: auto;
 }
 
-.mealplan-submit {
+.mealplan-submit, #searchrecipesbtn {
   margin-top: 20px;
+}
+
+.recipe-search {
+  margin-top: 40px;
 }
 
 .selection {
@@ -176,8 +305,8 @@ input[type=text] {
 
 /* Meal Plan page */
 
-#gobackbtn {
-  margin-right: 10px;
+.buttongroup {
+  margin-top: 30px;
 }
 
 #gotolist {
@@ -194,15 +323,12 @@ input[type=text] {
 }
 
 #gotolist:hover, #gotolist:focus {
-  background-color: #03ad14;
+  background-color: white;
+  color: #63a369;
 }
 
-#newmpbtn {
+#newmpbtn, #previous, #gobackbtn {
   margin-left: 10px;
-}
-
-#previous {
-  margin-top: 20px;
 }
 
 /* Shopping List page */
@@ -215,16 +341,16 @@ input[type=text] {
   border: solid 1px #63a369;
 }
 
+.editable .edit {
+  display: inline;
+}
+
 .editable .non_edit {
   display: none;
 }
 
 .edit {
   display: none;
-}
-
-.editable .edit {
-  display: inline;
 }
 
 .check  {
@@ -300,14 +426,17 @@ input[type=text] {
 }
 
 @media screen and (min-width: 768px) {
-  .logo {
+  .parallax1 {
     font-size: 50px;
+    background-attachment: fixed;
   }
-  .tagline {
-    font-size: 30px;
+  .parallax2 {
+    font-size: 50px;
+    background-attachment: fixed;
   }
-  .welcome {
+  .parallax3 {
     font-size: 30px;
+    background-attachment: fixed;
   }
   .shopping-list {
     margin: 10px 150px;

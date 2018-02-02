@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 const {MealPlan} = require('./models/mealPlan');
 const {Recipes} = require('./models/recipes');
+const {ShoppingList} = require('./models/shoppingList');
 
 
 //mealPlan view end point
@@ -15,8 +16,15 @@ console.log('The meal plan view');
     .populate('recipeNames')
     .then(mealPlan => {
       console.log('About to render', mealPlan);
+
+      ShoppingList
+      .findOne({mealPlan: mealPlan})
+      .then(shoppingList => {
+        mealPlan.shoppingList = shoppingList
+        res.render('mealPlan', mealPlan);
+      })
       // res.render('mealPlan', {title: 'My Cool Meal Plan', message: 'Hello!'})
-      res.render('mealPlan', mealPlan);
+
     })
     .catch(
       err => {
@@ -103,49 +111,6 @@ router.put('/api/:id', jsonParser ,(req, res) => {
     .then(mealPlan => res.status(204).end())
     .catch(err => res.status(500).json({message: 'Internal server error'}));
 });
-
-
-router.put('/api/:id/additem', jsonParser, (req, res) => {
-  if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
-    const message = (
-      `Request path id (${req.params.id}) and request body id ` +
-      `(${req.body.id}) must match`);
-    console.error(message);
-    return res.status(400).json({message: message});
-  }
-  MealPlan
-    .findById(req.params.id)
-    .then(mealPlan => {
-      const newItemName = req.body.newItemName
-      mealPlan.additionalItemNames.push(newItemName);
-      mealPlan.save().then(mealPlan => res.status(204).end())
-      .catch(err => res.status(500).json({message: 'Internal server error'}))
-    })
-})
-
-router.put('/api/:id/delitem', jsonParser, (req, res) => {
-  if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
-    const message = (
-      `Request path id (${req.params.id}) and request body id ` +
-      `(${req.body.id}) must match`);
-    console.error(message);
-    return res.status(400).json({message: message});
-  }
-  MealPlan
-    .findById(req.params.id)
-    .then(mealPlan => {
-      const itemToDelete = req.body.itemToDelete;
-      const index = mealPlan.additionalItemNames.indexOf(itemToDelete);
-      mealPlan.additionalItemNames.splice(index, 1);
-      mealPlan.save().then(mealPlan => res.status(204).end());
-
-      console.log('item to delete is ', itemToDelete);
-      console.log('index is ', index);
-
-      res.render('mealPlan', {list, additionalItems, id: mealPlan._id});
-    })
-    .catch(err => res.status(500).json({message: '!!!Internal server error'}))
-})
 
 
 router.delete('/api/:id', (req, res) => {

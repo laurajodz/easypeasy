@@ -22,39 +22,39 @@ body
     .nav
       ul
         li
-          a(href='/index.html') Home
-        |
-        li
-          a(href='/recipes.html') Recipes
-        |
-        li
-          a(href='mealPlan/view') Meal Plan
-        |
-        li
-          a(href='shoppingList/view') Shopping List
+          a(href='/index.html') EasyPeasy
+        //|
+        //li
+        //  a(href='/recipes.html') Recipes
+        //|
+        //li
+        //  a(href='mealPlan/view') Meal Plan
+        //|
+        //li
+        //  a(href='shoppingList/view') Shopping List
     |
     header(role='banner')
     |
-    h1 Shopping List
+    //h1 Shopping List for Meal Plan starting on #{mealPlan.name}
+    h1 Shopping List for Meal Plan starting on
     |
     form#shopping-list-add
-      input#mealplanid(type='hidden', value= id)
+      input#shoppinglistid(type='hidden', value= _id)
       |
       label.additem(for='entry') Add an item
       |
-      input#entry.shoppingList-entry(type='text', name='shopping-list-entry', placeholder='begin typing')
+      input#entry.shoppingList-entry(type='text', name='shopping-list-entry', placeholder='milk, cereal, apples, etc.' required='')
       |
       button#additembtn Add item
     |
     .shopping-list
-      input#mealplanid(type='hidden', value= id)
       ul.my-added-items
-        each item in additionalItems
+        each item in additionalItemNames
             li.sli
               span.non_edit
                 input.check(type='checkbox')
-                label.new #{item}
-                input(type='text', hidden='')
+                label#label.new #{item}
+                input.sli-item(type='text', hidden='')
               |
               span.edit
                 input.textedit(type='text', value #{item})
@@ -66,15 +66,15 @@ body
               i.fa.fa-trash
       |
       ul.shopping-list-items
-        each item in list
+        each item in itemNames
             li.sli
               span.non_edit
                 input.check(type='checkbox')
                 label.new #{item}
-                input(type='text', hidden='')
+                input.sli-item(type='text', hidden='')
               |
               span.edit
-                input.textedit(type='text', value #{list})
+                input.textedit(type='text', value #{item})
                 |
                 button.editsubmitbtn Submit
               |
