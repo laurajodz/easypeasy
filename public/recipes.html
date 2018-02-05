@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>EasyPeasy - Meal Planning App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <script
       src="https://code.jquery.com/jquery-3.2.1.min.js"
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -15,12 +17,7 @@
   </head>
   <body id="recipe-page">
     <div class="nav">
-      <ul>
-        <li><a href="./index.html">EasyPeasy</a></li>
-        <!-- <li><a href="recipes.html">Recipes</a></li>
-        <li><a href="mealPlan.html">Meal Plan</a></li>
-        <li><a href="shoppingList.html">Shopping List</a></li> -->
-      </ul>
+      <a href="/index.html"><i class="fas fa-home fa-3x" style="color:#63a369"></i></a>
     </div>
     <header role="banner"></header>
     <form class="mealplan-submit">
@@ -42,7 +39,6 @@
       <input type="text" name="recipe-search-entry" class="recipeSearch-entry" id="search-term" placeholder="chicken, tomato, rice, etc.">
       <button id="searchrecipesbtn">Search</button>
     </form>
-    <p class="noresults" hidden>Sorry, no results. Try again.</p>
     <div class="recipes">
       <p class="choose" hidden>Choose recipes for your meal plan</p>
       <ul class="recipesReturned">

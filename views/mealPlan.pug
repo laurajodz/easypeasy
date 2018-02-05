@@ -6,6 +6,10 @@ head
     |
     title My Meal Plan #{name}
     |
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    |
+    link(href='https://use.fontawesome.com/releases/v5.0.6/css/all.css', rel='stylesheet')
+    |
     script(src='https://code.jquery.com/jquery-3.2.1.min.js', integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=', crossorigin='anonymous')
     |
     script(src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')
@@ -20,18 +24,8 @@ head
     |
     body
         .nav
-          ul
-            li
-              a(href='/index.html') EasyPeasy
-            //|
-            //li
-            //  a(href='../api/recipes.html') Recipes
-            //|
-            //li
-            //  a(href='mealPlan/view') Meal Plan
-            //|
-            //li
-            //  a(href='shoppingList/view') Shopping List
+            a(href='/index.html')
+                i.fas.fa-home.fa-3x(style='color:#63a369')
         |
         header(role='banner')
         |

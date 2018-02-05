@@ -38,7 +38,7 @@ body, html {
   background-size: cover;
 }
 
-.image1 {
+/* .image1 {
   background-image: url('/images/cookbook_tn.jpg');
 }
 
@@ -48,7 +48,7 @@ body, html {
 
 .image3 {
   background-image: url('/images/grocery-shopping_tn.jpg');
-}
+} */
 
 //////////////////////////////////////////////
 .header {
@@ -57,13 +57,16 @@ body, html {
   position: relative;
 }
 
+.one {
+  letter-spacing: 3px;
+}
+/*
 .row {
 	padding-bottom: 3rem;
 	height: 70vh;
-}
+} */
 
 .easy {
-	padding: 1rem;
 	display: inline-block;
 	position: relative;
 	width: 30%;
@@ -76,17 +79,20 @@ body, html {
 	overflow: hidden;
 }
 
-.easy p {
+.how {
 	font-size: 16px;
+  text-align: justify;
+  margin: 5px 20px;
+  letter-spacing: 1px;
 }
 
-.easy .image {
+/* .easy .image {
 	margin: 1rem 0;
 	height: 70%;
 	width: 100%;
 	background-position: center;
 	background-size: cover;
-}
+} */
 
 /* peas photo */
 /* img {
@@ -181,11 +187,11 @@ input[type=text] {
   color: #63a369;
 }
 
-.nav {
-  background-color: #444;
-  }
+.nav a {
+  text-decoration: none;
+}
 
-.nav ul {
+/* .nav ul {
   list-style: none;
   background-color: white;
   text-align: center;
@@ -218,7 +224,7 @@ input[type=text] {
   background-color: #fff;
   color: #444;
   cursor: default;
-}
+} */
 
 button {
   font-size: 18px;
@@ -238,6 +244,12 @@ button:hover, button:focus {
 
 /* Recipes page */
 
+/* .plateimg {
+  width: 48px;
+  height: 48px;
+  border: 0;
+  text-decoration: none;
+} */
 
 .choose {
   font-size: 20px;
@@ -332,10 +344,6 @@ button:hover, button:focus {
 }
 
 /* Shopping List page */
-
-.new {
-  margin-right: 20px;
-}
 
 .editable {
   border: solid 1px #63a369;

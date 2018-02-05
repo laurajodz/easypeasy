@@ -5,25 +5,6 @@ var recipesArray = [];
 //change to live site url
 const base_url = 'http://localhost:8080';
 
-// var mockShoppingList = {
-//   "mock": [
-//     {"name": "pasta", "unit": "pound(s)", "amount": 1, "recipe": "Baked ziti"},
-//     {"name": "Parmesan cheese", "unit": "cup(s)", "amount": 1, "recipe": "Baked ziti"},
-//     {"name": "mozzarella cheese", "unit": "cup(s)", "amount": 1, "recipe": "Baked ziti"},
-//     {"name": "pasta sauce", "unit": "cup(s)", "amount": 2, "recipe": "Baked ziti"},
-//     {"name": "quesadillas", "unit": "shell(s)", "amount": 3, "recipe": "Quesadillas"},
-//     {"name": "cheddar cheese", "unit": "ounce(s)", "amount": 5, "recipe": "Quesadillas"},
-//     {"name": "sausage", "unit": "ounce(s)", "amount": 14, "recipe": "Sausage & cabbage"},
-//     {"name": "cabbage", "unit": "cup(s)", "amount": 6, "recipe": "Sausage & cabbage"},
-//     {"name": "onion", "unit": "cup(s)", "amount": 1, "recipe": "Sausage & cabbage"},
-//     {"name": "onion", "unit": "cup(s)", "amount": 1, "recipe": "Turkey chili"},
-//     {"name": "ground turkey", "unit": "pound(s)", "amount": 2, "recipe": "Turkey chili"},
-//     {"name": "ground cumin", "unit": "teaspoon(s)", "amount": 2, "recipe": "Turkey chili"},
-//     {"name": "eggs", "unit": "whole", "amount": 1, "recipe": "none"}
-//   ]
-// };
-
-
 function getRecipes(searchTerm) {
   const query = {
     q: `${searchTerm}`,
@@ -69,62 +50,11 @@ function displayMealPlan(mealPlanArray){
       `<p>Number of recipes selected: ${totalRecipesSelected}</p>`
   )
 }
-    // if ($.isEmptyObject(data)) {
-    //   $('.noresults').prop('hidden', false); //not working perfectly
-    // }
-
-
-
-
-// function getShoppingList(callbackFn) {
-//
-// //
-// //   $.ajax({
-// //     url:`/${mealPlanId}/shoppinglist`,
-// //     method:'GET',
-// //     dataType:"jsonp"
-// //   }).done(res => {
-// //     displayShoppingList(res);
-// //   })
-// // };
-//     setTimeout(function(){ callbackFn(mockShoppingList)}, 1);
-//   };
-
-// function displayShoppingList(data) {
-//   for (index in data.mock) {
-//     //KEEP - will eventually display items from recipes added to meal plan
-//     $('.shopping-list-items')
-//         .append(data.mock.map(item => `<li>
-//               <span class="non_edit">
-//                 <input type="checkbox" class="check"><label class="new">${item.name}, ${item.amount} ${item.unit} </label><input type="text" hidden></span>
-//               <span class="edit">
-//               <input type="text" class="textedit" value="${item.name}, ${item.amount} ${item.unit}"/>
-//               <button class="editsubmitbtn">Submit</button>
-//               </span>
-//               <div class="editbtn">edit</div>
-//               <i class="fa fa-trash"></i>
-//               </li>`));
-//   }
-// };
 
 
 
 
 $(function() {
-
-  // getMealPlan()
-  //   .then(data => {
-  //     displayMealPlan(data);
-  //   });
-
-  // getShoppingList()
-  //   .then(data => {
-  //     displayShoppingList(data);
-  //   });
-  //
-  // getShoppingList(displayShoppingList);
-
-
 
   //Recipes page
 
@@ -170,6 +100,7 @@ $(function() {
   //event listener for button click from recipe selection page to meal plan summary page;
   //adds mealPlanArray to database
   //displays Meal Plan Page
+  //THIS IS END POINT #1
   $('#submitrecipesbtn').on('click', function() {
     event.preventDefault();
 
@@ -217,43 +148,24 @@ $(function() {
   //Meal Plan page
 
   //event listener to go back to edit meal plan (return to recipes.html)
-
+  //THIS IS END POINT #2
   $('#gobackbtn').on('click', function() {
     window.history.back();
+    // MealPlan
+    //   .findOne().sort({created_at: -1}).exec(function(err, post) { ... });
   });
 
+  //event listener to start a new meal plan (return to recipes.html)
   $('#newmpbtn').on('click', function() {
     window.location = '/recipes.html';
   });
 
-  //event listener for button click to go from meal plan page to shopping list page
-  //brings ingredients to shopping list page from meal plan page
+  //need something to delete meal plan
+  //THIS IS END POINT #3
 
-  // $('#go').on('click', function() {
-  // document.getElementById("go").addEventListener("click", function( event ) {
-    // console.log('Clicked on go to shopping list');
-    //
-    // event.preventDefault();
-    //
-    // fetch(base_url + '/mealPlan/api', {
-    //   method: 'GET',
-    //   headers: new Headers({
-    //     'Content-Type': 'application/json'
-    //   })
-    // })
-    // .then(res => res.json())
-    // .then(res => {
-    //   console.log('from client js', res);
-    //   window.location = '/shoppingList/view/' + res._id
-    // })
-  // });
 
-  //need something to edit or delete meal plan
-
-  // MealPlan
-  //   .findOne().sort({created_at: -1}).exec(function(err, post) { ... });
-
-  //access previous meal plans
+  //event listener to access previous meal plans
+  //THIS IS END POINT #4
   // $('#previous').on('click', function() {
   //
   //   fetch(base_url + '/mealPlan/api', {
@@ -275,6 +187,7 @@ $(function() {
   //Shopping List page
 
   //event listener for button click to add an item to shopping list
+  //THIS IS END POINT #5
   $('#additembtn').on('click', function(event) {
 
     event.preventDefault();
@@ -326,6 +239,7 @@ $(function() {
   });
 
   // event listener to edit recipe shopping list item
+  //THIS IS END POINT #6
   $('.shopping-list').on('click', '.editbtn', function(e) {
     $('.editable').removeClass('editable'); //if another item is already open/editable when edit is clicked, this changes it to noneditable
     $(e.target).parent().addClass('editable'); //this makes item editable
@@ -337,6 +251,7 @@ $(function() {
   });
 
   //event listener to delete shopping list item
+  //THIS IS END POINT #7
   // $('.shopping-list').on('click', '.fa', function(e) {
   $('.fa').on('click', function(event) {
 
