@@ -213,6 +213,7 @@ $(function() {
       })
     })
     .catch(error => console.error('Error:', error))
+    .then(res => res.json())
     .then(res => {
         $('.my-added-items')
           .append(`<li><span class="non_edit"><input type="checkbox" class="check">
@@ -221,8 +222,8 @@ $(function() {
               <input type="text" class="textedit" value="${newItemName}"/>
               <button class="editsubmitbtn">Submit</button>
             </span>
-            <div class="editbtn">edit</div>
-            <i class="fa fa-trash"></i>
+            <div class="editbtn" data-key="${res.key}">edit</div>
+            <i class="fa fa-trash del"></i>
               </li>`);
         })
   });
@@ -253,11 +254,11 @@ $(function() {
   //event listener to delete shopping list item
   //THIS IS END POINT #7
   // $('.shopping-list').on('click', '.fa', function(e) {
-  $('.fa').on('click', function(event) {
+  $('.shopping-list').on('click', '.del', function(event) {
 
-    const itemToDelete = document.getElementById('label').innerHTML;
+    // const itemToDelete = document.getElementById('label').innerHTML;
 
-    // const itemToDelete = $(event.currentTarget).parent();
+    const itemToDelete = $(event.currentTarget).parent().find('label.new').text();
 
     console.log('Target to Delete: ', itemToDelete);
 
@@ -266,7 +267,7 @@ $(function() {
 
     const deleteItem = {
       id: $('#shoppinglistid').val(),
-      itemToDelete: "oranges"
+      itemToDelete: itemToDelete
     }
 
     fetch(base_url + `/shoppingList/api/${deleteItem.id}/delitem`, {
@@ -277,9 +278,9 @@ $(function() {
       })
     })
     .catch(error => console.error('Error:', error))
-    // .then(res => {
-    //     location.reload();
-    // })
+    .then(res => {
+      $(event.currentTarget).parent().remove();
+    })
   });
 
   //date picker

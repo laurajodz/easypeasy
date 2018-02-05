@@ -52,7 +52,7 @@ router.put('/api/:id/additem', jsonParser, (req, res) => {
     .then(shoppingList => {
       const newItemName = req.body.newItemName
       shoppingList.additionalItemNames.push(newItemName);
-      shoppingList.save().then(shoppingList => res.status(204).end())
+      shoppingList.save().then(shoppingList => res.status(204).json({key: shoppingList.additionalItemNames.length-1}))
       .catch(err => res.status(500).json({message: 'Internal server error'}))
     })
 })
@@ -74,7 +74,7 @@ router.put('/api/:id/delitem', jsonParser, (req, res) => {
       const index = shoppingList.additionalItemNames.indexOf(itemToDelete);
       shoppingList.additionalItemNames.splice(index, 1);
       shoppingList.save().then(shoppingList => res.status(204).end());
-      res.render('mealPlan', {list, additionalItems, id: mealPlan._id});
+      // res.render('mealPlan', {list, additionalItems, id: mealPlan._id});
       console.log('item to delete is ', itemToDelete);
       console.log('index is ', index);
     })

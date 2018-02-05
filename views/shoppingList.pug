@@ -41,21 +41,21 @@ body
     |
     .shopping-list
       ul.my-added-items
-        each item in additionalItemNames
+        each item, index in additionalItemNames
             li.sli
               span.non_edit
                 input.check(type='checkbox')
-                label#label.new #{item}
+                label.new(id=item) #{item}
                 input.sli-item(type='text', hidden='')
               |
               span.edit
-                input.textedit(type='text', value #{item})
+                input.textedit(type='text', value= item)
                 |
                 button.editsubmitbtn Submit
               |
-              .editbtn edit
+              .editbtn(data-key=index) edit
               |
-              i.fa.fa-trash
+              i.fa.fa-trash.del
       |
       ul.shopping-list-items
         each item in itemNames
@@ -66,7 +66,7 @@ body
                 input.sli-item(type='text', hidden='')
               |
               span.edit
-                input.textedit(type='text', value #{item})
+                input.textedit(type='text', value= item)
                 |
                 button.editsubmitbtn Submit
               |
