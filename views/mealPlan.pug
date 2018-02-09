@@ -25,26 +25,26 @@ head
     body
         .nav
             a(href='/index.html')
-                i.fas.fa-home.fa-3x(style='color:#63a369')
+                i.fas.fa-home.fa-2x(style='color:#63a369')
         |
         header(role='banner')
         |
-        h1 Meal Plan starting on #{name}
+        a#gotolist(href='/shoppingList/view/' + shoppingList._id) Go to shopping list
+        |
+        h1.mp This week's Meal Plan (#{name})
         |
         each recipe in recipeNames
             div
                 h2= recipe.name
                 p= recipe.source
                 - url = recipe.url;
-                a(href=url) Go to recipe
+                a#recipelink(href=url) Go to recipe
         |
         .buttongroup
-            a#gotolist(href='/shoppingList/view/' + shoppingList._id) Go to shopping list
-            |
-            button#gobackbtn Edit Meal Plan
-            |
             button#newmpbtn Start New Meal Plan
+            //|
+            //button#gobackbtn Edit Meal Plan
             |
-            button#previous Previous Meal Plans
-            |
+            //button#previous Previous Meal Plans
+            //|
             script(src='/javascripts/client.js')

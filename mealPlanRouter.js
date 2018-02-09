@@ -10,12 +10,10 @@ const {ShoppingList} = require('./models/shoppingList');
 
 //mealPlan view end point
 router.get('/view/:id', (req, res) => {
-console.log('The meal plan view');
   MealPlan
     .findById(req.params.id)
     .populate('recipeNames')
     .then(mealPlan => {
-      console.log('About to render', mealPlan);
 
       ShoppingList
       .findOne({mealPlan: mealPlan})
@@ -89,8 +87,6 @@ router.post('/api', jsonParser, (req, res) => {
 
 
 router.put('/api/:id', jsonParser ,(req, res) => {
-  console.log('?????????????? ', req.params, ' ?????????????????');
-  console.log('!!!!!!!!!!!!!! ', req.body, ' !!!!!!!!!!!!!!');
   if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
     const message = (
       `Request path id (${req.params.id}) and request body id ` +

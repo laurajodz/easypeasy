@@ -12,70 +12,39 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
     <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Lato:300|Pacifico" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   </head>
   <body>
-    <!-- <div class="nav">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="recipes.html">Recipes</a></li>
-        <li><a href="mealPlan.html">Meal Plan</a></li>
-        <li><a href="shoppingList/view">Shopping List</a></li>
-      </ul>
-    </div> -->
-    <header role="banner" class="header">
-      <!-- <img src="images/peas.jpeg" alt="peas">
-      <h1 class="logo">EasyPeasy</br><span class="tagline">Everything you need to quickly find recipes, meal plan, and grocery shop</span></h1> -->
-    </header>
-    <!-- <div class="welcome">Welcome to EasyPeasy! We take the stress out of making dinner.
-      <p>Let's get to meal planning. It's easy, fast and fun!</p>
-    </div>  -->
+    <header role="banner" class="header"></header>
     <div class="parallax1"></div>
-      <div style="height:250px;background-color:white;color:black;font-size:36px;text-align:center;position: absolute;width:100%">
-      <h1>Welcome to EasyPeasy</h1>
-      <h2>A Meal Planning App</h2>
+      <div style="max-height:400px;background-color:#63a369;color:white;text-align:center;position:absolute;width:100%">
+      <p class="welcome">EasyPeasy</p>
+      <p class="sub">Your Meal Planning App</p>
       </div>
     <div class="parallax1"></div>
 
     <div class="parallax2"></div>
-      <div style="height:300px;background-color:#a1a1a1;color:white;font-size:36px;text-align:center;position: absolute;width:100%">
+      <div style="max-height:730px;background-color:#63a369;color:white;text-align:center;position:absolute;width:100%">
       <p class= "one">It's as easy as 1-2-3</p>
         <div class="row">
-          <div class="easy">
+          <div class="easy1">
             <div>1. Find Recipes</div>
-            <!-- <div class=image1></div> -->
-            <p class="how">Search thousands of recipes from 500+ top web recipe sources</p>
+            <p class="how1">Search thousands of recipes from 500+ top web recipe sources</p>
           </div>
-          <div class="easy">
-            <div>2. Meal Plan</div>
-            <!-- <div class=image2></div> -->
-            <p class="how"> Select recipes to make in the upcoming week</p>
+          <div class="easy2">
+            <div>2. Plan Meals</div>
+            <p class="how2"> Select recipes to make in the upcoming week</p>
           </div>
-          <div class="easy">
-            <div>3. Grocery Shop</div>
-            <!-- <div class=image3></div> -->
-            <p class="how">EasyPeasy generates a shopping list with all of the ingredients you'll need to make your recipes. Plus, add on any addtional items you want to pick up while shopping.</p>
+          <div class="easy3">
+            <div>3. Shop!</div>
+            <p class="how3">EasyPeasy generates a shopping list with all of the ingredients you'll need to make your recipes.<br>
+            Plus, add on any addtional items you want to pick up while shopping.</p>
           </div>
         </div>
+      <button id="beginbtn">Let's Go</button>
       </div>
     <div class="parallax2"></div>
 
-    <div class="parallax3"></div>
-      <div style="height:250px;background-color:#444;color:white;font-size:24px;text-align:center;position: absolute;width:100%">
-        <div class="loginform">
-          <form class="login" action="/login" target="/recipes" method="post">
-            <fieldset>
-              <!-- <legend>Log in</legend> -->
-              <!-- <label for="username">User name</label><br> -->
-              <input type="text" id="username" name="user" placeholder="Username" required><br>
-              <!-- <label for="password">Password</label><br> -->
-              <input type="text" id="password" name="pwd" placeholder="Password" required><br>
-              <button id="beginbtn">Let's Go</button>
-            </fieldset>
-          </form>
-        </div>
-      </div>
-    <div class="parallax3"></div>
     <script src="javascripts/client.js"></script>
   </body>
 </html>

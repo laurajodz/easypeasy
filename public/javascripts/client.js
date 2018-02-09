@@ -14,7 +14,7 @@ function getRecipes(searchTerm) {
     url:'https://api.edamam.com/search?app_id=c5e83e4d&app_key=63b608e29d4873fd592f2304be5930d1',
     method:'GET',
     data: query,
-    dataType:"jsonp"
+    dataType:"json"
   }).done(res => {
     recipesArray = res.hits;
     displayRecipes(res.hits);
@@ -23,7 +23,7 @@ function getRecipes(searchTerm) {
 
 function constructItem(item, index){
   const button = !item.added ? `<button class="add-recipe" data-key="${index}" >Add</button>` : '<i>Added!</i>';
-  return `<li>
+  return `<li class="recipelist">
           <a href="${item.recipe.url}" target="_blank">
             <img class="resultsimg" src="${item.recipe.image}" alt="${item.recipe.label}"></a></br>
           <div class="recipe-name">${item.recipe.label}</div>
@@ -79,6 +79,7 @@ $(function() {
       recipesArray[index].added = true;
       mealPlanArray.push(recipesArray[index]);
       $('#submitrecipesbtn').removeAttr('disabled');
+      $('.ready').show();
       displayMealPlan(mealPlanArray);
       displayRecipes(recipesArray);
   });
@@ -92,6 +93,7 @@ $(function() {
         $('#submitrecipesbtn').removeAttr('disabled');
       } else {
         $('#submitrecipesbtn').attr('disabled','disabled');
+        $('.ready').hide();
       }
       displayMealPlan(mealPlanArray);
       displayRecipes(recipesArray);
@@ -103,9 +105,7 @@ $(function() {
   //THIS IS END POINT #1
   $('#submitrecipesbtn').on('click', function() {
     event.preventDefault();
-
     var mealPlanName = $('#datepicker').val();
-
     if ($('#datepicker').val().trim().length == 0) {
       alert("Please choose a date");
       return false;
@@ -121,7 +121,6 @@ $(function() {
         ingredients: r.recipe.ingredients.map(i => i.text)
       }))
     }
-    console.log(q);
 
     fetch(base_url + '/mealPlan/api', {
       method: 'POST',
@@ -148,7 +147,7 @@ $(function() {
   //Meal Plan page
 
   //event listener to go back to edit meal plan (return to recipes.html)
-  //THIS IS END POINT #2
+
   $('#gobackbtn').on('click', function() {
     window.history.back();
     // MealPlan
@@ -161,11 +160,11 @@ $(function() {
   });
 
   //need something to delete meal plan
-  //THIS IS END POINT #3
+
 
 
   //event listener to access previous meal plans
-  //THIS IS END POINT #4
+
   // $('#previous').on('click', function() {
   //
   //   fetch(base_url + '/mealPlan/api', {
@@ -187,7 +186,7 @@ $(function() {
   //Shopping List page
 
   //event listener for button click to add an item to shopping list
-  //THIS IS END POINT #5
+  //THIS IS END POINT #2
   $('#additembtn').on('click', function(event) {
 
     event.preventDefault();
@@ -220,14 +219,13 @@ $(function() {
           <label class="new">${newItemName}</label><input type="text" hidden></span>
             <span class="edit">
               <input type="text" class="textedit" value="${newItemName}"/>
-              <button class="editsubmitbtn">Submit</button>
+              <button class="editsubmitbtn1" data-key="${res.key}">Submit</button>
             </span>
-            <div class="editbtn" data-key="${res.key}">edit</div>
-            <i class="fa fa-trash del"></i>
+            <div class="editbtn1">edit</div>
+            <i class="fa fa-trash del1"></i>
               </li>`);
         })
   });
-
 
 
   //event listener for click to cross off shopping list item
@@ -239,38 +237,84 @@ $(function() {
     }
   });
 
-  // event listener to edit recipe shopping list item
-  //THIS IS END POINT #6
-  $('.shopping-list').on('click', '.editbtn', function(e) {
-    $('.editable').removeClass('editable'); //if another item is already open/editable when edit is clicked, this changes it to noneditable
-    $(e.target).parent().addClass('editable'); //this makes item editable
-    $('.editsubmitbtn').on('click', function(e) { //this click submit is to make the changes
-      const editItem = $('.textedit').val(); //need to capture updated text
-      $('.editable').removeClass('editable'); //changes item back to noneditable
-      console.log(editItem);
-    });
+
+  // event listener to edit added shopping list item
+  //THIS IS END POINT #3
+  $('.shopping-list').on('click', '.editbtn1', function(e) {
+    $('.editable').removeClass('editable');
+    $(e.target).parent().addClass('editable');
   });
 
-  //event listener to delete shopping list item
-  //THIS IS END POINT #7
-  // $('.shopping-list').on('click', '.fa', function(e) {
-  $('.shopping-list').on('click', '.del', function(event) {
+  $('.shopping-list').on('click', '.editsubmitbtn1', function(event) {
+    const itemToEdit = $(event.target).parent().find('input.textedit').val();
 
-    // const itemToDelete = document.getElementById('label').innerHTML;
+    const key = $(event.target).data('key');
+
+    const editItem = {
+      id: $('#shoppinglistid').val(),
+      key: key,
+      itemToEdit: itemToEdit
+    }
+
+    fetch(base_url + `/shoppingList/api/${editItem.id}/edititem1`, {
+      method:'PUT',
+      body: JSON.stringify(editItem),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    })
+    .catch(error => console.error('Error:', error))
+    .then(res => {
+      $('.editable').removeClass('editable')
+      $(event.target).parent().parent().find('label.new').text(itemToEdit);
+    })
+  })
+
+
+  // event listener to edit recipe shopping list item
+  //THIS IS END POINT #4
+  $('.shopping-list').on('click', '.editbtn2', function(e) {
+    $('.editable').removeClass('editable');
+    $(e.target).parent().addClass('editable');
+  });
+
+  $('.shopping-list').on('click', '.editsubmitbtn2', function(event) {
+    const itemToEdit = $(event.target).parent().find('input.textedit').val();
+
+    const key = $(event.target).data('key');
+
+    const editItem = {
+      id: $('#shoppinglistid').val(),
+      key: key,
+      itemToEdit: itemToEdit
+    }
+
+    fetch(base_url + `/shoppingList/api/${editItem.id}/edititem2`, {
+      method:'PUT',
+      body: JSON.stringify(editItem),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    })
+    .catch(error => console.error('Error:', error))
+    .then(res => {
+      $('.editable').removeClass('editable')
+      $(event.target).parent().parent().find('label.new').text(itemToEdit);
+    })
+  })
+
+  //event listener to delete an added shopping list item
+  //THIS IS END POINT #5
+  $('.shopping-list').on('click', '.del1', function(event) {
 
     const itemToDelete = $(event.currentTarget).parent().find('label.new').text();
-
-    console.log('Target to Delete: ', itemToDelete);
-
-    // const hello = `${additionalItemNames.item}`;
-    // console.log(hello);
 
     const deleteItem = {
       id: $('#shoppinglistid').val(),
       itemToDelete: itemToDelete
     }
 
-    fetch(base_url + `/shoppingList/api/${deleteItem.id}/delitem`, {
+    fetch(base_url + `/shoppingList/api/${deleteItem.id}/delitem1`, {
       method:'PUT',
       body: JSON.stringify(deleteItem),
       headers: new Headers({
@@ -283,9 +327,33 @@ $(function() {
     })
   });
 
+  //event listener to delete a recipe shopping list item
+  //THIS IS END POINT #6
+  $('.shopping-list').on('click', '.del2', function(event) {
+
+    const itemToDelete = $(event.currentTarget).parent().find('label.new').text();
+
+    const deleteItem = {
+      id: $('#shoppinglistid').val(),
+      itemToDelete: itemToDelete
+    }
+
+    fetch(base_url + `/shoppingList/api/${deleteItem.id}/delitem2`, {
+      method:'PUT',
+      body: JSON.stringify(deleteItem),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    })
+    .catch(error => console.error('Error:', error))
+    .then(res => {
+      $(event.currentTarget).parent().remove();
+    })
+  });
+
+
   //date picker
   $('#datepicker').datepicker({ dateFormat: 'DD, MM dd, yy' }).val();
-
-
+  $('#datepicker').datepicker('setDate', '+' + (8 - new Date().getDay()));
 
 });

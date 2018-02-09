@@ -23,17 +23,19 @@ head
 body
     .nav
         a(href='/index.html')
-            i.fas.fa-home.fa-3x(style='color:#63a369')
+            i.fas.fa-home.fa-2x(style='color:#63a369')
     |
     header(role='banner')
     |
-    //h1 Shopping List for Meal Plan starting on #{mealPlan.name}
-    h1 Shopping List for Meal Plan starting on
+    a#backtomp(href='/mealPlan/view/' + mealPlan._id) Back to Meal Plan
+    |
+    h1.sl This week's Shopping List (#{mealPlan.name})
+    //h1 Shopping List for Meal Plan starting on
     |
     form#shopping-list-add
       input#shoppinglistid(type='hidden', value= _id)
       |
-      label.additem(for='entry') Add an item
+      label.additem(for='entry') Add other items to list
       |
       input#entry.shoppingList-entry(type='text', name='shopping-list-entry', placeholder='milk, cereal, apples, etc.' required='')
       |
@@ -46,32 +48,30 @@ body
               span.non_edit
                 input.check(type='checkbox')
                 label.new(id=item) #{item}
-                input.sli-item(type='text', hidden='')
+                //input.sli-item(type='text', hidden='')
               |
               span.edit
                 input.textedit(type='text', value= item)
-                |
-                button.editsubmitbtn Submit
+                button.editsubmitbtn1(data-key=index) Submit
               |
-              .editbtn(data-key=index) edit
+              .editbtn1 edit
               |
-              i.fa.fa-trash.del
+              i.fa.fa-trash.del1
       |
       ul.shopping-list-items
-        each item in itemNames
+        each item, index in itemNames
             li.sli
               span.non_edit
                 input.check(type='checkbox')
-                label.new #{item}
-                input.sli-item(type='text', hidden='')
+                label.new(id=item) #{item}
+                //input.sli-item(type='text', hidden='')
               |
               span.edit
                 input.textedit(type='text', value= item)
-                |
-                button.editsubmitbtn Submit
+                button.editsubmitbtn2(data-key=index) Submit
               |
-              .editbtn edit
+              .editbtn2 edit
               |
-              i.fa.fa-trash
+              i.fa.fa-trash.del2
     |
     script(src='/javascripts/client.js')

@@ -27,7 +27,7 @@ describe('server response', function() {
 
   it('should reach the meal plan page successfully', function() {
     return chai.request(app)
-      .get('/mealPlan.html')
+      .get('/mealPlan/api')
       .then(function(res) {
         res.should.have.status(200);
       });
