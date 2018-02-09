@@ -1,16 +1,16 @@
 'use strict';
-require('dotenv').config();
+// require('dotenv').config();
 
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const passport = require('passport');
+// const passport = require('passport');
 
 mongoose.Promise = global.Promise;
 
 const router = express.Router();
-const { router: usersRouter } = require('./users');
-const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
+// const { router: usersRouter } = require('./users');
+// const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 
 // var path = require('path');
 // var favicon = require('serve-favicon');
@@ -30,8 +30,8 @@ const recipesRouter = require('./recipesRouter');
 const mealPlanRouter = require('./mealPlanRouter');
 const shoppingListRouter = require('./shoppingListRouter');
 
-passport.use(localStrategy);
-passport.use(jwtStrategy);
+// passport.use(localStrategy);
+// passport.use(jwtStrategy);
 
 app.set('views', './views');
 app.set('view engine', 'pug');
@@ -47,17 +47,17 @@ app.use(express.static('public'));
 
 app.use(morgan('common'));
 
-app.use('./users', usersRouter);
-app.use('./auth', authRouter);
+// app.use('./users', usersRouter);
+// app.use('./auth', authRouter);
 
-const jwtAuth = passport.authenticate('jwt', { session: false });
+// const jwtAuth = passport.authenticate('jwt', { session: false });
 
 // A protected endpoint which needs a valid JWT to access it
-app.get('/api/protected', jwtAuth, (req, res) => {
-  return res.json({
-    data: 'rosebud'
-  });
-});
+// app.get('/api/protected', jwtAuth, (req, res) => {
+//   return res.json({
+//     data: 'rosebud'
+//   });
+// });
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');

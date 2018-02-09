@@ -319,6 +319,10 @@ label[for=datepicker], label[for=search-term], .choose {
   margin-top: 50px;
 }
 
+.rname {
+  margin-top: 50px;
+}
+
 #gotolist, #backtomp {
   font-family: "Lucida Grande";
   padding: 13px;
@@ -341,7 +345,7 @@ label[for=datepicker], label[for=search-term], .choose {
 
 #recipelink {
   font-family: "Lucida Grande";
-  padding: 13px;
+  padding: 8px;
   font-size: 12px;
   text-decoration: none;
   background: #add8e6;

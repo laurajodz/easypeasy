@@ -35,7 +35,7 @@ head
         |
         each recipe in recipeNames
             div
-                h2= recipe.name
+                h2.rname= recipe.name
                 p= recipe.source
                 - url = recipe.url;
                 a#recipelink(href=url) Go to recipe
