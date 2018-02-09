@@ -3,8 +3,8 @@ var mealPlanArray = [];
 var recipesArray = [];
 
 //change to live site url
-// const base_url = 'http://localhost:8080';
-const base_url = 'https://secure-bayou-31170.herokuapp.com';
+const base_url = 'http://localhost:8080';
+// const base_url = 'https://secure-bayou-31170.herokuapp.com';
 
 function getRecipes(searchTerm) {
   const query = {

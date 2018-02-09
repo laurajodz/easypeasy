@@ -47,6 +47,7 @@ body, html {
   letter-spacing: 3px;
   font-size: 20px;
 }
+
 /*
 .row {
 	padding-bottom: 3rem;
@@ -90,55 +91,6 @@ body, html {
   max-width: 100%;
 } */
 
-.loginform {
-  text-align: center;
-}
-
-.login {
-  display: inline-block;
-}
-
-fieldset {
-  border: none;
-}
-
-#username, #password, #datepicker, #search-term, #entry {
-  font-size: 16px;
-  width: 250px;
-  min-height: 48px;
-  display: block;
-  border: none;
-  border-bottom: solid 1px #63a369;
-  transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #63a369 4%);
-  background-position: -250px 0;
-  background-size: 250px 100%;
-  background-repeat: no-repeat;
-  color: #63a369;
-}
-
-#username:focus, #username:valid, #password:focus, #password:valid, #datepicker:focus, #datepicker:hover, #search-term:focus, #search-term:hover, #entry:focus, #entry:hover {
-  box-shadow: none;
-  outline: none;
-  background-position: 0 0;
-}
-
-#username::placeholder, #password::placeholder {
-  color: white;
-  opacity: 0.6;
-  visibility: visible !important;
-}
-
-#datepicker::placeholder, #search-term::placeholder, #entry::placeholder {
-  color: #B0C4DE;
-}
-
-input[type=text] {
-  font-size: 18px;
-  min-width: 48px;
-  min-height: 48px;
-}
-
 #beginbtn {
   border-radius: 15px;
   background: white;
@@ -154,6 +106,16 @@ input[type=text] {
   background: #d6d6d6;
 }
 
+fieldset {
+  border: none;
+}
+
+input[type=text] {
+  font-size: 18px;
+  min-width: 48px;
+  min-height: 48px;
+}
+
 .nav {
   margin: 30px 0;
 }
@@ -161,41 +123,6 @@ input[type=text] {
 .nav a {
   text-decoration: none;
 }
-
-/* .nav ul {
-  list-style: none;
-  background-color: white;
-  text-align: center;
-  overflow: auto;
-  padding: 0;
-  margin: 0;
-}
-
-.nav li {
-  line-height: 40px;
-  font-size: 12px;
-  float: left;
-  height: 48px;
-}
-
-.nav a {
-  text-decoration: none;
-  min-height: 48px;
-  display: block;
-  transition: .3s background-color;
-  color: black;
-  padding: 5px;
-}
-
-.nav a:hover {
-  background-color: #63a369;
-}
-
-.nav a.active {
-  background-color: #fff;
-  color: #444;
-  cursor: default;
-} */
 
 button {
   font-size: 18px;
@@ -217,8 +144,41 @@ button:hover, button:focus {
 /* Recipes page */
 
 
+#datepicker, #search-term, #entry {
+  font-size: 16px;
+  width: 250px;
+  min-height: 48px;
+  display: block;
+  border: none;
+  border-bottom: solid 1px #63a369;
+  transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #63a369 4%);
+  background-position: -250px 0;
+  background-size: 250px 100%;
+  background-repeat: no-repeat;
+  color: #63a369;
+}
+
+#datepicker:focus, #datepicker:hover, #search-term:focus, #search-term:hover, #entry:focus, #entry:hover {
+  box-shadow: none;
+  outline: none;
+  background-position: 0 0;
+}
+
+#datepicker::placeholder, #search-term::placeholder, #entry::placeholder {
+  color: #B0C4DE;
+}
+
 label[for=datepicker], label[for=search-term], .choose {
   font-size: 20px;
+}
+
+.recipelist {
+  padding: 8px;
+}
+
+.recipe-search {
+  margin-top: 40px;
 }
 
 #submitrecipesbtn:disabled, #submitrecipesbtn:disabled:hover, #submitrecipesbtn:disabled:focus {
@@ -246,18 +206,6 @@ label[for=datepicker], label[for=search-term], .choose {
   margin-top: 20px;
 }
 
-.recipelist {
-  padding: 8px;
-}
-
-.recipeadd {
-  background-color: gray;
-}
-
-.recipe-search {
-  margin-top: 40px;
-}
-
 .selection {
   padding: 10px;
   margin: 20px;
@@ -274,12 +222,6 @@ label[for=datepicker], label[for=search-term], .choose {
   float: right;
 }
 
-.recipesReturned li {
-  list-style: none;
-  border: 1px solid #63a369;
-  margin-bottom: 5px;
-}
-
 .recipesReturned {
   list-style: none;
   width: 100%;
@@ -287,6 +229,12 @@ label[for=datepicker], label[for=search-term], .choose {
   flex-wrap: wrap;
   margin: 0;
   padding: 10px 0;
+}
+
+.recipesReturned li {
+  list-style: none;
+  border: 1px solid #63a369;
+  margin-bottom: 5px;
 }
 
 .resultsimg {
@@ -369,6 +317,7 @@ background: #72bcd4;
   margin-left: 10px;
 } */
 
+
 /* Shopping List page */
 
 .additem {
@@ -403,7 +352,7 @@ background: #72bcd4;
   background: #add8e6;
 }
 
-.my-added-items li:hover {
+.my-added-items li:hover, .my-added-items li:focus {
   background: #72bcd4;
 }
 
@@ -411,24 +360,24 @@ background: #72bcd4;
   background: #eee;
 }
 
-.shopping-list-items li:hover {
+.shopping-list-items li:hover, .shopping-list-items li:focus {
   background: #ddd;
-}
-
-.edit {
-  display: none;
 }
 
 .editable {
   border: solid 1px #63a369;
 }
 
-.editable .edit {
-  display: inline-block;
-}
-
 .editable .non_edit {
   display: none;
+}
+
+.edit {
+  display: none;
+}
+
+.editable .edit {
+  display: inline;
 }
 
 .check  {
