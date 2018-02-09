@@ -8,6 +8,26 @@ const shoppingListSchema = new mongoose.Schema({
   additionalItemNames: [{type: String}]
 });
 
+// const shoppingListSchema = new mongoose.Schema({
+//   itemNames: [{
+//     name: {
+//       type: String
+//     },
+//     checked : {
+//       type: Boolean
+//     }
+//   }],
+//   mealPlan: {type: mongoose.Schema.Types.ObjectId, ref:"mealPlan"},
+//   additionalItemNames: [{
+//     name: {
+//       type: String
+//     },
+//     checked : {
+//       type: Boolean
+//     }
+//   }]
+// });
+
 const ShoppingList = mongoose.model('shoppingList', shoppingListSchema);
 
 module.exports = {ShoppingList};

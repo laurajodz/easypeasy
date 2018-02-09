@@ -147,12 +147,12 @@ $(function() {
   //Meal Plan page
 
   //event listener to go back to edit meal plan (return to recipes.html)
-
-  $('#gobackbtn').on('click', function() {
-    window.history.back();
-    // MealPlan
+  //
+  // $('#gobackbtn').on('click', function() {
+  //   window.history.back();
+  //   // MealPlan
     //   .findOne().sort({created_at: -1}).exec(function(err, post) { ... });
-  });
+  // });
 
   //event listener to start a new meal plan (return to recipes.html)
   $('#newmpbtn').on('click', function() {
