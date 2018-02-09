@@ -21,7 +21,6 @@ router.get('/view/:id', (req, res) => {
         mealPlan.shoppingList = shoppingList
         res.render('mealPlan', mealPlan);
       })
-      // res.render('mealPlan', {title: 'My Cool Meal Plan', message: 'Hello!'})
 
     })
     .catch(
@@ -92,7 +91,6 @@ router.put('/api/:id', jsonParser ,(req, res) => {
       `Request path id (${req.params.id}) and request body id ` +
       `(${req.body.id}) must match`);
     console.error(message);
-    // we return here to break out of this function
     return res.status(400).json({message: message});
   }
   const toUpdate = {};

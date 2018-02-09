@@ -43,12 +43,35 @@ function generateMealPlanData() {
 }
 
 function seedMealPlanData() {
-  console.info('seeding meal plan data');
-  const seedData = [];
+
+  const plans = [];
   for (let i=1; i<=10; i++) {
-    seedData.push(generateMealPlanData());
+      //create a meal plan
+      const mp = MealPlan
+          .create({
+            name: faker.lorem.words()
+          })
+          .then(mealPlan => {
+            const recipes = [];
+            for(let j = 0; j < 3; j++){
+               recipes.push(Recipes.create(generateRecipesData()));
+            }
+            return Promise
+                .all(recipes)
+                .then(recipes => {
+                  mealPlan.recipeNames = recipes;
+                  return mealPlan.save();
+                })
+          })
+          .catch(err => {
+            console.error(err);
+          });
+
+      //push the meal plan into the array
+      plans.push(mp);
   }
-  return MealPlan.insertMany(seedData);
+
+  return Promise.all(plans);
 }
 
 function generateAdditionalItemNames() {
@@ -181,12 +204,10 @@ describe('MealPlan API', function() {
 
     it('should add a new meal plan', function() {
     const newPlan = generateMealPlanData();
-    console.log('--------newPlan---------- ', newPlan, '----------');
     return chai.request(app)
       .post('/mealplan/api')
       .send(newPlan)
       .then(function(res) {
-        console.log('**********res.body********** ', res.body, '***********');
         res.should.have.status(201);
         res.should.be.json;
         res.body.should.be.a('object');
@@ -280,26 +301,24 @@ describe('ShoppingList API', function() {
 
     it('should add a shopping list item', function() {
       const updateData = {
-        additionalItemNames: generateAdditionalItemNames(),
+        newItemName: generateAdditionalItemNames(),
       };
-      console.log('------------------- ', updateData, ' -------------------');
+      let numItems = 0;
       return ShoppingList
         .findOne()
         .then(function(shoppinglist) {
           updateData.id = shoppinglist._id;
+          numItems = shoppinglist.additionalItemNames.length;
           return chai.request(app)
             .put(`/shoppingList/api/${updateData.id}/additem`)
             .send(updateData);
         })
         .then(function(res) {
-          console.log('*****************', updateData, ' *********************');
           res.should.have.status(201);
           return ShoppingList.findById(updateData.id);
         })
         .then(function(shoppinglist) {
-          console.log('#################### ', shoppinglist, ' ####################');
-          console.log('! ', shoppinglist.additionalItemNames, updateData.additionalItemNames);
-          expect(shoppinglist.additionalItemNames.length).to.equal(updateData.additionalItemNames.length);
+          expect(shoppinglist.additionalItemNames.length).to.equal(numItems + 1);
         })
     });
   });
@@ -311,28 +330,24 @@ describe('ShoppingList API', function() {
     it('should edit an added shopping list item', function() {
 
       const updateData = {
-        additionalItemNames: generateAdditionalItemNames(),
-        key: key
+        itemToEdit: generateAdditionalItemNames(),
       };
-      console.log('------------------- ', updateData, ' -------------------');
+      let numItems = 0;
       return ShoppingList
         .findOne()
         .then(function(shoppinglist) {
           updateData.id = shoppinglist._id;
-
+          numItems = shoppinglist.additionalItemNames.length;
           return chai.request(app)
             .put(`/shoppingList/api/${updateData.id}/edititem1`)
             .send(updateData);
         })
         .then(function(res) {
-          console.log('*****************', updateData, ' *********************');
           res.should.have.status(201);
           return ShoppingList.findById(updateData.id);
         })
         .then(function(shoppinglist) {
-          console.log('#################### ', shoppinglist, ' ####################');
-          console.log('! ', shoppinglist.additionalItemNames, updateData.additionalItemNames);
-          expect(shoppinglist.additionalItemNames.length).to.equal(updateData.additionalItemNames.length);
+          expect(shoppinglist.additionalItemNames.length).to.equal(numItems);
         })
     });
   });
@@ -344,28 +359,24 @@ describe('ShoppingList API', function() {
     it('should edit a recipe shopping list item', function() {
 
       const updateData = {
-        itemName: generateItemNames(),
-        key: key
+        itemToEdit: generateItemNames(),
       };
-      console.log('------------------- ', updateData, ' -------------------');
+      let numItems = 0;
       return ShoppingList
         .findOne()
         .then(function(shoppinglist) {
           updateData.id = shoppinglist._id;
-
+          numItems =  shoppinglist.itemNames.length;
           return chai.request(app)
             .put(`/shoppingList/api/${updateData.id}/edititem2`)
             .send(updateData);
         })
         .then(function(res) {
-          console.log('*****************', updateData, ' *********************');
           res.should.have.status(201);
           return ShoppingList.findById(updateData.id);
         })
         .then(function(shoppinglist) {
-          console.log('#################### ', shoppinglist, ' ####################');
-          console.log('! ', shoppinglist.additionalItemNames, updateData.additionalItemNames);
-          expect(shoppinglist.additionalItemNames.length).to.equal(updateData.additionalItemNames.length);
+          expect(shoppinglist.itemNames.length).to.equal(numItems);
         })
     });
   });
@@ -377,59 +388,51 @@ describe('ShoppingList API', function() {
     it('should delete an added shopping list item', function() {
 
       const updateData = {
-        additionalItemNames: generateAdditionalItemNames(),
+        itemToDelete: generateAdditionalItemNames(),
       };
-      console.log('------------------- ', updateData, ' -------------------');
+      let numItems = 0;
       return ShoppingList
         .findOne()
         .then(function(shoppinglist) {
           updateData.id = shoppinglist._id;
-
+          numItems = shoppinglist.additionalItemNames.length;
           return chai.request(app)
             .put(`/shoppingList/api/${updateData.id}/delitem1`)
             .send(updateData);
         })
         .then(function(res) {
-          console.log('*****************', updateData, ' *********************');
-          res.should.have.status(201);
+          res.should.have.status(204);
           return ShoppingList.findById(updateData.id);
         })
         .then(function(shoppinglist) {
-          console.log('#################### ', shoppinglist, ' ####################');
-          console.log('! ', shoppinglist.additionalItemNames, updateData.additionalItemNames);
-          expect(shoppinglist.additionalItemNames.length).to.equal(updateData.additionalItemNames.length);
+          expect(shoppinglist.additionalItemNames.length).to.equal(numItems - 1);
         })
     });
   });
-
-
   //THIS IS END POINT #6
   describe('PUT endpoint', function() {
 
     it('should delete a recipe shopping list item', function() {
 
       const updateData = {
-        itemName: generateItemNames(),
+        itemToDelete: generateItemNames(),
       };
-      console.log('------------------- ', updateData, ' -------------------');
+      let numItems = 0;
       return ShoppingList
         .findOne()
         .then(function(shoppinglist) {
           updateData.id = shoppinglist._id;
-
+          numItems = shoppinglist.itemNames.length;
           return chai.request(app)
             .put(`/shoppingList/api/${updateData.id}/delitem2`)
             .send(updateData);
         })
         .then(function(res) {
-          console.log('*****************', updateData, ' *********************');
-          res.should.have.status(201);
+          res.should.have.status(204);
           return ShoppingList.findById(updateData.id);
         })
         .then(function(shoppinglist) {
-          console.log('#################### ', shoppinglist, ' ####################');
-          console.log('! ', shoppinglist.additionalItemNames, updateData.additionalItemNames);
-          expect(shoppinglist.additionalItemNames.length).to.equal(updateData.additionalItemNames.length);
+          expect(shoppinglist.itemNames.length).to.equal(numItems - 1);
         })
     });
   });

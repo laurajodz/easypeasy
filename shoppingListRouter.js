@@ -66,7 +66,9 @@ router.put('/api/:id/additem', jsonParser, (req, res) => {
       const newItemName = req.body.newItemName
       shoppingList.additionalItemNames.push(newItemName);
       shoppingList.save().then(shoppingList => res.status(201).json({key: shoppingList.additionalItemNames.length-1}))
-      .catch(err => res.status(500).json({message: 'Internal server error'}))
+      .catch(err => {
+        console.log(err)
+        res.status(500).json({message: 'Internal server error'})})
     })
 })
 

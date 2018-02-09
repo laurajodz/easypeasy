@@ -3,8 +3,8 @@ var mealPlanArray = [];
 var recipesArray = [];
 
 //change to live site url
-const base_url = 'http://localhost:8080';
-// const base_url = 'https://secure-bayou-31170.herokuapp.com';
+// const base_url = 'http://localhost:8080';
+const base_url = 'https://secure-bayou-31170.herokuapp.com';
 
 function getRecipes(searchTerm) {
   const query = {
@@ -147,7 +147,7 @@ $(function() {
 
   //Meal Plan page
 
-  //event listener to go back to edit meal plan (return to recipes.html)
+  //TO DO event listener to go back to edit meal plan (return to recipes.html)
   //
   // $('#gobackbtn').on('click', function() {
   //   window.history.back();
@@ -160,11 +160,11 @@ $(function() {
     window.location = '/recipes.html';
   });
 
-  //need something to delete meal plan
+  //TO DO need something to delete meal plan
 
 
 
-  //event listener to access previous meal plans
+  //TO DO event listener to access previous meal plans
 
   // $('#previous').on('click', function() {
   //
