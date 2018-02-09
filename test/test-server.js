@@ -406,8 +406,8 @@ describe('ShoppingList API', function() {
 
     it('should delete an added shopping list item', function() {
 
-      const key = $(event.target).data('key');
-
+      generateMealPlanData();
+      
       const updateData = {
         additionalItemNames: generateAdditionalItemNames(),
       };
@@ -440,7 +440,7 @@ describe('ShoppingList API', function() {
 
     it('should delete a recipe shopping list item', function() {
 
-      const key = $(event.target).data('key');
+      generateMealPlanData();
 
       const updateData = {
         itemName: generateItemNames(),
