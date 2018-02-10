@@ -7,7 +7,7 @@ the Mayo Clinic (https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-heal
 But we don't need experts to tell us what every busy, frugal home cook knows, that menu planning can save you time and money. With menu planning you know what your meals will look like and what you need to buy. 
 That makes grocery shopping more efficient and cuts down on unplanned trips to buy one or two items. Who doesn't want less stress and less running around!
 
-### EasyPeasy is here to help, in three easy steps:
+### EasyPeasy is here to help, in three easy steps
 
 ![Welcome](screenshots/1welcome.png)
 
@@ -28,9 +28,10 @@ That makes grocery shopping more efficient and cuts down on unplanned trips to b
 ![Summary](screenshots/5summary.png)
 
 ---
+---
 
 ### View your shopping list for the week
-You can add additional items (snacks, breakfast items, etc). And you can delete items you already have in your pantry (salt, etc.), as well as edit items for quantity, name brand, etc.
+### You can add additional items (snacks, breakfast items, etc). And you can delete items you already have in your pantry (salt, etc.), as well as edit items for quantity, name brand, etc.
 
 ![List](screenshots/6list.png)
 
