@@ -40,3 +40,48 @@ That makes grocery shopping more efficient and cuts down on unplanned trips to b
 ![Add](screenshots/7add.png)
 
 
+---
+---
+---
+
+### APIs
+
+1. Create Meal Plan
+2. Add item to Shopping List
+3. Edit added Shopping List item
+4. Edit recipe Shopping List item
+5. Delete added Shopping List item
+6. Delete recipe Shopping List item
+
+---
+---
+---
+
+### Technology stack
+
+Front-End
++ HTML
++ CSS
++ JavaScript
++ jQuery
+
+Back-end
++ Node.js
++ Express.js
++ Mongoose
++ MongoDB
+
+Testing
++ Mocha
++ Chai
+
+Other
++ Git and Github
++ Heroku
++ mLab
++ Travis
+
+
+
+
+
