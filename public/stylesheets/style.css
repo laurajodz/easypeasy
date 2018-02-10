@@ -4,7 +4,7 @@
 
 body {
   font-family: 'Montserrat', sans-serif;
-  /* margin: 1px; */
+  margin: 1px;
 }
 
 body, html {
@@ -342,7 +342,7 @@ background: #72bcd4;
 .shopping-list-items li, .my-added-items li {
   margin-bottom: 8px;
   padding: 8px;
-  font-size: 14px;
+  font-size: 16px;
   transition: 0.2s;
   min-width: 48px;
   min-height: 48px;
@@ -393,6 +393,7 @@ background: #72bcd4;
 .new {
   overflow: auto;
   display: block;
+  margin-bottom: 10px;
 }
 
 .editbtn1, .editbtn2, .del1, .del2  {
@@ -417,7 +418,7 @@ background: #72bcd4;
 
 @media screen and (min-width: 600px) {
   .shopping-list-items li, .my-added-items li {
-    font-size: 18px;
+    font-size: 20px;
   }
   .shopping-list {
     margin: 10px 30px;
