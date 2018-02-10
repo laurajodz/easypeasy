@@ -11,11 +11,15 @@ EasyPeasy is here to help, in three easy steps:
 
 ![Welcome](screenshots/1welcome.png)
 
-<h1>Search the database for recipes by ingredient name (I used the Edamam API - https://developer.edamam.com/edamam-docs-recipe-api)</h1>
+---
+
+Search the database for recipes by ingredient name (I used the Edamam API - https://developer.edamam.com/edamam-docs-recipe-api)
 
 ![Search](screenshots/2search.png)
 
-<h1>Browse your results and add recipes to build your meal plan</h1>
+---
+
+Browse your results and add recipes to build your meal plan
 
 ![Results](screenshots/3results.png)
 
@@ -23,9 +27,10 @@ EasyPeasy is here to help, in three easy steps:
 
 ![Summary](screenshots/5summary.png)
 
-<h1>View your shopping list for the week</h1>
+---
 
-<h1>You can add additional items (snacks, breakfast items, etc). And you can delete items you already have in your pantry (salt, etc.), as well as edit items for quantity, name brand, etc.<h1>
+View your shopping list for the week
+You can add additional items (snacks, breakfast items, etc). And you can delete items you already have in your pantry (salt, etc.), as well as edit items for quantity, name brand, etc.
 
 ![List](screenshots/6list.png)
 
