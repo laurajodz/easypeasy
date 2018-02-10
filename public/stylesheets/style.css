@@ -4,92 +4,44 @@
 
 body {
   font-family: 'Montserrat', sans-serif;
-  margin: 1px;
 }
 
-body, html {
-  height: 100%;
+img {
+  max-width: 100%;
 }
 
-.parallax1 {
-  background-image: url('/images/peas.jpeg');
-  height: 100%;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.parallax2 {
-  background-image: url('/images/family.jpg');
-  height: 100%;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.header {
-  margin: 20px auto 40px auto;
+.top {
   text-align: center;
+  color: white;
   position: relative;
+  width: 100%;
 }
 
-.welcome {
-  font-size: 36px;
+.bottom {
+  text-align: center;
+  background-color: #63a369;
+  color: white;
+  position: relative;
+  width: 100%;
 }
 
-.sub {
-  font-size: 20px;
+.tagline {
+  background-color: #63a369;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
 }
-
-.one {
-  letter-spacing: 3px;
-  font-size: 20px;
-}
-
-/*
-.row {
-	padding-bottom: 3rem;
-	height: 70vh;
-} */
 
 .easy1, .easy2, .easy3 {
-	/* display: inline-block; */
-  display: block;
-	position: relative;
-  font-size: 20px;
-	/* width: 30%; */
-  width: 100%;
-	/* float: left; */
-	height: 90%;
+  font-size: 18px;
 	margin-bottom: 20px;
-	/* min-height: 10rem; */
-	border-radius: 5px;
-	text-align: center;
-	overflow: hidden;
 }
 
 .how1, .how2, .how3 {
 	font-size: 14px;
-  text-align: center;
-  /* text-align: justify; */
-  margin: 5px 20px;
-  /* letter-spacing: 1px; */
 }
-
-/* .easy .image {
-	margin: 1rem 0;
-	height: 70%;
-	width: 100%;
-	background-position: center;
-	background-size: cover;
-} */
-
-/* peas photo */
-/* img {
-  max-width: 100%;
-} */
 
 #beginbtn {
   border-radius: 15px;
@@ -104,10 +56,6 @@ body, html {
 
 #beginbtn:hover, #beginbtn:focus {
   background: #d6d6d6;
-}
-
-fieldset {
-  border: none;
 }
 
 input[type=text] {
@@ -257,7 +205,9 @@ label[for=datepicker], label[for=search-term], .choose {
   text-decoration: underline;
 }
 
+
 /* Meal Plan page */
+
 
 .buttongroup {
   margin-top: 30px;
@@ -313,12 +263,9 @@ background: #72bcd4;
   margin-top: 50px;
 }
 
-/* #newmpbtn, #previous, #gobackbtn {
-  margin-left: 10px;
-} */
-
 
 /* Shopping List page */
+
 
 .additem {
   font-size: 20px;
@@ -400,6 +347,12 @@ background: #72bcd4;
   cursor: pointer;
   margin-top: 10px;
   /* display: block; */
+}
+
+.pipe {
+  margin-top: 10px;
+  margin-right: 10px;
+  display: inline;
 }
 
 .editbtn1, .editbtn2 {

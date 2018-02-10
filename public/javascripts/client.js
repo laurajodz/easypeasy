@@ -57,7 +57,9 @@ function displayMealPlan(mealPlanArray){
 
 $(function() {
 
+
   //Recipes page
+
 
   //event listener for button click from home page to recipes page
   $('#beginbtn').on('click', function() {
@@ -101,8 +103,7 @@ $(function() {
     });
 
   //event listener for button click from recipe selection page to meal plan summary page;
-  //adds mealPlanArray to database
-  //displays Meal Plan Page
+  //adds mealPlanArray to database, displays Meal Plan Page
   //THIS IS END POINT #1
   $('#submitrecipesbtn').on('click', function() {
     event.preventDefault();
@@ -144,47 +145,17 @@ $(function() {
   })
 
 
-
   //Meal Plan page
 
-  //TO DO event listener to go back to edit meal plan (return to recipes.html)
-  //
-  // $('#gobackbtn').on('click', function() {
-  //   window.history.back();
-  //   // MealPlan
-    //   .findOne().sort({created_at: -1}).exec(function(err, post) { ... });
-  // });
 
   //event listener to start a new meal plan (return to recipes.html)
   $('#newmpbtn').on('click', function() {
     window.location = '/recipes.html';
   });
 
-  //TO DO need something to delete meal plan
-
-
-
-  //TO DO event listener to access previous meal plans
-
-  // $('#previous').on('click', function() {
-  //
-  //   fetch(base_url + '/mealPlan/api', {
-  //     method: 'GET',
-  //     // body: JSON.stringify,
-  //     headers: new Headers({
-  //       'Content-Type': 'application/json'
-  //     })
-  //   })
-  //   .catch(error => console.error('Error:', error))
-  //   // .then(res => {
-  //   //   console.log(res);
-  //   //   // recipesArray = res.hits;
-  //   //   // displayRecipes(res.hits);
-  //   //   )}
-  // )};
-
 
   //Shopping List page
+
 
   //event listener for button click to add an item to shopping list
   //THIS IS END POINT #2
@@ -223,11 +194,11 @@ $(function() {
               <button class="editsubmitbtn1" data-key="${res.key}">Submit</button>
             </span>
             <div class="editbtn1">edit</div>
+            <div class="pipe"> | </div>
             <i class="fa fa-trash del1"></i>
               </li>`);
         })
   });
-
 
   //event listener for click to cross off shopping list item
   $('.shopping-list').on('change', '.check', function(e) {
@@ -237,7 +208,6 @@ $(function() {
       $(e.target).parent().removeClass('checked');
     }
   });
-
 
   // event listener to edit added shopping list item
   //THIS IS END POINT #3
@@ -270,7 +240,6 @@ $(function() {
       $(event.target).parent().parent().find('label.new').text(itemToEdit);
     })
   })
-
 
   // event listener to edit recipe shopping list item
   //THIS IS END POINT #4
@@ -351,7 +320,6 @@ $(function() {
       $(event.currentTarget).parent().remove();
     })
   });
-
 
   //date picker
   $('#datepicker').datepicker({ dateFormat: 'DD, MM dd, yy' }).val();
