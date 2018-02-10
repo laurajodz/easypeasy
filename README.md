@@ -12,11 +12,13 @@ That makes grocery shopping more efficient and cuts down on unplanned trips to b
 ![Welcome](screenshots/1welcome.png)
 
 ---
+---
 
 ### Search the database for recipes by ingredient name (I used the Edamam API - https://developer.edamam.com/edamam-docs-recipe-api)
 
 ![Search](screenshots/2search.png)
 
+---
 ---
 
 ### Browse your results and add recipes to build your meal plan
