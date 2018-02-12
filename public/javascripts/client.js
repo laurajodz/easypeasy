@@ -139,7 +139,7 @@ $(function() {
     })
     .then(res => res.json())
     .then(res => {
-      window.location = 'mealPlan/view/' + res.mealPlan._id
+      window.location = 'mealPlan/view/' + res.mealPlan._id;
     })
 
   })
