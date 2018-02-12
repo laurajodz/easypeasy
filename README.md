@@ -1,3 +1,6 @@
+https://secure-bayou-31170.herokuapp.com
+
+
 ![Title](screenshots/0title.png)
 
 Imagine never again having to wonder what to make for dinner. All you need is a good plan! 
@@ -77,9 +80,10 @@ Testing
 
 Other
 + Git and Github
++ Pug
 + Heroku
 + mLab
-+ Travis
++ Travis CI
 
 
 
