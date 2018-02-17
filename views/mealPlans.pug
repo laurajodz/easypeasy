@@ -29,23 +29,16 @@ head
         |
         header(role='banner')
         |
-        a#gotolist(href='/shoppingList/view/' + shoppingList._id) Go to shopping list
+        h1.mp Meal Plan History
         |
-        h1.mp This week's Meal Plan
-        h2.date #{name}
+        each mealPlan in mealPlans
+            div.each
+                h2= mealPlan.name
+                each recipe in mealPlan.recipeNames
+                    div
+                        h3.rname2= recipe.name
+                        p= recipe.source
+                        - url = recipe.url;
+                        a#recipelink(href=url) Go to recipe
         |
-        each recipe in recipeNames
-            div.name
-                h2.rname= recipe.name
-                p.source= recipe.source
-                - url = recipe.url;
-                a#recipelink(href=url) Go to recipe
-        |
-        .buttongroup
-            //button#gobackbtn Edit Meal Plan
-            //|
-            button#previous See All Meal Plans
-            |
-            button#newmpbtn Start New Meal Plan
-            |
-            script(src='/javascripts/client.js')
+        script(src='/javascripts/client.js')

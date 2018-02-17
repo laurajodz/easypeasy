@@ -8,7 +8,16 @@ const {Recipes} = require('./models/recipes');
 const {ShoppingList} = require('./models/shoppingList');
 
 
-//mealPlan view end point
+//mealPlan view end points
+router.get('/view/mealplans', (req, res) => {
+  MealPlan
+    .find()
+    .populate('recipeNames')
+    .then(mealPlans => {
+      res.render('mealPlans', {mealPlans});
+    })
+});
+
 router.get('/view/:id', (req, res) => {
   MealPlan
     .findById(req.params.id)
@@ -21,7 +30,6 @@ router.get('/view/:id', (req, res) => {
         mealPlan.shoppingList = shoppingList
         res.render('mealPlan', mealPlan);
       })
-
     })
     .catch(
       err => {
@@ -30,32 +38,34 @@ router.get('/view/:id', (req, res) => {
       });
 });
 
-router.get('/api', jsonParser, (req, res) => {
-  MealPlan
-    .find()
-    .populate('recipeNames')
-    .then(mealPlan => res.status(200).json(mealPlan))
-    .catch(
-      err => {
-        console.error(err);
-        res.status(500).json({message: 'Internal server error'});
-    });
-});
+//
+// router.get('/api', jsonParser, (req, res) => {
+//   MealPlan
+//     .find()
+//     .populate('recipeNames')
+//     .then(mealPlan => res.status(200).json(mealPlan))
+//     .catch(
+//       err => {
+//         console.error(err);
+//         res.status(500).json({message: 'Internal server error'});
+//     });
+// });
+//
+//
+// router.get('/api/:id', jsonParser, (req, res) => {
+//   MealPlan
+//     .findById(req.params.id)
+//     .populate('recipeNames')
+//     .then(mealPlan => res.status(200).json(mealPlan))
+//     .catch(
+//       err => {
+//         console.error(err);
+//         res.status(500).json({message: 'Internal server error'});
+//     });
+// });
 
 
-router.get('/api/:id', jsonParser, (req, res) => {
-  MealPlan
-    .findById(req.params.id)
-    .populate('recipeNames')
-    .then(mealPlan => res.status(200).json(mealPlan))
-    .catch(
-      err => {
-        console.error(err);
-        res.status(500).json({message: 'Internal server error'});
-    });
-});
-
-
+//create new Meal Plan end point
 router.post('/api', jsonParser, (req, res) => {
   const requiredFields = ['name', 'recipeNames'];
   for (let i=0; i<requiredFields.length; i++) {
@@ -85,34 +95,34 @@ router.post('/api', jsonParser, (req, res) => {
 });
 
 
-router.put('/api/:id', jsonParser ,(req, res) => {
-  if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
-    const message = (
-      `Request path id (${req.params.id}) and request body id ` +
-      `(${req.body.id}) must match`);
-    console.error(message);
-    return res.status(400).json({message: message});
-  }
-  const toUpdate = {};
-  const updateableFields = ['name', 'recipeNames', 'additionalItemNames'];
-  updateableFields.forEach(field => {
-    if (field in req.body) {
-      toUpdate[field] = req.body[field];
-    }
-  })
-  MealPlan
-    .findByIdAndUpdate(req.params.id, {$set: toUpdate})
-    .then(mealPlan => res.status(204).end())
-    .catch(err => res.status(500).json({message: 'Internal server error'}));
-});
+// router.put('/api/:id', jsonParser ,(req, res) => {
+//   if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
+//     const message = (
+//       `Request path id (${req.params.id}) and request body id ` +
+//       `(${req.body.id}) must match`);
+//     console.error(message);
+//     return res.status(400).json({message: message});
+//   }
+//   const toUpdate = {};
+//   const updateableFields = ['name', 'recipeNames', 'additionalItemNames'];
+//   updateableFields.forEach(field => {
+//     if (field in req.body) {
+//       toUpdate[field] = req.body[field];
+//     }
+//   })
+//   MealPlan
+//     .findByIdAndUpdate(req.params.id, {$set: toUpdate})
+//     .then(mealPlan => res.status(204).end())
+//     .catch(err => res.status(500).json({message: 'Internal server error'}));
+// });
 
-
-router.delete('/api/:id', (req, res) => {
-  MealPlan
-    .findByIdAndRemove(req.params.id)
-    .then(() => res.status(204).end())
-    .catch(err => res.status(500).json({message: 'Internal server error'}));
-});
+//
+// router.delete('/api/:id', (req, res) => {
+//   MealPlan
+//     .findByIdAndRemove(req.params.id)
+//     .then(() => res.status(204).end())
+//     .catch(err => res.status(500).json({message: 'Internal server error'}));
+// });
 
 
 module.exports = router;

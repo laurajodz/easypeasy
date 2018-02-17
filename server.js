@@ -26,7 +26,6 @@ const {mealPlan} = require('./models/mealPlan');
 
 const app = express();
 
-const recipesRouter = require('./recipesRouter');
 const mealPlanRouter = require('./mealPlanRouter');
 const shoppingListRouter = require('./shoppingListRouter');
 
@@ -36,7 +35,6 @@ const shoppingListRouter = require('./shoppingListRouter');
 app.set('views', './views');
 app.set('view engine', 'pug');
 
-app.use('/recipes', recipesRouter);
 app.use('/mealPlan', mealPlanRouter);
 app.use('/shoppingList', shoppingListRouter);
 

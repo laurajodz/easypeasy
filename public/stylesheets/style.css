@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+html, body {
+  min-height: 100%;
+}
+
 body {
   font-family: 'Montserrat', sans-serif;
 }
@@ -13,33 +17,61 @@ img {
 .top {
   text-align: center;
   color: white;
-  position: relative;
   width: 100%;
+  position: relative;
+  background-color: #005485;
+}
+
+.tagline {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .bottom {
   text-align: center;
-  background-color: #63a369;
   color: white;
-  position: relative;
   width: 100%;
+  /* height: 50%; */
+  position: relative;
+  background-color: #417a47;
 }
 
-.tagline {
-  background-color: #63a369;
+.step1 {
+  font-size: 18px;
+	margin-top: 20px;
   position: absolute;
-  top: 25%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100%;
+  width: 90%;
+  height: 100%;
 }
 
-.easy1, .easy2, .easy3 {
+.step2 {
   font-size: 18px;
 	margin-bottom: 20px;
+  position: absolute;
+  /* top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  width: 70%;
+  height: 100%;
 }
 
-.how1, .how2, .how3 {
+.step3 {
+  font-size: 18px;
+	margin-bottom: 20px;
+  position: absolute;
+  /* top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  width: 70%;
+  height: 100%;
+}
+
+.how {
 	font-size: 14px;
 }
 
@@ -79,6 +111,7 @@ button {
   padding: 8px;
   text-align: center;
   cursor: pointer;
+  color: white;
   background-color: #63a369;
   border-radius: 15px;
 }
@@ -91,11 +124,27 @@ button:hover, button:focus {
 
 /* Recipes page */
 
+.recipe-page {
+  background-color: #0079bf;
+}
 
-#datepicker, #search-term, #entry {
+.search {
+  padding: 30px;
+  max-width: 500px;
+  margin: auto;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+}
+
+#datepicker, #search-term {
   font-size: 16px;
   width: 250px;
   min-height: 48px;
+  margin: auto;
+  position: relative;
+  text-align: center;
   display: block;
   border: none;
   border-bottom: solid 1px #63a369;
@@ -107,26 +156,70 @@ button:hover, button:focus {
   color: #63a369;
 }
 
-#datepicker:focus, #datepicker:hover, #search-term:focus, #search-term:hover, #entry:focus, #entry:hover {
+label[for=datepicker], label[for=search-term] {
+  font-size: 20px;
+  color: #63a369;
+}
+
+#datepicker:focus, #datepicker:hover, #search-term:focus, #search-term:hover {
   box-shadow: none;
   outline: none;
   background-position: 0 0;
 }
 
-#datepicker::placeholder, #search-term::placeholder, #entry::placeholder {
+#datepicker::placeholder, #search-term::placeholder {
   color: #B0C4DE;
-}
-
-label[for=datepicker], label[for=search-term], .choose {
-  font-size: 20px;
-}
-
-.recipelist {
-  padding: 8px;
 }
 
 .recipe-search {
   margin-top: 40px;
+}
+
+#searchrecipesbtn {
+  margin-top: 20px;
+}
+
+.mealplan-submit {
+  background-color: #63a369;
+  color: white;
+  max-width: 500px;
+  margin: auto;
+  position: relative;
+  text-align: center;
+}
+
+.selection  {
+  padding: 30px;
+  max-width: 500px;
+  margin-top: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: #63a369;
+}
+
+.summary {
+  text-align: center;
+  font-size: 32px;
+}
+
+.recipe-counter {
+  font-size: 24px;
+}
+
+.mealitem {
+  font-size: 22px;
+  text-align: left;
+}
+
+.remove-meal-item {
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+
+.remove-meal-item:hover, .remove-meal-item:focus {
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
 }
 
 #submitrecipesbtn:disabled, #submitrecipesbtn:disabled:hover, #submitrecipesbtn:disabled:focus {
@@ -145,19 +238,40 @@ label[for=datepicker], label[for=search-term], .choose {
   background-color: #d6d6d6;
 }
 
-.mealplan-submit {
-  background-color: #63a369;
+.recipes {
+  margin: auto;
+  position: relative;
+  text-align: center;
+}
+
+.choose {
+  font-size: 20px;
   color: white;
 }
 
-.mealplan-submit, #searchrecipesbtn {
-  margin-top: 20px;
+.recipesReturned {
+  list-style: none;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 10px 0;
+  justify-content: center;
 }
 
-.selection {
-  padding: 10px;
-  margin: 20px;
-  border: solid 1px #63a369;
+.recipesReturned li {
+  list-style: none;
+  border: 1px solid #63a369;
+  margin: 5px;
+}
+
+.recipelist {
+  padding: 8px;
+  background-color: white;
+}
+
+.resultsimg {
+  cursor: pointer;
 }
 
 .recipe-name, .add-recipe {
@@ -170,55 +284,21 @@ label[for=datepicker], label[for=search-term], .choose {
   float: right;
 }
 
-.recipesReturned {
-  list-style: none;
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 10px 0;
-}
-
-.recipesReturned li {
-  list-style: none;
-  border: 1px solid #63a369;
-  margin-bottom: 5px;
-}
-
-.resultsimg {
-  cursor: pointer;
-}
-
-.mealitem {
-  font-size: 22px;
-}
-
-.remove-meal-item {
-  background-color: transparent;
-  border: none;
-  color: white;
-}
-
-.remove-meal-item:hover, .remove-meal-item:focus {
-  background-color: transparent;
-  border: none;
-  text-decoration: underline;
-}
-
 
 /* Meal Plan page */
 
 
-.buttongroup {
-  margin-top: 30px;
+.mealplan-page {
+  background-color: #eb8348;
 }
 
-.mp, .sl {
+.mp, .rname {
   margin-top: 50px;
+  text-align: center;
 }
 
-.rname {
-  margin-top: 50px;
+.date, .name, .source {
+  text-align: center;
 }
 
 #gotolist, #backtomp {
@@ -227,8 +307,8 @@ label[for=datepicker], label[for=search-term], .choose {
   font-size: 18px;
   text-decoration: none;
   background: #63a369;
-  color: black;
-  width: 174px;
+  color: white;
+  width: 200px;
   height: 48px;
   text-align: center;
   cursor: pointer;
@@ -246,8 +326,8 @@ label[for=datepicker], label[for=search-term], .choose {
   padding: 8px;
   font-size: 12px;
   text-decoration: none;
-  background: #add8e6;
-  color: black;
+  background: #0079bf;
+  color: white;
   width: 48px;
   height: 48px;
   text-align: center;
@@ -263,21 +343,80 @@ background: #72bcd4;
   margin-top: 50px;
 }
 
+#previous {
+  margin-right: 50px;
+  border: none;
+}
+
+#newmpbtn {
+  border: none;
+}
+
+
+/* Meal Plans page */
+
+
+.each {
+  border: 1px solid black;
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
 
 /* Shopping List page */
 
 
-.additem {
-  font-size: 20px;
-}
-
-.shoppingList-entry {
-  margin-bottom: 8px;
+.sl {
+  margin-top: 50px;
 }
 
 #shopping-list-add {
   border: 1px solid #63a369;
   padding: 8px;
+}
+
+.additem {
+  font-size: 20px;
+  text-align: center;
+  margin-right: 15px;
+}
+
+#entry {
+  font-size: 16px;
+  width: 250px;
+  min-height: 48px;
+  margin: auto;
+  display: inline;
+  border: none;
+  border-bottom: solid 1px #63a369;
+  transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #63a369 4%);
+  background-position: -250px 0;
+  background-size: 250px 100%;
+  background-repeat: no-repeat;
+  color: #63a369;
+}
+
+label[for=entry] {
+  font-size: 20px;
+  color: #63a369;
+}
+
+#entry:focus, #entry:hover {
+  box-shadow: none;
+  outline: none;
+  background-position: 0 0;
+}
+
+#entry::placeholder {
+  color: #B0C4DE;
+}
+
+#additembtn {
+  display: inline;
+  font-size: 14px;
+  padding: 5px;
 }
 
 .shopping-list-items, .my-added-items {
@@ -385,10 +524,13 @@ background: #72bcd4;
   .welcome {
     font-size: 50px;
   }
-  .sub, .one, .easy1, .easy2, .easy3 {
+  .sub, .stress, .step1, .step2, .step3 {
     font-size: 40px;
   }
-  .how1, .how2, .how3 {
+  .with {
+    font-size: 32px;
+  }
+  .how {
     font-size: 20px;
   }
   .shopping-list {

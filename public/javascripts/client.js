@@ -3,8 +3,8 @@ var mealPlanArray = [];
 var recipesArray = [];
 
 //change to live site url
-// const base_url = 'http://localhost:8080';
-const base_url = 'https://secure-bayou-31170.herokuapp.com';
+const base_url = 'http://localhost:8080';
+// const base_url = 'https://secure-bayou-31170.herokuapp.com';
 
 function getRecipes(searchTerm) {
   const query = {
@@ -48,7 +48,7 @@ function displayMealPlan(mealPlanArray){
   $('.recipesSelected').html(mealPlanArray.map(constructMealItem));
   var totalRecipesSelected = mealPlanArray.length;
   $('.counter').html(
-      `<p>Number of recipes selected: ${totalRecipesSelected}</p>`
+      `<p class="recipe-counter">Number of recipes selected: ${totalRecipesSelected}</p>`
   )
 }
 
@@ -82,6 +82,8 @@ $(function() {
       recipesArray[index].added = true;
       mealPlanArray.push(recipesArray[index]);
       $('#submitrecipesbtn').removeAttr('disabled');
+      $('.summary').show();
+      $('.x').show('slow');
       $('.ready').show();
       displayMealPlan(mealPlanArray);
       displayRecipes(recipesArray);
@@ -97,6 +99,7 @@ $(function() {
       } else {
         $('#submitrecipesbtn').attr('disabled','disabled');
         $('.ready').hide();
+        $('.x').hide();
       }
       displayMealPlan(mealPlanArray);
       displayRecipes(recipesArray);
@@ -105,7 +108,7 @@ $(function() {
   //event listener for button click from recipe selection page to meal plan summary page;
   //adds mealPlanArray to database, displays Meal Plan Page
   //THIS IS END POINT #1
-  $('#submitrecipesbtn').on('click', function() {
+  $('#submitrecipesbtn').on('click', function(event) {
     event.preventDefault();
     var mealPlanName = $('#datepicker').val();
     if ($('#datepicker').val().trim().length == 0) {
@@ -147,6 +150,11 @@ $(function() {
 
   //Meal Plan page
 
+
+  //event listener to see all previous meal plans
+  $('#previous').on('click', function() {
+    window.location = '/mealPlan/view/mealplans';
+  });
 
   //event listener to start a new meal plan (return to recipes.html)
   $('#newmpbtn').on('click', function() {

@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>EasyPeasy - Meal Planning App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <script
       src="https://code.jquery.com/jquery-3.2.1.min.js"
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -17,30 +19,32 @@
   <body>
     <header role="banner" class="header"></header>
     <div class="top">
-      <img src="/images/peas.jpg" class="peas" alt="Peas">
-      <div class="tagline">
-        <h1 class="welcome">EasyPeasy</h1>
-        <h2 class="sub">Your Meal Planning App</h2>
-      </div>
+        <img src="../images/family.jpg" class="family" style="opacity: 0.2">
+        <div class="tagline">
+          <h1 class="welcome">EasyPeasy</h1>
+          <h2 class="sub">Your Meal Planning App</h2>
+          <p class="stress">Imagine...no more stress about what to make for dinner</p>
+          <p class="with">With EasyPeasy you can</p>
+          <i class="fas fa-arrow-circle-down fa-3x" style="margin-bottom:20px"></i>
+        </div>
     </div>
     <div class="bottom">
-      <img src="/images/family.jpg" alt="Family eating">
-      <h3 class= "one">It's as easy as 1-2-3</h3>
-          <div class="row">
-            <div class="easy1">
-              <div>1. Find Recipes</div>
-              <p class="how1">Search thousands of recipes from 500+ top web recipe sources</p>
-            </div>
-            <div class="easy2">
-              <div>2. Plan Meals</div>
-              <p class="how2"> Select recipes to make in the upcoming week</p>
-            </div>
-            <div class="easy3">
-              <div>3. Shop!</div>
-              <p class="how3">EasyPeasy generates a shopping list with all of the ingredients you'll need to make your recipes.<br>
-              Plus, add on any addtional items you want to pick up while shopping.</p>
-            </div>
-          </div>
+      <div class="step1">
+        <img src="../images/peas.jpg" class="peas" style="opacity: 0.2">
+        <div>1. Find Recipes</div>
+        <p class="how">Search thousands of recipes from 500+ top web recipe sources</p>
+        <img src="../images/screenshots/recipe_search.png" onload="this.width/=3;">
+        <img src="../images/screenshots/recipe_search_results_ipad.png">
+      </div>
+      <div class="step2">
+        <div>2. Plan Meals</div>
+        <p class="how"> Select recipes to make in the upcoming week</p>
+      </div>
+      <div class="step3">
+        <div>3. Shop!</div>
+        <p class="how">EasyPeasy generates a shopping list with all of the ingredients you'll need to make your recipes.<br>
+        Plus, add on any addtional items you want to pick up while shopping.</p>
+      </div>
       <button id="beginbtn">Let's Go</button>
     </div>
     <script src="javascripts/client.js"></script>

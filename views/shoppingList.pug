@@ -23,7 +23,7 @@ head
 body
     .nav
         a(href='/index.html')
-            i.fas.fa-home.fa-2x(style='color:#63a369')
+            i.fas.fa-home(style='color:#63a369')
     |
     header(role='banner')
     |
@@ -31,7 +31,6 @@ body
     |
     h1.sl This week's Shopping List
     h2 #{mealPlan.name}
-    //h1 Shopping List for Meal Plan starting on
     |
     form#shopping-list-add
       input#shoppinglistid(type='hidden', value= _id)
