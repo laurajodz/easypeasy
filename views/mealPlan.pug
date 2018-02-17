@@ -29,17 +29,20 @@ head
         |
         header(role='banner')
         |
-        a#gotolist(href='/shoppingList/view/' + shoppingList._id) Go to shopping list
+        div.go
+            a#gotolist(href='/shoppingList/view/' + shoppingList._id) Go to shopping list
         |
-        h1.mp This week's Meal Plan
-        h2.date #{name}
-        |
-        each recipe in recipeNames
-            div.name
-                h2.rname= recipe.name
-                p.source= recipe.source
-                - url = recipe.url;
-                a#recipelink(href=url) Go to recipe
+        div.plan
+            h1.mp This week's Meal Plan
+            h2.date #{name}
+            |
+            each recipe in recipeNames
+                div.name
+                    h2.rname= recipe.name
+                    img(src=recipe.image)
+                    p.source= recipe.source
+                    - url = recipe.url;
+                    a#recipelink(href=url) Go to recipe
         |
         .buttongroup
             //button#gobackbtn Edit Meal Plan

@@ -31,14 +31,15 @@ head
         |
         h1.mp Meal Plan History
         |
-        each mealPlan in mealPlans
-            div.each
-                h2= mealPlan.name
-                each recipe in mealPlan.recipeNames
-                    div
-                        h3.rname2= recipe.name
-                        p= recipe.source
-                        - url = recipe.url;
-                        a#recipelink(href=url) Go to recipe
+        div.plan
+            each mealPlan in mealPlans
+                div.each
+                    h2= mealPlan.name
+                    each recipe in mealPlan.recipeNames
+                        div
+                            h3.rname2= recipe.name
+                            p= recipe.source
+                            - url = recipe.url;
+                            a#recipelink(href=url) Go to recipe
         |
         script(src='/javascripts/client.js')
