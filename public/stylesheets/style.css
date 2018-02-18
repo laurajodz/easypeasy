@@ -18,9 +18,8 @@ img {
   text-align: center;
   color: white;
   width: 100%;
-  height: 50%;
   position: relative;
-  background-color: #3fb26d;
+  background-color: #606060;
 }
 
 .tagline {
@@ -31,19 +30,31 @@ img {
 }
 
 .bottom {
+  margin: auto;
+  position: relative;
+  text-align: center;
+}
+
+.bottomsub {
   color: white;
   width: 100%;
-  height: 50%;
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   margin: 0;
   padding: 10px 0;
   justify-content: center;
-  text-align: center;
-  position: relative;
 }
 
-.bottom::after {
+.step1 {
+  font-size: 18px;
+  max-width: 80%;
+  background-color: #5bbeff;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.step1::after {
   content: "";
   background: url(../images/peas.jpg);
   opacity: 0.9;
@@ -55,47 +66,50 @@ img {
   z-index: -1;
 }
 
-.step1 {
-  font-size: 18px;
-  max-width: 100%;
-	/* position: absolute;
-  margin-top: 20px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  height: 100%; */
-  background-color: rgba(91, 190, 255, 0.2);
-}
-
 .step2 {
   font-size: 18px;
-  max-width: 100%;
-  /* position: absolute;
-	margin-bottom: 20px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70%;
-  height: 100%; */
-  background-color: rgba(255, 156, 91, 0.2);
+  max-width: 80%;
+  background-color: #ff9c5b;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.step2::after {
+  content: "";
+  background: url(../images/peas.jpg);
+  opacity: 0.9;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
 }
 
 .step3 {
   font-size: 18px;
-  max-width: 100%;
-  /* position: absolute;
-	margin-bottom: 20px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70%;
-  height: 100%; */
-  background-color: rgba(255, 238, 91, 0.2);
+  max-width: 80%;
+  background-color: #e5d651;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.step3::after {
+  content: "";
+  background: url(../images/peas.jpg);
+  opacity: 0.9;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
 }
 
 .register {
+  max-width: 80%;
   background-color: #3fb26d;
+  padding: 20px;
 }
 
 .how {
@@ -108,13 +122,13 @@ img {
   cursor: pointer;
   padding: 6px;
   width: 200px;
-  color: ;
+  color: #3fb26d;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
   margin-bottom: 10px;
 }
 
 #beginbtn:hover, #beginbtn:focus {
-  background: #d6d6d6;
+  background: #d3d3d3;
 }
 
 input[type=text] {
@@ -180,7 +194,6 @@ button:hover, button:focus {
   background-position: -250px 0;
   background-size: 250px 100%;
   background-repeat: no-repeat;
-  color: ;
 }
 
 label[for=datepicker], label[for=search-term] {
@@ -262,7 +275,7 @@ label[for=datepicker], label[for=search-term] {
 }
 
 #submitrecipesbtn:hover, #submitrecipesbtn:focus {
-  background-color: #d6d6d6;
+  background-color: #d3d3d3;
 }
 
 .recipes {
@@ -287,7 +300,6 @@ label[for=datepicker], label[for=search-term] {
 
 .recipesReturned li {
   list-style: none;
-  border: 1px solid ;
   margin: 5px;
 }
 
@@ -315,7 +327,7 @@ label[for=datepicker], label[for=search-term] {
 
 
 .mealplan-page {
-  background-color: #FF9C5B;
+  background-color: #ff9c5b;
 }
 
 .mp, .rname {
@@ -332,7 +344,6 @@ label[for=datepicker], label[for=search-term] {
   padding: 13px;
   font-size: 18px;
   text-decoration: none;
-  background: ;
   color: white;
   width: 200px;
   height: 48px;
@@ -344,7 +355,7 @@ label[for=datepicker], label[for=search-term] {
 #gotolist:hover, #gotolist:focus, #backtomp:hover, #backtomp:focus {
   background-color: white;
   color: #3fb26d;
-  border: 1px solid #d6d6d6;
+  border: 1px solid #d3d3d3;
 }
 
 .plan {
@@ -372,7 +383,7 @@ label[for=datepicker], label[for=search-term] {
 }
 
 #recipelink:hover, #recipelink:focus {
-background: #72bcd4;
+  background: #4898cc;
 }
 
 .buttongroup {
@@ -461,7 +472,7 @@ label[for=entry] {
 }
 
 #entry::placeholder {
-  color: #B0C4DE;
+  color: #b0c4de;
 }
 
 #additembtn {
@@ -493,11 +504,11 @@ label[for=entry] {
 }
 
 .shopping-list-items li {
-  background: #eee;
+  background: #d3d3d3;
 }
 
 .shopping-list-items li:hover, .shopping-list-items li:focus {
-  background: #ddd;
+  background: #606060;
 }
 
 .editable {
@@ -535,7 +546,6 @@ label[for=entry] {
 .editbtn1, .editbtn2, .del1, .del2  {
   cursor: pointer;
   margin-top: 10px;
-  /* display: block; */
 }
 
 .pipe {
