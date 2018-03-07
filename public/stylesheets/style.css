@@ -14,12 +14,58 @@ img {
   max-width: 100%;
 }
 
+.nav-bar {
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  background-color: white;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+.top-nav {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+#beginbtn, .nav-link {
+  border-radius: 15px;
+  background: #3fb26d;
+  cursor: pointer;
+  padding: 6px;
+  width: 200px;
+  color: white;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+}
+
+#beginbtn:hover, #beginbtn:focus, .nav-link:hover, .nav-link:focus {
+  background: #606060;
+}
+
+a {
+  text-decoration: none;
+}
+
+.logo {
+  display: inline-block;
+  border-radius: 100%;
+  font-weight: 800;
+}
+
+.logo h1 {
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+}
+
 .top {
   text-align: center;
   color: white;
   width: 100%;
   position: relative;
-  background-color: #606060;
 }
 
 .tagline {
@@ -36,7 +82,6 @@ img {
 }
 
 .bottomsub {
-  color: white;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -44,91 +89,36 @@ img {
   margin: 0;
   padding: 10px 0;
   justify-content: center;
-}
-
-.step1 {
-  font-size: 18px;
-  max-width: 80%;
-  background-color: #5bbeff;
-  margin-bottom: 20px;
-  padding: 20px;
-}
-
-.step1::after {
-  content: "";
-  background: url(../images/peas.jpg);
-  opacity: 0.9;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;
-}
-
-.step2 {
-  font-size: 18px;
-  max-width: 80%;
-  background-color: #ff9c5b;
-  margin-bottom: 20px;
-  padding: 20px;
-}
-
-.step2::after {
-  content: "";
-  background: url(../images/peas.jpg);
-  opacity: 0.9;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;
-}
-
-.step3 {
-  font-size: 18px;
-  max-width: 80%;
-  background-color: #e5d651;
-  margin-bottom: 20px;
-  padding: 20px;
-}
-
-.step3::after {
-  content: "";
-  background: url(../images/peas.jpg);
-  opacity: 0.9;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;
-}
-
-.register {
-  max-width: 80%;
   background-color: #3fb26d;
+}
+
+/* .bottomsub::after {
+  content: "";
+  background: url(../images/peas.jpg);
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-size: cover;
+  opacity: 0.9;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+} */
+
+.step1, .step2, .step3, .register {
+  font-size: 18px;
+  width: 80%;
+  background-color: white;
+  margin: 0 auto;
   padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 20px;
 }
 
 .how {
 	font-size: 14px;
-}
-
-#beginbtn {
-  border-radius: 15px;
-  background: white;
-  cursor: pointer;
-  padding: 6px;
-  width: 200px;
-  color: #3fb26d;
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
-  margin-bottom: 10px;
-}
-
-#beginbtn:hover, #beginbtn:focus {
-  background: #d3d3d3;
 }
 
 input[type=text] {
@@ -155,6 +145,7 @@ button {
   color: white;
   background-color: #3fb26d;
   border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 button:hover, button:focus {
@@ -164,6 +155,7 @@ button:hover, button:focus {
 
 
 /* Recipes page */
+
 
 .recipe-page {
   background-color: #5bbeff;
@@ -247,12 +239,14 @@ label[for=datepicker], label[for=search-term] {
 .mealitem {
   font-size: 22px;
   text-align: left;
+  margin-bottom: 10px;
 }
 
 .remove-meal-item {
   background-color: transparent;
   border: none;
   color: white;
+  padding: 0;
 }
 
 .remove-meal-item:hover, .remove-meal-item:focus {
@@ -301,6 +295,7 @@ label[for=datepicker], label[for=search-term] {
 .recipesReturned li {
   list-style: none;
   margin: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .recipelist {
