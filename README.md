@@ -1,7 +1,7 @@
 https://secure-bayou-31170.herokuapp.com
 
 
-![Title](screenshots/1title.png)
+![Title](public/images/screenshots/1title.png)
 
 Imagine never again having to wonder what to make for dinner. All you need is a good plan!
 
@@ -17,18 +17,18 @@ That makes grocery shopping more efficient and cuts down on unplanned trips to b
 
 ### Search the database for recipes by ingredient name (I used the Edamam API - https://developer.edamam.com/edamam-docs-recipe-api)
 
-![Search](screenshots/2search.png)
+![Search](public/images/screenshots/2search.png)
 
 ---
 ---
 
 ### Browse your results and add recipes to build your meal plan
 
-![Results](screenshots/3results.png)
+![Results](public/images/screenshots/3results.png)
 
-![Builder](screenshots/4builder.png)
+![Builder](public/images/screenshots/4builder.png)
 
-![Summary](screenshots/5summary.png)
+![Summary](public/images/screenshots/5summary.png)
 
 ---
 ---
@@ -36,7 +36,7 @@ That makes grocery shopping more efficient and cuts down on unplanned trips to b
 ### View your shopping list for the week
 ### You can add additional items (snacks, breakfast items, etc). And you can delete items you already have in your pantry (salt, etc.), as well as edit items for quantity, name brand, etc.
 
-![List](screenshots/6list.png)
+![List](public/images/screenshots/6list.png)
 
 
 
