@@ -4,7 +4,7 @@ https://secure-bayou-31170.herokuapp.com
 
 
 
-### EASY PEASY is a meal planning app. Search for recipes, create a meal plan and Easy Peasy generates your shopping list.
+### EASY PEASY is a meal planning app. Search for recipes, create a meal plan and EasyPeasy generates your shopping list.
 
 
 ![Title](public/images/screenshots/1title.png)
