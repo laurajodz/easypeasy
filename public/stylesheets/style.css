@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+html, body {
+  min-height: 100%;
+}
+
 body {
   font-family: 'Montserrat', sans-serif;
 }
@@ -10,52 +14,106 @@ img {
   max-width: 100%;
 }
 
+#beginbtn1 {
+  float: right;
+}
+
+#beginbtn1, #beginbtn2 {
+  border-radius: 15px;
+  background: #3fb26d;
+  cursor: default;
+  padding: 8px;
+  color: white;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+#beginbtn1:hover, #beginbtn1:focus, #beginbtn2:hover, #beginbtn2:focus {
+  background: white;
+  color: #3fb26d;
+}
+
 .top {
   text-align: center;
   color: white;
-  position: relative;
   width: 100%;
-}
-
-.bottom {
-  text-align: center;
-  background-color: #63a369;
-  color: white;
   position: relative;
-  width: 100%;
 }
 
 .tagline {
-  background-color: #63a369;
   position: absolute;
-  top: 25%;
+  text-align: center;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
+  color: white;
+}
+
+.welcome {
+  font-size: 30px;
+}
+
+.sub {
+  font-size: 20px;
+  display: inline;
+  margin: 0;
+}
+
+.stress, .with {
+  text-align: center;
+  color: black;
+  margin-top: 40px;
+}
+
+.bottom {
+  margin: auto;
+  text-align: center;
+}
+
+.bottomsub {
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin: 0;
+  padding: 10px 0;
+  justify-content: center;
+  background-color: white;
+  margin-top: 40px;
 }
 
-.easy1, .easy2, .easy3 {
+.fa-check-circle {
+  margin-right: 10px;
+}
+
+.step1, .step2, .step3 {
   font-size: 18px;
-	margin-bottom: 20px;
+  font-weight: 700;
+  width: 100%;
+  margin: auto;
+  padding: 30px 10px;
 }
 
-.how1, .how2, .how3 {
+.step1, .step3 {
+  background-color: #e9e9e9;
+}
+
+.how {
 	font-size: 14px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
-#beginbtn {
-  border-radius: 15px;
-  background: white;
-  cursor: pointer;
-  padding: 6px;
-  width: 200px;
-  color: #63a369;
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
-  margin-bottom: 10px;
+.photo {
+  margin-bottom: 30px;
 }
 
-#beginbtn:hover, #beginbtn:focus {
-  background: #d6d6d6;
+.register {
+  font-size: 18px;
+  max-width: 100%;
+  background-color: white;
+  margin: 0 auto;
 }
 
 input[type=text] {
@@ -79,85 +137,185 @@ button {
   padding: 8px;
   text-align: center;
   cursor: pointer;
-  background-color: #63a369;
+  color: white;
+  background-color: #3fb26d;
   border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 button:hover, button:focus {
   background-color: white;
-  color: #63a369;
+  color: #3fb26d;
 }
 
 
 /* Recipes page */
 
 
-#datepicker, #search-term, #entry {
+.recipe-page {
+  background-color: #5bbeff;
+}
+
+#datepicker, #search-term {
   font-size: 16px;
-  width: 250px;
+  width: 80%;
   min-height: 48px;
+  margin: auto;
+  position: relative;
+  text-align: center;
   display: block;
   border: none;
-  border-bottom: solid 1px #63a369;
+  border-bottom: solid 1px ;
   transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #63a369 4%);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%,  4%);
   background-position: -250px 0;
   background-size: 250px 100%;
   background-repeat: no-repeat;
-  color: #63a369;
 }
 
-#datepicker:focus, #datepicker:hover, #search-term:focus, #search-term:hover, #entry:focus, #entry:hover {
+label[for=datepicker], label[for=search-term] {
+  font-size: 20px;
+}
+
+#datepicker:focus, #datepicker:hover, #search-term:focus, #search-term:hover {
   box-shadow: none;
   outline: none;
   background-position: 0 0;
 }
 
-#datepicker::placeholder, #search-term::placeholder, #entry::placeholder {
-  color: #B0C4DE;
+#datepicker::placeholder, #search-term::placeholder {
+  color: #b0c4de;
 }
 
-label[for=datepicker], label[for=search-term], .choose {
-  font-size: 20px;
+.searchContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.recipelist {
-  padding: 8px;
+.search, .selection {
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
 }
 
 .recipe-search {
   margin-top: 40px;
 }
 
+#searchrecipesbtn {
+  margin-top: 20px;
+  box-shadow: none;
+}
+
+.submit {
+  display: inline;
+}
+
+.mealplan-submit-form {
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+.summary {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 0;
+}
+
+.recipe-counter {
+  font-size: 20px;
+}
+
+.mealitem {
+  font-size: 14px;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  border: 1px solid gray;
+  padding: 5px;
+  transition: 0.2s;
+  background: #d3d3d3;
+}
+
+.mealitem:hover, .mealitem:focus {
+  background: #606060;
+}
+
+.remove-meal-item {
+  background: transparent;
+  text-decoration: none;
+  border: none;
+  color: black;
+  padding: 0;
+  box-shadow: none;
+}
+
+.remove-meal-item:hover, .remove-meal-item:focus {
+  background: transparent;
+  color: black;
+  border: none;
+}
+
+.x {
+  font-size: 12px
+}
+
 #submitrecipesbtn:disabled, #submitrecipesbtn:disabled:hover, #submitrecipesbtn:disabled:focus {
   cursor: auto;
   background-color: transparent;
+  color: transparent;
   border: none;
 }
 
 #submitrecipesbtn {
-  background-color: white;
-  color: #63a369;
+  background-color: #3fb26d;
+  color: white;
   cursor: pointer;
+  box-shadow: none;
 }
 
 #submitrecipesbtn:hover, #submitrecipesbtn:focus {
-  background-color: #d6d6d6;
+  background-color: white;
+  color: #3fb26d;
 }
 
-.mealplan-submit {
-  background-color: #63a369;
-  color: white;
+.recipes {
+  margin: auto;
+  position: relative;
+  text-align: center;
 }
 
-.mealplan-submit, #searchrecipesbtn {
-  margin-top: 20px;
+.choose {
+  font-size: 20px;
 }
 
-.selection {
-  padding: 10px;
-  margin: 20px;
-  border: solid 1px #63a369;
+.recipesReturned {
+  list-style: none;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 10px 0;
+  justify-content: center;
+}
+
+.recipesReturned li {
+  list-style: none;
+  margin: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.recipelist {
+  padding: 8px;
+  background-color: white;
+}
+
+.resultsimg {
+  cursor: pointer;
 }
 
 .recipe-name, .add-recipe {
@@ -170,65 +328,36 @@ label[for=datepicker], label[for=search-term], .choose {
   float: right;
 }
 
-.recipesReturned {
-  list-style: none;
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 10px 0;
-}
-
-.recipesReturned li {
-  list-style: none;
-  border: 1px solid #63a369;
-  margin-bottom: 5px;
-}
-
-.resultsimg {
-  cursor: pointer;
-}
-
-.mealitem {
-  font-size: 22px;
-}
-
-.remove-meal-item {
-  background-color: transparent;
-  border: none;
-  color: white;
-}
-
-.remove-meal-item:hover, .remove-meal-item:focus {
-  background-color: transparent;
-  border: none;
-  text-decoration: underline;
-}
-
 
 /* Meal Plan page */
 
 
-.buttongroup {
-  margin-top: 30px;
+.mealplan-page {
+  background-color: #ff9c5b;
+  width: 100%;
 }
 
-.mp, .sl {
+.mp, .rname {
   margin-top: 50px;
+  text-align: center;
 }
 
-.rname {
-  margin-top: 50px;
+.date, .name, .source {
+  text-align: center;
+}
+
+.go {
+  margin-bottom: 20px;
 }
 
 #gotolist, #backtomp {
   font-family: "Lucida Grande";
   padding: 13px;
+  background: #3fb26d;
   font-size: 18px;
   text-decoration: none;
-  background: #63a369;
-  color: black;
-  width: 174px;
+  color: white;
+  width: 200px;
   height: 48px;
   text-align: center;
   cursor: pointer;
@@ -237,8 +366,31 @@ label[for=datepicker], label[for=search-term], .choose {
 
 #gotolist:hover, #gotolist:focus, #backtomp:hover, #backtomp:focus {
   background-color: white;
-  color: #63a369;
-  border: 1px solid #d6d6d6;
+  color: #3fb26d;
+  border: 1px solid #d3d3d3;
+}
+
+.plan {
+  text-align: center;
+}
+
+.planContainer {
+  display: flex;
+  text-align: center;
+}
+
+.name {
+  border: 1px solid black;
+  padding: 8px;
+  margin: 5px;
+  background-color: white;
+  display: inline-block;
+  flex: 0 0 100%;
+  width: 400px;
+}
+
+.link {
+  margin-bottom: 20px;
 }
 
 #recipelink {
@@ -246,42 +398,118 @@ label[for=datepicker], label[for=search-term], .choose {
   padding: 8px;
   font-size: 12px;
   text-decoration: none;
-  background: #add8e6;
-  color: black;
+  background: #3fb26d;
+  color: white;
   width: 48px;
   height: 48px;
   text-align: center;
   cursor: pointer;
   border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #recipelink:hover, #recipelink:focus {
-background: #72bcd4;
+  background: white;
+  color: #3fb26d;
 }
 
 .buttongroup {
   margin-top: 50px;
 }
 
+#previous {
+  margin-right: 50px;
+  border: none;
+}
+
+#newmpbtn {
+  border: none;
+  margin-top: 10px;
+}
+
+
+/* Meal Plans page */
+
+
+.each {
+  border: 1px solid black;
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
 
 /* Shopping List page */
 
 
-.additem {
-  font-size: 20px;
+.shoppinglist-page {
+  background-color: #e5d651;
 }
 
-.shoppingList-entry {
-  margin-bottom: 8px;
+.list {
+  padding: 30px;
+  max-width: 900px;
+  margin: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+}
+
+.sl {
+  margin-top: 20px;
+  text-align: center;
 }
 
 #shopping-list-add {
-  border: 1px solid #63a369;
+  border: 1px solid ;
   padding: 8px;
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+.additem {
+  font-size: 20px;
+  text-align: center;
+  margin-right: 15px;
+}
+
+#entry {
+  font-size: 16px;
+  width: 80%;
+  min-height: 48px;
+  margin: auto;
+  display: inline;
+  margin-right: 5px;
+  border: none;
+  border-bottom: solid 1px ;
+  transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%,  4%);
+  background-position: -250px 0;
+  background-size: 250px 100%;
+  background-repeat: no-repeat;
+}
+
+label[for=entry] {
+  font-size: 20px;
+}
+
+#entry:focus, #entry:hover {
+  box-shadow: none;
+  outline: none;
+  background-position: 0 0;
+}
+
+#entry::placeholder {
+  color: #b0c4de;
+}
+
+#additembtn {
+  display: inline;
+  font-size: 14px;
+  padding: 5px;
 }
 
 .shopping-list-items, .my-added-items {
-  margin: 0;
   padding: 0;
   list-style: none;
 }
@@ -296,23 +524,23 @@ background: #72bcd4;
 }
 
 .my-added-items li {
-  background: #add8e6;
+  background: #5bbeff;
 }
 
 .my-added-items li:hover, .my-added-items li:focus {
-  background: #72bcd4;
+  background: #4898cc;
 }
 
 .shopping-list-items li {
-  background: #eee;
+  background: #d3d3d3;
 }
 
 .shopping-list-items li:hover, .shopping-list-items li:focus {
-  background: #ddd;
+  background: #606060;
 }
 
 .editable {
-  border: solid 1px #63a369;
+  border: solid 1px ;
 }
 
 .editable .non_edit {
@@ -346,7 +574,6 @@ background: #72bcd4;
 .editbtn1, .editbtn2, .del1, .del2  {
   cursor: pointer;
   margin-top: 10px;
-  /* display: block; */
 }
 
 .pipe {
@@ -370,34 +597,50 @@ background: #72bcd4;
 }
 
 @media screen and (min-width: 600px) {
-  .shopping-list-items li, .my-added-items li {
+  .welcome {
+    font-size: 50px;
+  }
+  .sub, .stress, .with, .step1, .step2, .step3 {
+    font-size: 30px;
+  }
+  .how {
     font-size: 20px;
   }
-  .shopping-list {
-    margin: 10px 30px;
+  .search, .selection {
+    padding: 30px;
+    width: 50%;
+  }
+  .shopping-list-items li, .my-added-items li {
+    font-size: 20px;
   }
   .nav li {
     font-size: 22px;
   }
-}
-
-@media screen and (min-width: 768px) {
-  .welcome {
-    font-size: 50px;
-  }
-  .sub, .one, .easy1, .easy2, .easy3 {
-    font-size: 40px;
-  }
-  .how1, .how2, .how3 {
+  #beginbtn1, #beginbtn2 {
     font-size: 20px;
-  }
-  .shopping-list {
-    margin: 10px 150px;
   }
 }
 
 @media screen and (min-width: 900px) {
-  .shopping-list {
-    margin: 10px 200px;
+  .welcome {
+    font-size: 60px;
+  }
+  .sub, .stress, .with, .step1, .step2, .step3 {
+    font-size: 40px;
+  }
+  .how {
+    font-size: 40px;
+  }
+  #beginbtn1, #beginbtn2 {
+    font-size: 30px;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .welcome {
+    font-size: 70px;
+  }
+  .sub, .stress, .with, .step1, .step2, .step3 {
+    font-size: 50px;
   }
 }

@@ -15,38 +15,43 @@
     <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300|Pacifico" rel="stylesheet">
   </head>
-  <body id="recipe-page">
+  <body class="recipe-page">
     <div class="nav">
-      <a href="/index.html"><i class="fas fa-home fa-2x" style="color:#63a369"></i></a>
+      <a href="/index.html"><i class="fas fa-home" style="color:white"></i></a>
     </div>
     <header role="banner"></header>
-    <label for="datepicker">1. Select first day of meal plan:</label>
-    <input type="text" id="datepicker" placeholder="select date">
-    <form class="recipe-search">
-      <label for="search-term">2. Search for recipes by ingredient</label>
-      <input type="text" name="recipe-search-entry" class="recipeSearch-entry" id="search-term" placeholder="chicken, tomato, rice, etc.">
-      <button id="searchrecipesbtn">Search</button>
-    </form>
+    <div class="searchContainer">
+      <div class="search">
+        <label for="datepicker">1. Select first day of meal plan:</label>
+        <input type="text" id="datepicker" placeholder="select date">
+        <form class="recipe-search">
+          <label for="search-term">2. Search for recipes by ingredient</label>
+          <input type="text" class="recipeSearch-entry" id="search-term" placeholder="chicken, tomato, rice, etc.">
+          <button id="searchrecipesbtn">Search</button>
+        </form>
+      </div>
+      <div class="selection" hidden>
+        <form class="mealplan-submit-form">
+          <p class="summary">Summary</p>
+          <div class="counter">
+            <p class="recipe-counter">Number of recipes selected: 0</p>
+          </div>
+          <p class="recipesSelected">
+
+          </p>
+          <p class="x" hidden>Click x to remove a recipe from the meal plan</p>
+          <p class ="ready" hidden>Finished choosing recipes? Click submit</p>
+          <button id="submitrecipesbtn" disabled>Submit</button>
+        </form>
+      </div>
+    </div>
     <div class="recipes">
       <p class="choose" hidden>3. Choose recipe(s) for your meal plan</p>
       <ul class="recipesReturned">
 
       </ul>
     </div>
-    <form class="mealplan-submit">
-      <div class="selection" hidden>
-        <div class=counter>
-          <p class="recipe-counter">Number of recipes selected: 0</p>
-        </div>
-        <div>(Click x to remove a recipe from the meal plan)</div>
-        <p class="recipesSelected">
 
-
-        </p>
-        <p class ="ready" hidden>Finished choosing recipes? Click submit to go to Meal Plan Summary page</p>
-        <button id="submitrecipesbtn" disabled>Submit</button>
-      </div>
-    </form>
     <script src="javascripts/client.js"></script>
   </body>
 </html>

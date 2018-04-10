@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>EasyPeasy - Meal Planning App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <script
       src="https://code.jquery.com/jquery-3.2.1.min.js"
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -17,31 +19,38 @@
   <body>
     <header role="banner" class="header"></header>
     <div class="top">
-      <img src="/images/peas.jpg" class="peas" alt="Peas">
+      <button id="beginbtn1">Begin Planning</button>
+      <img src="../images/peas.jpg" class="peas" style="filter:brightness(50%)">
       <div class="tagline">
         <h1 class="welcome">EasyPeasy</h1>
-        <h2 class="sub">Your Meal Planning App</h2>
+        <h2 class="sub">Meal Planning Made Easy</h2>
       </div>
+      <p class="stress">Imagine...no more stress about what to make for dinner</p>
+      <p class="with">The solution is EasyPeasy</p>
     </div>
     <div class="bottom">
-      <img src="/images/family.jpg" alt="Family eating">
-      <h3 class= "one">It's as easy as 1-2-3</h3>
-          <div class="row">
-            <div class="easy1">
-              <div>1. Find Recipes</div>
-              <p class="how1">Search thousands of recipes from 500+ top web recipe sources</p>
-            </div>
-            <div class="easy2">
-              <div>2. Plan Meals</div>
-              <p class="how2"> Select recipes to make in the upcoming week</p>
-            </div>
-            <div class="easy3">
-              <div>3. Shop!</div>
-              <p class="how3">EasyPeasy generates a shopping list with all of the ingredients you'll need to make your recipes.<br>
-              Plus, add on any addtional items you want to pick up while shopping.</p>
-            </div>
-          </div>
-      <button id="beginbtn">Let's Go</button>
+      <div class="bottomsub">
+        <div class="step1">
+          <i class="fas fa-check-circle"></i>Find Recipes
+          <p class="how">Search thousands of recipes from 500+ top web recipe sources</p>
+          <img src="../images/screenshots/recipe_search_results.png">
+        </div>
+        <div class="step2">
+          <i class="fas fa-check-circle"></i>Plan Meals
+          <p class="how"> Select recipes to make in the upcoming week</p>
+          <img src="../images/screenshots/meal_plan.png">
+        </div>
+        <div class="step3">
+          <i class="fas fa-check-circle"></i>Shop!
+          <p class="how">EasyPeasy generates a shopping list with all of the ingredients you'll need to make your recipes</p>
+          <p class="how">Plus, add on any addtional items you want to pick up while shopping</p>
+          <img src="../images/screenshots/shopping_list_add.png">
+        </div>
+        <div class="register">
+          <img src="../images/family.jpg" class="family">
+          <button id="beginbtn2">Begin Planning</button>
+        </div>
+      </div>
     </div>
     <script src="javascripts/client.js"></script>
   </body>
