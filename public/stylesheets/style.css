@@ -14,51 +14,24 @@ img {
   max-width: 100%;
 }
 
-.nav-bar {
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 10px;
-  background-color: white;
-  border-bottom: 1px solid #d3d3d3;
+#beginbtn1 {
+  float: right;
 }
 
-.top-nav {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-}
-
-#beginbtn, .nav-link {
+#beginbtn1, #beginbtn2 {
   border-radius: 15px;
   background: #3fb26d;
-  cursor: pointer;
-  padding: 6px;
-  width: 200px;
+  cursor: default;
+  padding: 8px;
   color: white;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
   margin-bottom: 10px;
+  font-size: 12px;
 }
 
-#beginbtn:hover, #beginbtn:focus, .nav-link:hover, .nav-link:focus {
-  background: #606060;
-}
-
-a {
-  text-decoration: none;
-}
-
-.logo {
-  display: inline-block;
-  border-radius: 100%;
-  font-weight: 800;
-}
-
-.logo h1 {
-  font-weight: normal;
-  margin: 0;
-  padding: 0;
-  font-size: 18px;
+#beginbtn1:hover, #beginbtn1:focus, #beginbtn2:hover, #beginbtn2:focus {
+  background: white;
+  color: #3fb26d;
 }
 
 .top {
@@ -70,14 +43,31 @@ a {
 
 .tagline {
   position: absolute;
-  top: 50%;
+  text-align: center;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
+  color: white;
+}
+
+.welcome {
+  font-size: 30px;
+}
+
+.sub {
+  font-size: 20px;
+  display: inline;
+  margin: 0;
+}
+
+.stress, .with {
+  text-align: center;
+  color: black;
+  margin-top: 40px;
 }
 
 .bottom {
   margin: auto;
-  position: relative;
   text-align: center;
 }
 
@@ -89,36 +79,41 @@ a {
   margin: 0;
   padding: 10px 0;
   justify-content: center;
-  background-color: #3fb26d;
+  background-color: white;
+  margin-top: 40px;
 }
 
-/* .bottomsub::after {
-  content: "";
-  background: url(../images/peas.jpg);
-  background-repeat: no-repeat;
-  background-size: auto;
-  background-size: cover;
-  opacity: 0.9;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;
-} */
+.fa-check-circle {
+  margin-right: 10px;
+}
 
-.step1, .step2, .step3, .register {
+.step1, .step2, .step3 {
   font-size: 18px;
-  width: 80%;
-  background-color: white;
-  margin: 0 auto;
-  padding: 20px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-bottom: 20px;
+  font-weight: 700;
+  width: 100%;
+  margin: auto;
+  padding: 30px 10px;
+}
+
+.step1, .step3 {
+  background-color: #e9e9e9;
 }
 
 .how {
 	font-size: 14px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.photo {
+  margin-bottom: 30px;
+}
+
+.register {
+  font-size: 18px;
+  max-width: 100%;
+  background-color: white;
+  margin: 0 auto;
 }
 
 input[type=text] {
@@ -161,19 +156,9 @@ button:hover, button:focus {
   background-color: #5bbeff;
 }
 
-.search {
-  padding: 30px;
-  max-width: 600px;
-  margin: auto;
-  position: relative;
-  text-align: center;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-color: white;
-}
-
 #datepicker, #search-term {
   font-size: 16px;
-  width: 250px;
+  width: 80%;
   min-height: 48px;
   margin: auto;
   position: relative;
@@ -202,57 +187,81 @@ label[for=datepicker], label[for=search-term] {
   color: #b0c4de;
 }
 
+.searchContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.search, .selection {
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+}
+
 .recipe-search {
   margin-top: 40px;
 }
 
 #searchrecipesbtn {
   margin-top: 20px;
+  box-shadow: none;
 }
 
-.mealplan-submit {
-  background-color: #5b6cff;
-  color: white;
+.submit {
+  display: inline;
+}
+
+.mealplan-submit-form {
   max-width: 600px;
   margin: auto;
-  position: relative;
   text-align: center;
-}
-
-.selection  {
-  padding: 30px;
-  max-width: 600px;
-  margin-top: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-color: #5b6cff;
 }
 
 .summary {
   text-align: center;
-  font-size: 32px;
+  font-size: 20px;
+  margin-top: 0;
 }
 
 .recipe-counter {
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .mealitem {
-  font-size: 22px;
+  font-size: 14px;
   text-align: left;
-  margin-bottom: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  border: 1px solid gray;
+  padding: 5px;
+  transition: 0.2s;
+  background: #d3d3d3;
+}
+
+.mealitem:hover, .mealitem:focus {
+  background: #606060;
 }
 
 .remove-meal-item {
-  background-color: transparent;
+  background: transparent;
+  text-decoration: none;
   border: none;
-  color: white;
+  color: black;
   padding: 0;
+  box-shadow: none;
 }
 
 .remove-meal-item:hover, .remove-meal-item:focus {
-  background-color: transparent;
+  background: transparent;
+  color: black;
   border: none;
-  text-decoration: underline;
+}
+
+.x {
+  font-size: 12px
 }
 
 #submitrecipesbtn:disabled, #submitrecipesbtn:disabled:hover, #submitrecipesbtn:disabled:focus {
@@ -263,13 +272,15 @@ label[for=datepicker], label[for=search-term] {
 }
 
 #submitrecipesbtn {
-  background-color: white;
-  color: #3fb26d;
+  background-color: #3fb26d;
+  color: white;
   cursor: pointer;
+  box-shadow: none;
 }
 
 #submitrecipesbtn:hover, #submitrecipesbtn:focus {
-  background-color: #d3d3d3;
+  background-color: white;
+  color: #3fb26d;
 }
 
 .recipes {
@@ -323,6 +334,7 @@ label[for=datepicker], label[for=search-term] {
 
 .mealplan-page {
   background-color: #ff9c5b;
+  width: 100%;
 }
 
 .mp, .rname {
@@ -334,9 +346,14 @@ label[for=datepicker], label[for=search-term] {
   text-align: center;
 }
 
+.go {
+  margin-bottom: 20px;
+}
+
 #gotolist, #backtomp {
   font-family: "Lucida Grande";
   padding: 13px;
+  background: #3fb26d;
   font-size: 18px;
   text-decoration: none;
   color: white;
@@ -354,13 +371,26 @@ label[for=datepicker], label[for=search-term] {
 }
 
 .plan {
-  padding: 30px;
-  max-width: 900px;
-  margin: auto;
-  position: relative;
   text-align: center;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.planContainer {
+  display: flex;
+  text-align: center;
+}
+
+.name {
+  border: 1px solid black;
+  padding: 8px;
+  margin: 5px;
   background-color: white;
+  display: inline-block;
+  flex: 0 0 100%;
+  width: 400px;
+}
+
+.link {
+  margin-bottom: 20px;
 }
 
 #recipelink {
@@ -368,17 +398,19 @@ label[for=datepicker], label[for=search-term] {
   padding: 8px;
   font-size: 12px;
   text-decoration: none;
-  background: #5b6cff;
+  background: #3fb26d;
   color: white;
   width: 48px;
   height: 48px;
   text-align: center;
   cursor: pointer;
   border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #recipelink:hover, #recipelink:focus {
-  background: #4898cc;
+  background: white;
+  color: #3fb26d;
 }
 
 .buttongroup {
@@ -392,6 +424,7 @@ label[for=datepicker], label[for=search-term] {
 
 #newmpbtn {
   border: none;
+  margin-top: 10px;
 }
 
 
@@ -414,16 +447,15 @@ label[for=datepicker], label[for=search-term] {
 }
 
 .list {
-  padding: 30px 50px;
+  padding: 30px;
   max-width: 900px;
   margin: auto;
-  position: relative;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background-color: white;
 }
 
 .sl {
-  margin-top: 50px;
+  margin-top: 20px;
   text-align: center;
 }
 
@@ -432,6 +464,7 @@ label[for=datepicker], label[for=search-term] {
   padding: 8px;
   max-width: 600px;
   margin: auto;
+  text-align: center;
 }
 
 .additem {
@@ -442,7 +475,7 @@ label[for=datepicker], label[for=search-term] {
 
 #entry {
   font-size: 16px;
-  width: 250px;
+  width: 80%;
   min-height: 48px;
   margin: auto;
   display: inline;
@@ -564,37 +597,50 @@ label[for=entry] {
 }
 
 @media screen and (min-width: 600px) {
-  .shopping-list-items li, .my-added-items li {
-    font-size: 20px;
-  }
-  .list {
-    margin: 10px 30px;
-  }
-  .nav li {
-    font-size: 22px;
-  }
-}
-
-@media screen and (min-width: 768px) {
   .welcome {
     font-size: 50px;
   }
-  .sub, .stress, .step1, .step2, .step3 {
-    font-size: 40px;
-  }
-  .with {
-    font-size: 32px;
+  .sub, .stress, .with, .step1, .step2, .step3 {
+    font-size: 30px;
   }
   .how {
     font-size: 20px;
   }
-  .list {
-    margin: 10px 150px;
+  .search, .selection {
+    padding: 30px;
+    width: 50%;
+  }
+  .shopping-list-items li, .my-added-items li {
+    font-size: 20px;
+  }
+  .nav li {
+    font-size: 22px;
+  }
+  #beginbtn1, #beginbtn2 {
+    font-size: 20px;
   }
 }
 
 @media screen and (min-width: 900px) {
-  .list {
-    margin: 10px 200px;
+  .welcome {
+    font-size: 60px;
+  }
+  .sub, .stress, .with, .step1, .step2, .step3 {
+    font-size: 40px;
+  }
+  .how {
+    font-size: 40px;
+  }
+  #beginbtn1, #beginbtn2 {
+    font-size: 30px;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .welcome {
+    font-size: 70px;
+  }
+  .sub, .stress, .with, .step1, .step2, .step3 {
+    font-size: 50px;
   }
 }

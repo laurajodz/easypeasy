@@ -36,13 +36,17 @@ head
             h1.mp This week's Meal Plan
             h2.date #{name}
             |
+            div.planContainer
+            |
             each recipe in recipeNames
                 div.name
                     h2.rname= recipe.name
                     img(src=recipe.image)
                     p.source= recipe.source
                     - url = recipe.url;
-                    a#recipelink(href=url) Go to recipe
+                    |
+                    div.link
+                        a#recipelink(href=url) Go to recipe
         |
         .buttongroup
             //button#gobackbtn Edit Meal Plan

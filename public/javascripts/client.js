@@ -4,7 +4,7 @@ var recipesArray = [];
 
 //change to live site url
 const base_url = 'http://localhost:8080';
-// const base_url = 'https://secure-bayou-31170.herokuapp.com';
+//const base_url = 'https://secure-bayou-31170.herokuapp.com';
 
 function getRecipes(searchTerm) {
   const query = {
@@ -62,7 +62,11 @@ $(function() {
 
 
   //event listener for button click from home page to recipes page
-  $('#beginbtn').on('click', function() {
+  $('#beginbtn1').on('click', function() {
+    window.location = 'recipes.html';
+  });
+
+  $('#beginbtn2').on('click', function() {
     window.location = 'recipes.html';
   });
 
