@@ -1,6 +1,6 @@
 EASY PEASY
 
-https://secure-bayou-31170.herokuapp.com
+https://easypeasyapp.herokuapp.com
 
 
 

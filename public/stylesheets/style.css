@@ -372,6 +372,7 @@ label[for=datepicker], label[for=search-term] {
 
 .plan {
   text-align: center;
+  margin: 5px;
 }
 
 .planContainer {
@@ -386,7 +387,6 @@ label[for=datepicker], label[for=search-term] {
   background-color: white;
   display: inline-block;
   flex: 0 0 100%;
-  width: 400px;
 }
 
 .link {
